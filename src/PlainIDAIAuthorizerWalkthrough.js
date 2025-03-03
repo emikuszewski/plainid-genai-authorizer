@@ -246,9 +246,9 @@ export default function PlainIDAIAuthorizerWalkthrough() {
             </div>
           </div>
           
-          {/* Configuration Section */}
+          {/* Configuration Section - Updated to stack vertically */}
           <div className="mt-10 pt-7 border-t border-gray-100 relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="flex flex-col gap-8">
               <div>
                 <h4 className="text-deep-teal font-medium mb-4 text-sm uppercase tracking-wider">Select User Role</h4>
                 <div className="flex flex-wrap gap-3">
