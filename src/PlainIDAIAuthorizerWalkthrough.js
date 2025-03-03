@@ -43,30 +43,7 @@ export default function PlainIDAIAuthorizerWalkthrough() {
     
     return () => setAnimateIn(false);
   }, [currentStep]);
-  
-  // Scroll function to pipeline - using element ID for more reliable scrolling
-  const scrollToPipeline = () => {
-    // Short timeout to ensure DOM is ready
-    setTimeout(() => {
-      const pipelineElement = document.getElementById('pipeline-visualization');
-      if (pipelineElement) {
-        const yOffset = -20; // Small offset to show a bit of context above
-        const y = pipelineElement.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        
-        window.scrollTo({
-          top: y,
-          behavior: 'smooth'
-        });
-      } else {
-        // Fallback if element not found
-        window.scrollTo({
-          top: 600, 
-          behavior: 'smooth'
-        });
-      }
-    }, 100);
-  };
-  
+
   // Sample messages and data categories with role-based access
   const sampleQueries = [
     'What were our Q4 financial results?',
@@ -345,7 +322,7 @@ export default function PlainIDAIAuthorizerWalkthrough() {
                 <h4 className="font-medium text-slate-700 mb-2">Authorization Check</h4>
                 <div className="flex items-center">
                   {isAuthorized() ? (
-                    <div className="flex items-center bg-misty-teal text-deep-teal px-3 py-2 rounded-lg border border-teal-500">
+                    <div className="flex items-center bg-misty-teal text-deep-teal px-3 py-2 rounded-lg border border-teal-100">
                       <Check className="text-teal-500 mr-2" size={18} />
                       <span className="font-medium">Access Granted</span>
                     </div>
@@ -420,7 +397,7 @@ export default function PlainIDAIAuthorizerWalkthrough() {
             </Card>
           </div>
         ) : (
-          // Pipeline View - REDESIGNED for fixed position display
+          // Pipeline View
           <div>
             {/* Walkthrough controls */}
             <Card className="p-6 mb-8 bg-white/95 backdrop-blur-sm">
@@ -477,19 +454,27 @@ export default function PlainIDAIAuthorizerWalkthrough() {
                 </div>
               </div>
               
-              <div className="bg-misty-teal p-4 rounded-xl border border-teal-500">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <p className="text-deep-teal font-medium mb-1 text-sm">Current Message:</p>
-                    <p className="text-deep-teal bg-white py-2 px-3 rounded-lg border border-teal-100 font-medium">
-                      "{sampleQueries[queryIndex]}"
-                    </p>
+              <div className="bg-gradient-to-r from-misty-teal to-white p-5 rounded-xl border border-teal-100 shadow-inner">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div className="bg-white/80 backdrop-blur-sm rounded-lg p-4 border border-teal-100 shadow-sm">
+                    <p className="text-deep-teal font-medium mb-2 text-sm">Current Message:</p>
+                    <div className="flex items-center">
+                      <User size={16} className="text-teal-500 mr-2 flex-shrink-0" />
+                      <p className="text-deep-teal py-2 px-3 bg-white rounded-lg border border-teal-50 font-medium text-sm flex-grow">
+                        "{sampleQueries[queryIndex]}"
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-deep-teal font-medium mb-1 text-sm">User Role:</p>
-                    <div className="flex items-center bg-white py-2 px-3 rounded-lg border border-teal-100">
-                      <User size={18} className="text-teal-500 mr-2" />
-                      <span className="text-deep-teal font-medium capitalize">{userRole}</span>
+                  <div className="bg-white/80 backdrop-blur-sm rounded-lg p-4 border border-teal-100 shadow-sm">
+                    <p className="text-deep-teal font-medium mb-2 text-sm">User Role:</p>
+                    <div className="flex items-center">
+                      <User size={16} className="text-teal-500 mr-2 flex-shrink-0" />
+                      <div className="flex items-center py-2 px-3 bg-white rounded-lg border border-teal-50 w-full">
+                        <span className="text-deep-teal font-medium capitalize text-sm">{userRole}</span>
+                        <span className="ml-2 text-xs px-2 py-0.5 rounded-full bg-teal-100 text-teal-800">
+                          {userRole === 'executive' ? 'Full access' : userRole === 'manager' ? 'Limited access' : 'Basic access'}
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -500,7 +485,7 @@ export default function PlainIDAIAuthorizerWalkthrough() {
             <Card id="pipeline-visualization" className="p-6 mb-8 relative overflow-visible border-t-4 border-teal-500 bg-white/95 backdrop-blur-sm">
               <DotGridPattern className="text-teal-500" />
               
-              {/* Pipeline Steps - SIMPLIFIED FIXED WIDTH */}
+              {/* Pipeline Steps */}
               <div className="relative mb-12 z-10">
                 {/* Container for steps with relative positioning */}
                 <div className="relative">
@@ -522,18 +507,15 @@ export default function PlainIDAIAuthorizerWalkthrough() {
                   {/* Step indicators */}
                   <div className="flex justify-between mt-4 mb-8">
                     {[0, 1, 2, 3, 4, 5, 6].map((step) => (
-                      <div 
-                        key={step} 
-                        className={`flex flex-col items-center transition-all duration-500 ${
-                          currentStep === step ? 'scale-110' : ''
-                        }`}
-                      >
-                        <div className={`w-12 h-12 flex items-center justify-center rounded-full border-2 z-10 transition-all duration-300 ${
+                      <div key={step} className={`flex flex-col items-center transition-all duration-500 ${
+                        currentStep === step ? 'scale-110' : ''
+                      }`}>
+                        <div className={`w-12 h-12 flex items-center justify-center rounded-full border-2 z-10 transition-all duration-300 transform hover:scale-110 ${
                           currentStep === step 
                             ? 'bg-gradient-to-r from-teal-500 to-teal-600 text-white border-transparent shadow-md' 
                             : currentStep > step 
-                            ? 'bg-teal-500 bg-opacity-80 text-white border-transparent' 
-                            : 'bg-white text-slate-400 border-gray-200'
+                            ? 'bg-teal-500 bg-opacity-80 text-white border-transparent hover:shadow-md' 
+                            : 'bg-white text-slate-400 border-gray-200 hover:border-teal-300 hover:text-teal-400'
                         }`}
                         >
                           <span className="font-medium">{step}</span>
@@ -602,15 +584,15 @@ export default function PlainIDAIAuthorizerWalkthrough() {
                     
                     {/* STEP 2 */}
                     {currentStep === 2 && (
-                      <div className={`p-6 rounded-xl border flex ${
+                      <div className={`p-6 rounded-xl border flex flex-col md:flex-row ${
                         isAuthorized() 
-                          ? 'bg-misty-teal border-green-200' 
+                          ? 'bg-gradient-to-r from-misty-teal to-white border-green-200' 
                           : 'bg-yellow-50 border-yellow-200'
                       }`}>
-                        <div className={`p-3 rounded-xl mr-4 flex-shrink-0 self-start text-white ${
+                        <div className={`p-3 rounded-xl mb-4 md:mb-0 md:mr-5 flex-shrink-0 self-start text-white ${
                           isAuthorized() 
-                            ? 'bg-green-500'
-                            : 'bg-yellow-500'
+                            ? 'bg-gradient-to-r from-green-500 to-teal-500'
+                            : 'bg-gradient-to-r from-yellow-500 to-amber-500'
                         }`}>
                           {isAuthorized() ? <Shield size={28} /> : <Lock size={28} />}
                         </div>
@@ -639,8 +621,8 @@ export default function PlainIDAIAuthorizerWalkthrough() {
                     
                     {/* STEP 3 */}
                     {currentStep === 3 && (
-                      <div className="bg-misty-teal p-6 rounded-xl border border-teal-100 flex">
-                        <div className="bg-teal-500 text-white p-3 rounded-xl mr-4 flex-shrink-0 self-start">
+                      <div className="bg-gradient-to-r from-misty-teal to-white p-6 rounded-xl border border-teal-100 flex flex-col md:flex-row">
+                        <div className="bg-gradient-to-r from-teal-500 to-teal-600 text-white p-3 rounded-xl mb-4 md:mb-0 md:mr-5 flex-shrink-0 self-start">
                           <Database size={28} />
                         </div>
                         <div>
@@ -679,8 +661,8 @@ export default function PlainIDAIAuthorizerWalkthrough() {
                     
                     {/* STEP 4 */}
                     {currentStep === 4 && (
-                      <div className="bg-misty-teal p-6 rounded-xl border border-teal-100 flex">
-                        <div className="bg-teal-500 text-white p-3 rounded-xl mr-4 flex-shrink-0 self-start">
+                      <div className="bg-gradient-to-r from-misty-teal to-white p-6 rounded-xl border border-teal-100 flex flex-col md:flex-row">
+                        <div className="bg-gradient-to-r from-teal-500 to-teal-600 text-white p-3 rounded-xl mb-4 md:mb-0 md:mr-5 flex-shrink-0 self-start">
                           <Filter size={28} />
                         </div>
                         <div>
@@ -714,8 +696,8 @@ export default function PlainIDAIAuthorizerWalkthrough() {
                     
                     {/* STEP 5 */}
                     {currentStep === 5 && (
-                      <div className="bg-misty-teal p-6 rounded-xl border border-teal-100 flex">
-                        <div className="bg-teal-500 text-white p-3 rounded-xl mr-4 flex-shrink-0 self-start">
+                      <div className="bg-gradient-to-r from-misty-teal to-white p-6 rounded-xl border border-teal-100 flex flex-col md:flex-row">
+                        <div className="bg-gradient-to-r from-teal-500 to-teal-600 text-white p-3 rounded-xl mb-4 md:mb-0 md:mr-5 flex-shrink-0 self-start">
                           <Bot size={28} />
                         </div>
                         <div>
@@ -746,37 +728,33 @@ export default function PlainIDAIAuthorizerWalkthrough() {
                     
                     {/* STEP 6 */}
                     {currentStep === 6 && (
-                      <div className="bg-misty-teal p-6 rounded-xl border border-teal-100 flex flex-col">
+                      <div className="bg-gradient-to-r from-misty-teal to-white p-6 rounded-xl border border-teal-100 flex flex-col shadow-sm">
                         <div className="flex mb-4">
-                          <div className="bg-green-500 text-white p-3 rounded-xl mr-4 flex-shrink-0 self-start">
+                          <div className="bg-gradient-to-r from-green-500 to-teal-500 text-white p-3 rounded-xl mr-4 flex-shrink-0 self-start">
                             <Check size={28} />
                           </div>
                           <div>
                             <h4 className="text-lg font-medium text-deep-teal mb-2">Final Response</h4>
-                            <p className="text-deep-teal">
+                            <p className="text-deep-teal/80">
                               Secure, policy-compliant response generated for {userRole} role:
                             </p>
                           </div>
                         </div>
                         
-                        <div className={`bg-white p-5 rounded-xl border ${!isAuthorized() ? 'border-red-500 bg-red-50' : 'border-teal-200'} shadow-sm mb-4`}>
+                        <div className={`bg-white/90 backdrop-blur-sm p-5 rounded-xl border ${!isAuthorized() ? 'border-red-500 bg-red-50/50' : 'border-teal-200'} shadow-sm mb-4`}>
                           <p className={`${!isAuthorized() ? 'text-red-700 font-medium' : 'text-deep-teal'}`}>{result.response}</p>
                         </div>
                         
-                        <div className="bg-misty-teal p-4 rounded-xl flex items-start border border-teal-100">
+                        <div className="bg-gradient-to-r from-misty-teal to-white p-4 rounded-xl flex items-start border border-teal-100">
                           <Shield size={22} className="text-teal-500 mr-3 mt-0.5 flex-shrink-0" />
                           <div>
                             <p className="text-deep-teal font-medium">PlainID GenAI Authorizer</p>
-                            <p className="text-deep-teal">
+                            <p className="text-deep-teal/80">
                               {isAuthorized() 
                                 ? "Response generated with appropriate access controls. All information is authorized for your role."
                                 : "Access control policies have prevented unauthorized access to sensitive information based on your role."}
                             </p>
                           </div>
-                        </div>
-                        
-                        <div className="mt-6 text-center">
-
                         </div>
                       </div>
                     )}
@@ -790,7 +768,7 @@ export default function PlainIDAIAuthorizerWalkthrough() {
       
       {/* Footer */}
       <footer className="bg-gradient-to-r from-deep-teal to-slate text-white py-10 mt-8">
-                    <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-8 md:mb-0 text-center md:text-left">
               <div className="flex items-center justify-center md:justify-start mb-3">
@@ -813,7 +791,6 @@ export default function PlainIDAIAuthorizerWalkthrough() {
         </div>
       </footer>
       
-      {/* Add styles for color variables based on the brand guidelines */}
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
         
