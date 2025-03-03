@@ -557,7 +557,7 @@ export default function PlainIDAIAuthorizerWalkthrough() {
                         <span className="w-2 h-2 bg-teal-500 rounded-full animate-dot-bounce animation-delay-200"></span>
                         <span className="w-2 h-2 bg-teal-500 rounded-full animate-dot-bounce animation-delay-400"></span>
                       </div>
-                      <span className="text-deep-teal text-sm font-medium relative z-10">Auto-progressing</span>
+                      <span className="text-deep-teal text-sm font-medium relative z-10">AI thinking</span>
                     </div>
                   )}
                 </div>
