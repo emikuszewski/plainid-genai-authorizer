@@ -544,13 +544,20 @@ export default function PlainIDAIAuthorizerWalkthrough() {
                   </div>
                   
                   {isProcessing && currentStep < 6 && (
-                    <div className="flex items-center bg-white/80 px-3 py-1.5 rounded-full border border-teal-100">
-                      <div className="flex space-x-1 mr-2">
-                        <span className="w-2 h-2 bg-teal-500 rounded-full animate-pulse"></span>
-                        <span className="w-2 h-2 bg-teal-500 rounded-full animate-pulse delay-75"></span>
-                        <span className="w-2 h-2 bg-teal-500 rounded-full animate-pulse delay-150"></span>
+                    <div className="flex items-center bg-white/80 px-3 py-1.5 rounded-full border border-teal-100 shadow-sm animate-subtle-pulse overflow-hidden relative">
+                      {/* Animated gradient background */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-teal-50 via-white to-teal-50 animate-shimmer opacity-70"></div>
+                      
+                      {/* Border glow */}
+                      <div className="absolute inset-0 bg-teal-200 filter blur-md opacity-20 animate-subtle-glow"></div>
+                      
+                      {/* Content */}
+                      <div className="flex space-x-1 mr-2 relative z-10">
+                        <span className="w-2 h-2 bg-teal-500 rounded-full animate-dot-bounce"></span>
+                        <span className="w-2 h-2 bg-teal-500 rounded-full animate-dot-bounce animation-delay-200"></span>
+                        <span className="w-2 h-2 bg-teal-500 rounded-full animate-dot-bounce animation-delay-400"></span>
                       </div>
-                      <span className="text-deep-teal text-sm font-medium">Auto-progressing</span>
+                      <span className="text-deep-teal text-sm font-medium relative z-10">Auto-progressing</span>
                     </div>
                   )}
                 </div>
@@ -819,8 +826,55 @@ export default function PlainIDAIAuthorizerWalkthrough() {
           }
         }
         
+        @keyframes shimmer {
+          0% { background-position: -200% 0; }
+          100% { background-position: 200% 0; }
+        }
+        
+        @keyframes subtle-pulse {
+          0% { transform: scale(1); }
+          50% { transform: scale(1.02); }
+          100% { transform: scale(1); }
+        }
+        
+        @keyframes subtle-glow {
+          0% { opacity: 0.1; }
+          50% { opacity: 0.2; }
+          100% { opacity: 0.1; }
+        }
+        
+        @keyframes dot-bounce {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-3px); }
+        }
+        
         .animate-ripple {
           animation: ripple 1s linear;
+        }
+        
+        .animate-shimmer {
+          animation: shimmer 3s ease-in-out infinite;
+          background-size: 200% 100%;
+        }
+        
+        .animate-subtle-pulse {
+          animation: subtle-pulse 2s ease-in-out infinite;
+        }
+        
+        .animate-subtle-glow {
+          animation: subtle-glow 2s ease-in-out infinite;
+        }
+        
+        .animate-dot-bounce {
+          animation: dot-bounce 1s ease-in-out infinite;
+        }
+        
+        .animation-delay-200 {
+          animation-delay: 0.2s;
+        }
+        
+        .animation-delay-400 {
+          animation-delay: 0.4s;
         }
         
         /* Focus styles for accessibility */
