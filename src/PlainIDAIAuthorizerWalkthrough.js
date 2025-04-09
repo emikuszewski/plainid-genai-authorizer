@@ -213,7 +213,7 @@ export default function PlainIDAIAuthorizerWalkthrough() {
             <div className="bg-gradient-to-r from-teal-500 to-teal-600 text-white p-2.5 rounded-lg shadow-sm">
               <Shield size={24} />
             </div>
-            <h1 className="ml-3 text-xl font-medium text-deep-teal tracking-tight">PlainID GenAI Authorizer Prototype</h1>
+            <h1 className="ml-3 text-xl font-medium text-deep-teal tracking-tight">PlainID GenAI Authorizer</h1>
           </div>
           <div className="flex space-x-4">
             <Button 
@@ -308,7 +308,7 @@ export default function PlainIDAIAuthorizerWalkthrough() {
                 <div className="rounded-full bg-misty-teal p-2">
                   <Shield className="text-teal-500" size={24} />
                 </div>
-                <h3 className="text-xl font-medium ml-3 text-deep-teal">With PlainID GenAI Authorizer Prototype</h3>
+                <h3 className="text-xl font-medium ml-3 text-deep-teal">With PlainID GenAI Authorizer</h3>
               </div>
               
               <div className="mb-6">
@@ -414,6 +414,29 @@ export default function PlainIDAIAuthorizerWalkthrough() {
                         startPipeline();
                       }}
                       icon={<ArrowRight size={18} />}
+                      className="px-6"
+                    >
+                      Send Message
+                    </Button>
+                  )}
+                  {currentStep > 0 && currentStep < 6 && (
+                    <Button
+                      primary
+                      onClick={() => setCurrentStep(currentStep + 1)}
+                      disabled={isProcessing}
+                      icon={<ChevronRight size={18} />}
+                    >
+                      Skip to Next
+                    </Button>
+                  )}
+                  {currentStep === 6 && (
+                    <Button 
+                      primary
+                      icon={<ArrowRight size={18} />}
+                      onClick={() => {
+                        resetWalkthrough();
+                        startPipeline();
+                      }}
                     >
                       Send Another Message
                     </Button>
@@ -732,7 +755,7 @@ export default function PlainIDAIAuthorizerWalkthrough() {
                         <div className="bg-gradient-to-r from-misty-teal to-white p-4 rounded-xl flex items-start border border-teal-100">
                           <Shield size={22} className="text-teal-500 mr-3 mt-0.5 flex-shrink-0" />
                           <div>
-                            <p className="text-deep-teal font-medium">PlainID GenAI Authorizer Prototype</p>
+                            <p className="text-deep-teal font-medium">PlainID GenAI Authorizer</p>
                             <p className="text-deep-teal/80">
                               {isAuthorized() 
                                 ? "Response generated with appropriate access controls. All information is authorized for your role."
@@ -759,7 +782,7 @@ export default function PlainIDAIAuthorizerWalkthrough() {
                 <div className="bg-gradient-to-r from-teal-500 to-teal-600 text-white p-2 rounded-lg shadow-sm">
                   <Shield size={18} />
                 </div>
-                <p className="ml-2 text-lg font-medium">PlainID GenAI Authorizer Prototype</p>
+                <p className="ml-2 text-lg font-medium">PlainID GenAI Authorizer</p>
               </div>
               <p className="text-gray-300 text-sm">Securing GenAI Applications with Dynamic Authorization</p>
             </div>
@@ -899,22 +922,3 @@ export default function PlainIDAIAuthorizerWalkthrough() {
     </div>
   );
 }
-                      className="px-6"
-                    >
-                      Send Message
-                    </Button>
-                  )}
-                  {currentStep > 0 && currentStep < 6 && (
-                    <Button
-                      primary
-                      onClick={() => setCurrentStep(currentStep + 1)}
-                      disabled={isProcessing}
-                      icon={<ChevronRight size={18} />}
-                    >
-                      Skip to Next
-                    </Button>
-                  )}
-                  {currentStep === 6 && (
-                    <Button 
-                      primary
-                      icon={<ArrowRight size={18} />}
