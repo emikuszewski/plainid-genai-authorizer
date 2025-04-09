@@ -213,7 +213,12 @@ export default function PlainIDAIAuthorizerWalkthrough() {
             <div className="bg-gradient-to-r from-teal-500 to-teal-600 text-white p-2.5 rounded-lg shadow-sm">
               <Shield size={24} />
             </div>
-            <h1 className="ml-3 text-xl font-medium text-deep-teal tracking-tight">PlainID GenAI Authorizer</h1>
+            <h1 className="ml-3 text-xl font-medium text-deep-teal tracking-tight flex items-center">
+              PlainID GenAI Authorizer Prototype 
+              <span className="ml-2 text-xs px-2 py-0.5 rounded-full bg-teal-100 text-teal-800 uppercase font-bold">
+                Beta
+              </span>
+            </h1>
           </div>
           <div className="flex space-x-4">
             <Button 
@@ -308,7 +313,12 @@ export default function PlainIDAIAuthorizerWalkthrough() {
                 <div className="rounded-full bg-misty-teal p-2">
                   <Shield className="text-teal-500" size={24} />
                 </div>
-                <h3 className="text-xl font-medium ml-3 text-deep-teal">With PlainID GenAI Authorizer</h3>
+                <h3 className="text-xl font-medium ml-3 text-deep-teal flex items-center">
+                  With PlainID GenAI Authorizer Prototype
+                  <span className="ml-2 text-xs px-2 py-0.5 rounded-full bg-teal-100 text-teal-800 uppercase font-bold">
+                    Beta
+                  </span>
+                </h3>
               </div>
               
               <div className="mb-6">
@@ -554,7 +564,6 @@ export default function PlainIDAIAuthorizerWalkthrough() {
                       {/* Content */}
                       <div className="flex space-x-1 mr-2 relative z-10">
                         <span className="w-2 h-2 bg-teal-500 rounded-full animate-dot-bounce"></span>
-                        <span className="w-2 h-2 bg-teal-500 rounded-full animate-dot-bounce animation-delay-200"></span>
                         <span className="w-2 h-2 bg-teal-500 rounded-full animate-dot-bounce animation-delay-400"></span>
                       </div>
                       <span className="text-deep-teal text-sm font-medium relative z-10">AI thinking</span>
@@ -755,13 +764,26 @@ export default function PlainIDAIAuthorizerWalkthrough() {
                         <div className="bg-gradient-to-r from-misty-teal to-white p-4 rounded-xl flex items-start border border-teal-100">
                           <Shield size={22} className="text-teal-500 mr-3 mt-0.5 flex-shrink-0" />
                           <div>
-                            <p className="text-deep-teal font-medium">PlainID GenAI Authorizer</p>
+                            <p className="text-deep-teal font-medium">PlainID GenAI Authorizer Prototype <span className="ml-1 text-xs px-2 py-0.5 rounded-full bg-teal-100 text-teal-800 uppercase font-bold">Beta</span></p>
                             <p className="text-deep-teal/80">
                               {isAuthorized() 
                                 ? "Response generated with appropriate access controls. All information is authorized for your role."
                                 : "Access control policies have prevented unauthorized access to sensitive information based on your role."}
                             </p>
                           </div>
+                        </div>
+                        
+                        <div className="mt-6 text-center">
+                          <Button 
+                            primary
+                            icon={<ArrowRight size={18} />}
+                            onClick={() => {
+                              resetWalkthrough();
+                              startPipeline();
+                            }}
+                          >
+                            Send Another Message
+                          </Button>
                         </div>
                       </div>
                     )}
@@ -782,7 +804,12 @@ export default function PlainIDAIAuthorizerWalkthrough() {
                 <div className="bg-gradient-to-r from-teal-500 to-teal-600 text-white p-2 rounded-lg shadow-sm">
                   <Shield size={18} />
                 </div>
-                <p className="ml-2 text-lg font-medium">PlainID GenAI Authorizer</p>
+                <p className="ml-2 text-lg font-medium flex items-center">
+                  PlainID GenAI Authorizer Prototype
+                  <span className="ml-2 text-xs px-2 py-0.5 rounded-full bg-teal-100 text-white bg-opacity-20 uppercase font-bold">
+                    Beta
+                  </span>
+                </p>
               </div>
               <p className="text-gray-300 text-sm">Securing GenAI Applications with Dynamic Authorization</p>
             </div>
@@ -920,5 +947,5 @@ export default function PlainIDAIAuthorizerWalkthrough() {
         }
       `}</style>
     </div>
-  );
-}
+  );h-2 bg-teal-500 rounded-full animate-dot-bounce animation-delay-200"></span>
+                        <span className="w-2
