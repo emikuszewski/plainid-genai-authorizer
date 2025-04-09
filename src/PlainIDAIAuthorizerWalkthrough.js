@@ -485,87 +485,6 @@ export default function PlainIDAIAuthorizerWalkthrough() {
                           {userRole === 'executive' ? 'Full access' : userRole === 'manager' ? 'Limited access' : 'Basic access'}
                         </span>
                       </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Card>
-            
-            {/* Pipeline Visualization - ENHANCED DESIGN */}
-            <Card id="pipeline-visualization" className="p-6 mb-8 relative overflow-visible border-t-4 border-teal-500 bg-white/95 backdrop-blur-sm">
-              <DotGridPattern className="text-teal-500" />
-              
-              {/* Pipeline Steps */}
-              <div className="relative mb-12 z-10">
-                {/* Container for steps with relative positioning */}
-                <div className="relative">
-                  {/* Background track - positioned relative to container */}
-                  <div className="absolute h-2 bg-cloudy-gray/30 left-9 right-9 top-5 rounded-full"></div>
-                  
-                  {/* Progress indicator - dynamically sized */}
-                  <div 
-                    className={`absolute h-2 bg-gradient-to-r from-teal-500 to-teal-600 rounded-full transition-all duration-500 ease-out`}
-                    style={{
-                      top: '1.25rem', // 5px in rem
-                      left: '2.25rem', // 9px in rem
-                      width: currentStep === 0 ? '0' : 
-                             currentStep === 6 ? 'calc(100% - 4.5rem)' : // 18px in rem  
-                             `calc(${(currentStep / 6) * 100}% - ${18 * (1 - currentStep/6)}px)`
-                    }}
-                  ></div>
-                  
-                  {/* Step indicators */}
-                  <div className="flex justify-between mt-4 mb-8">
-                    {[0, 1, 2, 3, 4, 5, 6].map((step) => (
-                      <div key={step} className={`flex flex-col items-center transition-all duration-500 ${
-                        currentStep === step ? 'scale-110' : ''
-                      }`}>
-                        <div className={`w-12 h-12 flex items-center justify-center rounded-full border-2 z-10 transition-all duration-300 transform hover:scale-110 ${
-                          currentStep === step 
-                            ? 'bg-gradient-to-r from-teal-500 to-teal-600 text-white border-transparent shadow-md' 
-                            : currentStep > step 
-                            ? 'bg-teal-500 bg-opacity-80 text-white border-transparent hover:shadow-md' 
-                            : 'bg-white text-slate-400 border-gray-200 hover:border-teal-300 hover:text-teal-400'
-                        }`}
-                        >
-                          <span className="font-medium">{step}</span>
-                        </div>
-                        <span className={`text-xs font-medium mt-2 transition-colors duration-300 ${
-                          currentStep === step 
-                            ? 'text-teal-500' 
-                            : currentStep > step 
-                            ? 'text-teal-600' 
-                            : 'text-slate-400'
-                        }`}>
-                          {pipelineSteps[step].name}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-              
-              {/* Current Step Description */}
-              <div className="bg-gradient-to-r from-misty-teal to-white p-5 rounded-xl border-l-4 border-teal-500 shadow-sm mb-8 relative z-10">
-                <div className="flex justify-between items-center">
-                  <div>
-                    <p className="text-deep-teal font-medium mb-1">Current Step:</p>
-                    <p className="text-deep-teal/80">{pipelineSteps[currentStep].description}</p>
-                  </div>
-                  
-                  {isProcessing && currentStep < 6 && (
-                    <div className="flex items-center bg-white/80 px-3 py-1.5 rounded-full border border-teal-100 shadow-sm animate-subtle-pulse overflow-hidden relative">
-                      {/* Animated gradient background */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-teal-50 via-white to-teal-50 animate-shimmer opacity-70"></div>
-                      
-                      {/* Border glow */}
-                      <div className="absolute inset-0 bg-teal-200 filter blur-md opacity-20 animate-subtle-glow"></div>
-                      
-                      {/* Content */}
-                      <div className="flex space-x-1 mr-2 relative z-10">
-                        <span className="w-2 h-2 bg-teal-500 rounded-full animate-dot-bounce"></span>
-                        <span className="w-2 h-2 bg-teal-500 rounded-full animate-dot-bounce animation-delay-400"></span>
-                      </div>
                       <span className="text-deep-teal text-sm font-medium relative z-10">AI thinking</span>
                     </div>
                   )}
@@ -947,5 +866,86 @@ export default function PlainIDAIAuthorizerWalkthrough() {
         }
       `}</style>
     </div>
-  );h-2 bg-teal-500 rounded-full animate-dot-bounce animation-delay-200"></span>
-                        <span className="w-2
+  );>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Card>
+            
+            {/* Pipeline Visualization - ENHANCED DESIGN */}
+            <Card id="pipeline-visualization" className="p-6 mb-8 relative overflow-visible border-t-4 border-teal-500 bg-white/95 backdrop-blur-sm">
+              <DotGridPattern className="text-teal-500" />
+              
+              {/* Pipeline Steps */}
+              <div className="relative mb-12 z-10">
+                {/* Container for steps with relative positioning */}
+                <div className="relative">
+                  {/* Background track - positioned relative to container */}
+                  <div className="absolute h-2 bg-cloudy-gray/30 left-9 right-9 top-5 rounded-full"></div>
+                  
+                  {/* Progress indicator - dynamically sized */}
+                  <div 
+                    className={`absolute h-2 bg-gradient-to-r from-teal-500 to-teal-600 rounded-full transition-all duration-500 ease-out`}
+                    style={{
+                      top: '1.25rem', // 5px in rem
+                      left: '2.25rem', // 9px in rem
+                      width: currentStep === 0 ? '0' : 
+                             currentStep === 6 ? 'calc(100% - 4.5rem)' : // 18px in rem  
+                             `calc(${(currentStep / 6) * 100}% - ${18 * (1 - currentStep/6)}px)`
+                    }}
+                  ></div>
+                  
+                  {/* Step indicators */}
+                  <div className="flex justify-between mt-4 mb-8">
+                    {[0, 1, 2, 3, 4, 5, 6].map((step) => (
+                      <div key={step} className={`flex flex-col items-center transition-all duration-500 ${
+                        currentStep === step ? 'scale-110' : ''
+                      }`}>
+                        <div className={`w-12 h-12 flex items-center justify-center rounded-full border-2 z-10 transition-all duration-300 transform hover:scale-110 ${
+                          currentStep === step 
+                            ? 'bg-gradient-to-r from-teal-500 to-teal-600 text-white border-transparent shadow-md' 
+                            : currentStep > step 
+                            ? 'bg-teal-500 bg-opacity-80 text-white border-transparent hover:shadow-md' 
+                            : 'bg-white text-slate-400 border-gray-200 hover:border-teal-300 hover:text-teal-400'
+                        }`}
+                        >
+                          <span className="font-medium">{step}</span>
+                        </div>
+                        <span className={`text-xs font-medium mt-2 transition-colors duration-300 ${
+                          currentStep === step 
+                            ? 'text-teal-500' 
+                            : currentStep > step 
+                            ? 'text-teal-600' 
+                            : 'text-slate-400'
+                        }`}>
+                          {pipelineSteps[step].name}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              
+              {/* Current Step Description */}
+              <div className="bg-gradient-to-r from-misty-teal to-white p-5 rounded-xl border-l-4 border-teal-500 shadow-sm mb-8 relative z-10">
+                <div className="flex justify-between items-center">
+                  <div>
+                    <p className="text-deep-teal font-medium mb-1">Current Step:</p>
+                    <p className="text-deep-teal/80">{pipelineSteps[currentStep].description}</p>
+                  </div>
+                  
+                  {isProcessing && currentStep < 6 && (
+                    <div className="flex items-center bg-white/80 px-3 py-1.5 rounded-full border border-teal-100 shadow-sm animate-subtle-pulse overflow-hidden relative">
+                      {/* Animated gradient background */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-teal-50 via-white to-teal-50 animate-shimmer opacity-70"></div>
+                      
+                      {/* Border glow */}
+                      <div className="absolute inset-0 bg-teal-200 filter blur-md opacity-20 animate-subtle-glow"></div>
+                      
+                      {/* Content */}
+                      <div className="flex space-x-1 mr-2 relative z-10">
+                        <span className="w-2 h-2 bg-teal-500 rounded-full animate-dot-bounce"></span>
+                        <span className="w-2 h-2 bg-teal-500 rounded-full animate-dot-bounce animation-delay-200"></span>
+                        <span className="w-2 h-2 bg-teal-500 rounded-full animate-dot-bounce animation-delay-400"></span>
+                      </div
