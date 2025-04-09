@@ -1,4 +1,126 @@
-import React, { useState, useEffect } from 'react';
+<style jsx global>{`
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+        
+        :root {
+          --plainid-teal: #00A7B5;
+          --deep-teal: #002A3A;
+          --white: #FFFFFF;
+          --misty-teal: #D1E4E5;
+          --icy-gray: #EEF1F4;
+          --cloudy-gray: #BFCED6;
+          --slate: #515A6C;
+          --neon-green: #BAF967;
+        }
+        
+        body {
+          font-family: 'Roboto', sans-serif;
+          letter-spacing: 0.01em;
+        }
+        
+        /* Button ripple animation */
+        @keyframes ripple {
+          to {
+            width: 300px;
+            height: 300px;
+            opacity: 0;
+          }
+        }
+        
+        @keyframes shimmer {
+          0% { background-position: -200% 0; }
+          100% { background-position: 200% 0; }
+        }
+        
+        @keyframes subtle-pulse {
+          0% { transform: scale(1); }
+          50% { transform: scale(1.02); }
+          100% { transform: scale(1); }
+        }
+        
+        @keyframes subtle-glow {
+          0% { opacity: 0.1; }
+          50% { opacity: 0.2; }
+          100% { opacity: 0.1; }
+        }
+        
+        @keyframes dot-bounce {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-3px); }
+        }
+        
+        .animate-ripple {
+          animation: ripple 1s linear;
+        }
+        
+        .animate-shimmer {
+          animation: shimmer 3s ease-in-out infinite;
+          background-size: 200% 100%;
+        }
+        
+        .animate-subtle-pulse {
+          animation: subtle-pulse 2s ease-in-out infinite;
+        }
+        
+        .animate-subtle-glow {
+          animation: subtle-glow 2s ease-in-out infinite;
+        }
+        
+        .animate-dot-bounce {
+          animation: dot-bounce 1s ease-in-out infinite;
+        }
+        
+        .animation-delay-200 {
+          animation-delay: 0.2s;
+        }
+        
+        .animation-delay-400 {
+          animation-delay: 0.4s;
+        }
+        
+        /* Focus styles for accessibility */
+        button:focus-visible, 
+        [role="button"]:focus-visible {
+          outline: 2px solid var(--plainid-teal);
+          outline-offset: 2px;
+          box-shadow: 0 0 0 4px rgba(0, 167, 181, 0.2);
+        }
+        
+        .bg-teal-500, .from-teal-500 {
+          background-color: var(--plainid-teal);
+        }
+        .text-teal-500 {
+          color: var(--plainid-teal);
+        }
+        .border-teal-500 {
+          border-color: var(--plainid-teal);
+        }
+        .bg-deep-teal, .from-deep-teal {
+          background-color: var(--deep-teal);
+        }
+        .text-deep-teal {
+          color: var(--deep-teal);
+        }
+        .bg-misty-teal, .from-misty-teal {
+          background-color: var(--misty-teal);
+        }
+        .border-misty-teal {
+          border-color: var(--misty-teal);
+        }
+        .bg-icy-gray, .from-icy-gray {
+          background-color: var(--icy-gray);
+        }
+        .bg-cloudy-gray {
+          background-color: var(--cloudy-gray);
+        }
+        .bg-slate, .from-slate {
+          background-color: var(--slate);
+        }
+        .text-slate {
+          color: var(--slate);
+        }
+      `}</style>
+    </div>
+  );import React, { useState, useEffect } from 'react';
 import { Shield, Check, AlertTriangle, Lock, Unlock, Server, Database, User, Bot, FileText, Filter, Eye, EyeOff, ArrowRight, ChevronRight } from 'lucide-react';
 
 export default function PlainIDAIAuthorizerWalkthrough() {
@@ -154,7 +276,156 @@ export default function PlainIDAIAuthorizerWalkthrough() {
                   key={`dot-${rowIndex}-${colIndex}`} 
                   className="w-1 h-1 rounded-full bg-current m-3"
                   style={{
-                    opacity: colIndex % 2 === 0 ? 0.8 : 0.4,
+                    
+                    {/* STEP 4 */}
+                    {currentStep === 4 && (
+                      <div className="bg-gradient-to-r from-misty-teal to-white p-6 rounded-xl border border-teal-100 flex flex-col md:flex-row">
+                        <div className="bg-gradient-to-r from-teal-500 to-teal-600 text-white p-3 rounded-xl mb-4 md:mb-0 md:mr-5 flex-shrink-0 self-start">
+                          <Filter size={28} />
+                        </div>
+                        <div>
+                          <h4 className="text-lg font-medium text-deep-teal mb-2">Content Filtering</h4>
+                          {isAuthorized() ? (
+                            <div>
+                              <div className="flex items-center bg-green-50 border border-green-100 rounded-lg p-4 mb-3">
+                                <Check size={20} className="text-green-600 mr-3 flex-shrink-0" />
+                                <p className="text-green-700 font-medium">Content permitted for view by {userRole} role</p>
+                              </div>
+                              <p className="text-deep-teal bg-white p-3 rounded-lg border border-teal-100">
+                                All content retrieved is appropriate for the user's authorization level.
+                                The document content passes through PlainID's content filtering controls.
+                              </p>
+                            </div>
+                          ) : (
+                            <div>
+                              <p className="text-yellow-700 mb-3 font-medium">Content redacted for {userRole} role:</p>
+                              <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-lg font-mono mb-3">
+                                {result.maskedContent}
+                              </div>
+                              <p className="text-deep-teal bg-white p-3 rounded-lg border border-teal-100">
+                                Sensitive content is automatically redacted based on the user's permissions,
+                                preventing unauthorized information disclosure.
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    )}
+                    
+                    {/* STEP 5 */}
+                    {currentStep === 5 && (
+                      <div className="bg-gradient-to-r from-misty-teal to-white p-6 rounded-xl border border-teal-100 flex flex-col md:flex-row">
+                        <div className="bg-gradient-to-r from-teal-500 to-teal-600 text-white p-3 rounded-xl mb-4 md:mb-0 md:mr-5 flex-shrink-0 self-start">
+                          <Bot size={28} />
+                        </div>
+                        <div>
+                          <h4 className="text-lg font-medium text-deep-teal mb-2">Response Generation</h4>
+                          <div className={`flex items-center p-4 rounded-lg mb-3 ${
+                            isAuthorized() 
+                              ? 'bg-green-50 border border-green-100' 
+                              : 'bg-yellow-50 border border-yellow-200'
+                          }`}>
+                            {isAuthorized() ? (
+                              <Check size={20} className="text-green-600 mr-3 flex-shrink-0" />
+                            ) : (
+                              <AlertTriangle size={20} className="text-yellow-500 mr-3 flex-shrink-0" />
+                            )}
+                            <p className={isAuthorized() ? "text-green-700" : "text-yellow-700"}>
+                              {isAuthorized() 
+                                ? "Generating response with authorized information" 
+                                : "Generating access denied response"}
+                            </p>
+                          </div>
+                          <p className="text-deep-teal bg-white p-3 rounded-lg border border-teal-100">
+                            The AI model only uses authorized information to generate the response,
+                            ensuring compliance with access control policies while providing relevant answers.
+                          </p>
+                        </div>
+                      </div>
+                    )}
+                    
+                    {/* STEP 6 */}
+                    {currentStep === 6 && (
+                      <div className="bg-gradient-to-r from-misty-teal to-white p-6 rounded-xl border border-teal-100 flex flex-col shadow-sm">
+                        <div className="flex mb-4">
+                          <div className="bg-gradient-to-r from-green-500 to-teal-500 text-white p-3 rounded-xl mr-4 flex-shrink-0 self-start">
+                            <Check size={28} />
+                          </div>
+                          <div>
+                            <h4 className="text-lg font-medium text-deep-teal mb-2">Final Response</h4>
+                            <p className="text-deep-teal/80">
+                              Secure, policy-compliant response generated for {userRole} role:
+                            </p>
+                          </div>
+                        </div>
+                        
+                        <div className={`bg-white/90 backdrop-blur-sm p-5 rounded-xl border ${!isAuthorized() ? 'border-red-500 bg-red-50/50' : 'border-teal-200'} shadow-sm mb-4`}>
+                          <p className={`${!isAuthorized() ? 'text-red-700 font-medium' : 'text-deep-teal'}`}>{result.response}</p>
+                        </div>
+                        
+                        <div className="bg-gradient-to-r from-misty-teal to-white p-4 rounded-xl flex items-start border border-teal-100">
+                          <Shield size={22} className="text-teal-500 mr-3 mt-0.5 flex-shrink-0" />
+                          <div>
+                            <p className="text-deep-teal font-medium">PlainID GenAI Authorizer Prototype <span className="ml-1 text-xs px-2 py-0.5 rounded-full bg-teal-100 text-teal-800 uppercase font-bold">Beta</span></p>
+                            <p className="text-deep-teal/80">
+                              {isAuthorized() 
+                                ? "Response generated with appropriate access controls. All information is authorized for your role."
+                                : "Access control policies have prevented unauthorized access to sensitive information based on your role."}
+                            </p>
+                          </div>
+                        </div>
+                        
+                        <div className="mt-6 text-center">
+                          <Button 
+                            primary
+                            icon={<ArrowRight size={18} />}
+                            onClick={() => {
+                              resetWalkthrough();
+                              startPipeline();
+                            }}
+                          >
+                            Send Another Message
+                          </Button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+            </Card>
+          </div>
+        )}
+      </main>
+      
+      {/* Footer */}
+      <footer className="bg-gradient-to-r from-deep-teal to-slate text-white py-10 mt-8">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="mb-8 md:mb-0 text-center md:text-left">
+              <div className="flex items-center justify-center md:justify-start mb-3">
+                <div className="bg-gradient-to-r from-teal-500 to-teal-600 text-white p-2 rounded-lg shadow-sm">
+                  <Shield size={18} />
+                </div>
+                <p className="ml-2 text-lg font-medium flex items-center">
+                  PlainID GenAI Authorizer Prototype
+                  <span className="ml-2 text-xs px-2 py-0.5 rounded-full bg-teal-100 text-white bg-opacity-20 uppercase font-bold">
+                    Beta
+                  </span>
+                </p>
+              </div>
+              <p className="text-gray-300 text-sm">Securing GenAI Applications with Dynamic Authorization</p>
+            </div>
+            <div className="flex flex-wrap justify-center gap-3">
+              <div className="text-sm px-4 py-2 bg-teal-500 bg-opacity-20 rounded-lg font-medium hover:bg-opacity-30 transition-colors cursor-pointer transform hover:scale-105 transition-transform duration-300 hover:shadow-sm">Policy-Based Access</div>
+              <div className="text-sm px-4 py-2 bg-teal-500 bg-opacity-20 rounded-lg font-medium hover:bg-opacity-30 transition-colors cursor-pointer transform hover:scale-105 transition-transform duration-300 hover:shadow-sm">LLM Security</div>
+              <div className="text-sm px-4 py-2 bg-teal-500 bg-opacity-20 rounded-lg font-medium hover:bg-opacity-30 transition-colors cursor-pointer transform hover:scale-105 transition-transform duration-300 hover:shadow-sm">Authorization Controls</div>
+            </div>
+          </div>
+          <div className="mt-10 pt-6 border-t border-gray-700/50 text-center">
+            <p className="text-sm text-gray-400">Made by the SE Team for Walkthrough Purposes Only</p>
+          </div>
+        </div>
+      </footer>opacity: colIndex % 2 === 0 ? 0.8 : 0.4,
                     transform: `scale(${rowIndex % 5 === 0 ? 2 : 1})`
                   }}
                 />
@@ -485,388 +756,6 @@ export default function PlainIDAIAuthorizerWalkthrough() {
                           {userRole === 'executive' ? 'Full access' : userRole === 'manager' ? 'Limited access' : 'Basic access'}
                         </span>
                       </div>
-                      <span className="text-deep-teal text-sm font-medium relative z-10">AI thinking</span>
-                    </div>
-                  )}
-                </div>
-              </div>
-              
-              {/* Step Content - ENHANCED DESIGN WITH ANIMATIONS */}
-              {currentStep >= 1 && (
-                <div className={`min-h-[320px] flex items-start justify-center transition-all duration-500 relative z-10 ${animateIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                  {/* Active step container with animation */}
-                  <div key={currentStep} className="w-full">
-                    {/* STEP 1 */}
-                    {currentStep === 1 && (
-                      <div className="bg-gradient-to-r from-misty-teal to-white p-6 rounded-xl border border-teal-100 flex flex-col md:flex-row shadow-sm">
-                        <div className="bg-gradient-to-r from-teal-500 to-teal-600 text-white p-4 rounded-xl mb-4 md:mb-0 md:mr-5 flex-shrink-0 self-start">
-                          <User size={28} />
-                        </div>
-                        <div>
-                          <h4 className="text-lg font-medium text-deep-teal mb-3">Message Submission</h4>
-                          <p className="text-deep-teal text-lg mb-4 bg-white/70 p-3 rounded-lg border border-teal-50 shadow-sm">
-                            User asks: <span className="font-medium">"{sampleQueries[queryIndex]}"</span>
-                          </p>
-                          <div className="bg-white/80 backdrop-blur-sm p-4 rounded-lg border border-teal-100 shadow-sm">
-                            <p className="text-deep-teal/80">
-                              The RAG pipeline begins with a natural language message that will be processed through
-                              PlainID's authorization controls to ensure proper data access governance.
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                    
-                    {/* STEP 2 */}
-                    {currentStep === 2 && (
-                      <div className={`p-6 rounded-xl border flex flex-col md:flex-row ${
-                        isAuthorized() 
-                          ? 'bg-gradient-to-r from-misty-teal to-white border-green-200' 
-                          : 'bg-yellow-50 border-yellow-200'
-                      }`}>
-                        <div className={`p-3 rounded-xl mb-4 md:mb-0 md:mr-5 flex-shrink-0 self-start text-white ${
-                          isAuthorized() 
-                            ? 'bg-gradient-to-r from-green-500 to-teal-500'
-                            : 'bg-gradient-to-r from-yellow-500 to-amber-500'
-                        }`}>
-                          {isAuthorized() ? <Shield size={28} /> : <Lock size={28} />}
-                        </div>
-                        <div>
-                          <h4 className="text-lg font-medium mb-2 flex items-center">
-                            {isAuthorized() ? (
-                              <span className="text-green-800">Access Granted</span>
-                            ) : (
-                              <span className="text-yellow-800">Access Restricted</span>
-                            )}
-                          </h4>
-                          <p className={`text-lg mb-3 ${isAuthorized() ? "text-green-700" : "text-yellow-700"}`}>
-                            {isAuthorized() 
-                              ? `The ${userRole} role is authorized to access this information` 
-                              : `The ${userRole} role does not have permission to access this information`}
-                          </p>
-                          <p className={`bg-white p-3 rounded-lg border ${
-                            isAuthorized() ? "text-green-700 border-green-100" : "text-yellow-700 border-yellow-100"
-                          }`}>
-                            PlainID's dynamic authorization engine verifies permissions based on user role,
-                            context, and data sensitivity before allowing the query to proceed.
-                          </p>
-                        </div>
-                      </div>
-                    )}
-                    
-                    {/* STEP 3 */}
-                    {currentStep === 3 && (
-                      <div className="bg-gradient-to-r from-misty-teal to-white p-6 rounded-xl border border-teal-100 flex flex-col md:flex-row">
-                        <div className="bg-gradient-to-r from-teal-500 to-teal-600 text-white p-3 rounded-xl mb-4 md:mb-0 md:mr-5 flex-shrink-0 self-start">
-                          <Database size={28} />
-                        </div>
-                        <div>
-                          <h4 className="text-lg font-medium text-deep-teal mb-2">Document Retrieval</h4>
-                          {isAuthorized() ? (
-                            <div>
-                              <p className="text-deep-teal mb-3">Documents retrieved from secure data sources:</p>
-                              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
-                                {result.retrievedDocs?.map((doc, index) => (
-                                  <div key={index} className="bg-white p-3 rounded-lg border border-teal-100 flex items-center shadow-sm">
-                                    <FileText size={18} className="text-teal-500 mr-2 flex-shrink-0" />
-                                    <span className="text-deep-teal font-medium">{doc}</span>
-                                  </div>
-                                ))}
-                              </div>
-                              <p className="text-deep-teal bg-white p-3 rounded-lg border border-teal-100">
-                                Only documents the user is authorized to access are retrieved, ensuring sensitive
-                                information remains protected throughout the process.
-                              </p>
-                            </div>
-                          ) : (
-                            <div>
-                              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 flex items-center mb-3">
-                                <AlertTriangle size={20} className="text-yellow-500 mr-3 flex-shrink-0" />
-                                <p className="text-yellow-700">No documents retrieved due to access restrictions</p>
-                              </div>
-                              <p className="text-deep-teal bg-white p-3 rounded-lg border border-teal-100">
-                                PlainID's authorization controls prevent retrieval of restricted documents,
-                                protecting sensitive information from unauthorized access.
-                              </p>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    )}
-                    
-                    {/* STEP 4 */}
-                    {currentStep === 4 && (
-                      <div className="bg-gradient-to-r from-misty-teal to-white p-6 rounded-xl border border-teal-100 flex flex-col md:flex-row">
-                        <div className="bg-gradient-to-r from-teal-500 to-teal-600 text-white p-3 rounded-xl mb-4 md:mb-0 md:mr-5 flex-shrink-0 self-start">
-                          <Filter size={28} />
-                        </div>
-                        <div>
-                          <h4 className="text-lg font-medium text-deep-teal mb-2">Content Filtering</h4>
-                          {isAuthorized() ? (
-                            <div>
-                              <div className="flex items-center bg-green-50 border border-green-100 rounded-lg p-4 mb-3">
-                                <Check size={20} className="text-green-600 mr-3 flex-shrink-0" />
-                                <p className="text-green-700 font-medium">Content permitted for view by {userRole} role</p>
-                              </div>
-                              <p className="text-deep-teal bg-white p-3 rounded-lg border border-teal-100">
-                                All content retrieved is appropriate for the user's authorization level.
-                                The document content passes through PlainID's content filtering controls.
-                              </p>
-                            </div>
-                          ) : (
-                            <div>
-                              <p className="text-yellow-700 mb-3 font-medium">Content redacted for {userRole} role:</p>
-                              <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-lg font-mono mb-3">
-                                {result.maskedContent}
-                              </div>
-                              <p className="text-deep-teal bg-white p-3 rounded-lg border border-teal-100">
-                                Sensitive content is automatically redacted based on the user's permissions,
-                                preventing unauthorized information disclosure.
-                              </p>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    )}
-                    
-                    {/* STEP 5 */}
-                    {currentStep === 5 && (
-                      <div className="bg-gradient-to-r from-misty-teal to-white p-6 rounded-xl border border-teal-100 flex flex-col md:flex-row">
-                        <div className="bg-gradient-to-r from-teal-500 to-teal-600 text-white p-3 rounded-xl mb-4 md:mb-0 md:mr-5 flex-shrink-0 self-start">
-                          <Bot size={28} />
-                        </div>
-                        <div>
-                          <h4 className="text-lg font-medium text-deep-teal mb-2">Response Generation</h4>
-                          <div className={`flex items-center p-4 rounded-lg mb-3 ${
-                            isAuthorized() 
-                              ? 'bg-green-50 border border-green-100' 
-                              : 'bg-yellow-50 border border-yellow-200'
-                          }`}>
-                            {isAuthorized() ? (
-                              <Check size={20} className="text-green-600 mr-3 flex-shrink-0" />
-                            ) : (
-                              <AlertTriangle size={20} className="text-yellow-500 mr-3 flex-shrink-0" />
-                            )}
-                            <p className={isAuthorized() ? "text-green-700" : "text-yellow-700"}>
-                              {isAuthorized() 
-                                ? "Generating response with authorized information" 
-                                : "Generating access denied response"}
-                            </p>
-                          </div>
-                          <p className="text-deep-teal bg-white p-3 rounded-lg border border-teal-100">
-                            The AI model only uses authorized information to generate the response,
-                            ensuring compliance with access control policies while providing relevant answers.
-                          </p>
-                        </div>
-                      </div>
-                    )}
-                    
-                    {/* STEP 6 */}
-                    {currentStep === 6 && (
-                      <div className="bg-gradient-to-r from-misty-teal to-white p-6 rounded-xl border border-teal-100 flex flex-col shadow-sm">
-                        <div className="flex mb-4">
-                          <div className="bg-gradient-to-r from-green-500 to-teal-500 text-white p-3 rounded-xl mr-4 flex-shrink-0 self-start">
-                            <Check size={28} />
-                          </div>
-                          <div>
-                            <h4 className="text-lg font-medium text-deep-teal mb-2">Final Response</h4>
-                            <p className="text-deep-teal/80">
-                              Secure, policy-compliant response generated for {userRole} role:
-                            </p>
-                          </div>
-                        </div>
-                        
-                        <div className={`bg-white/90 backdrop-blur-sm p-5 rounded-xl border ${!isAuthorized() ? 'border-red-500 bg-red-50/50' : 'border-teal-200'} shadow-sm mb-4`}>
-                          <p className={`${!isAuthorized() ? 'text-red-700 font-medium' : 'text-deep-teal'}`}>{result.response}</p>
-                        </div>
-                        
-                        <div className="bg-gradient-to-r from-misty-teal to-white p-4 rounded-xl flex items-start border border-teal-100">
-                          <Shield size={22} className="text-teal-500 mr-3 mt-0.5 flex-shrink-0" />
-                          <div>
-                            <p className="text-deep-teal font-medium">PlainID GenAI Authorizer Prototype <span className="ml-1 text-xs px-2 py-0.5 rounded-full bg-teal-100 text-teal-800 uppercase font-bold">Beta</span></p>
-                            <p className="text-deep-teal/80">
-                              {isAuthorized() 
-                                ? "Response generated with appropriate access controls. All information is authorized for your role."
-                                : "Access control policies have prevented unauthorized access to sensitive information based on your role."}
-                            </p>
-                          </div>
-                        </div>
-                        
-                        <div className="mt-6 text-center">
-                          <Button 
-                            primary
-                            icon={<ArrowRight size={18} />}
-                            onClick={() => {
-                              resetWalkthrough();
-                              startPipeline();
-                            }}
-                          >
-                            Send Another Message
-                          </Button>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              )}
-            </Card>
-          </div>
-        )}
-      </main>
-      
-      {/* Footer */}
-      <footer className="bg-gradient-to-r from-deep-teal to-slate text-white py-10 mt-8">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="mb-8 md:mb-0 text-center md:text-left">
-              <div className="flex items-center justify-center md:justify-start mb-3">
-                <div className="bg-gradient-to-r from-teal-500 to-teal-600 text-white p-2 rounded-lg shadow-sm">
-                  <Shield size={18} />
-                </div>
-                <p className="ml-2 text-lg font-medium flex items-center">
-                  PlainID GenAI Authorizer Prototype
-                  <span className="ml-2 text-xs px-2 py-0.5 rounded-full bg-teal-100 text-white bg-opacity-20 uppercase font-bold">
-                    Beta
-                  </span>
-                </p>
-              </div>
-              <p className="text-gray-300 text-sm">Securing GenAI Applications with Dynamic Authorization</p>
-            </div>
-            <div className="flex flex-wrap justify-center gap-3">
-              <div className="text-sm px-4 py-2 bg-teal-500 bg-opacity-20 rounded-lg font-medium hover:bg-opacity-30 transition-colors cursor-pointer transform hover:scale-105 transition-transform duration-300 hover:shadow-sm">Policy-Based Access</div>
-              <div className="text-sm px-4 py-2 bg-teal-500 bg-opacity-20 rounded-lg font-medium hover:bg-opacity-30 transition-colors cursor-pointer transform hover:scale-105 transition-transform duration-300 hover:shadow-sm">LLM Security</div>
-              <div className="text-sm px-4 py-2 bg-teal-500 bg-opacity-20 rounded-lg font-medium hover:bg-opacity-30 transition-colors cursor-pointer transform hover:scale-105 transition-transform duration-300 hover:shadow-sm">Authorization Controls</div>
-            </div>
-          </div>
-          <div className="mt-10 pt-6 border-t border-gray-700/50 text-center">
-            <p className="text-sm text-gray-400">Made by the SE Team for Walkthrough Purposes Only</p>
-          </div>
-        </div>
-      </footer>
-      
-      <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
-        
-        :root {
-          --plainid-teal: #00A7B5;
-          --deep-teal: #002A3A;
-          --white: #FFFFFF;
-          --misty-teal: #D1E4E5;
-          --icy-gray: #EEF1F4;
-          --cloudy-gray: #BFCED6;
-          --slate: #515A6C;
-          --neon-green: #BAF967;
-        }
-        
-        body {
-          font-family: 'Roboto', sans-serif;
-          letter-spacing: 0.01em;
-        }
-        
-        /* Button ripple animation */
-        @keyframes ripple {
-          to {
-            width: 300px;
-            height: 300px;
-            opacity: 0;
-          }
-        }
-        
-        @keyframes shimmer {
-          0% { background-position: -200% 0; }
-          100% { background-position: 200% 0; }
-        }
-        
-        @keyframes subtle-pulse {
-          0% { transform: scale(1); }
-          50% { transform: scale(1.02); }
-          100% { transform: scale(1); }
-        }
-        
-        @keyframes subtle-glow {
-          0% { opacity: 0.1; }
-          50% { opacity: 0.2; }
-          100% { opacity: 0.1; }
-        }
-        
-        @keyframes dot-bounce {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-3px); }
-        }
-        
-        .animate-ripple {
-          animation: ripple 1s linear;
-        }
-        
-        .animate-shimmer {
-          animation: shimmer 3s ease-in-out infinite;
-          background-size: 200% 100%;
-        }
-        
-        .animate-subtle-pulse {
-          animation: subtle-pulse 2s ease-in-out infinite;
-        }
-        
-        .animate-subtle-glow {
-          animation: subtle-glow 2s ease-in-out infinite;
-        }
-        
-        .animate-dot-bounce {
-          animation: dot-bounce 1s ease-in-out infinite;
-        }
-        
-        .animation-delay-200 {
-          animation-delay: 0.2s;
-        }
-        
-        .animation-delay-400 {
-          animation-delay: 0.4s;
-        }
-        
-        /* Focus styles for accessibility */
-        button:focus-visible, 
-        [role="button"]:focus-visible {
-          outline: 2px solid var(--plainid-teal);
-          outline-offset: 2px;
-          box-shadow: 0 0 0 4px rgba(0, 167, 181, 0.2);
-        }
-        
-        .bg-teal-500, .from-teal-500 {
-          background-color: var(--plainid-teal);
-        }
-        .text-teal-500 {
-          color: var(--plainid-teal);
-        }
-        .border-teal-500 {
-          border-color: var(--plainid-teal);
-        }
-        .bg-deep-teal, .from-deep-teal {
-          background-color: var(--deep-teal);
-        }
-        .text-deep-teal {
-          color: var(--deep-teal);
-        }
-        .bg-misty-teal, .from-misty-teal {
-          background-color: var(--misty-teal);
-        }
-        .border-misty-teal {
-          border-color: var(--misty-teal);
-        }
-        .bg-icy-gray, .from-icy-gray {
-          background-color: var(--icy-gray);
-        }
-        .bg-cloudy-gray {
-          background-color: var(--cloudy-gray);
-        }
-        .bg-slate, .from-slate {
-          background-color: var(--slate);
-        }
-        .text-slate {
-          color: var(--slate);
-        }
-      `}</style>
-    </div>
-  );>
                     </div>
                   </div>
                 </div>
@@ -948,4 +837,3 @@ export default function PlainIDAIAuthorizerWalkthrough() {
                         <span className="w-2 h-2 bg-teal-500 rounded-full animate-dot-bounce"></span>
                         <span className="w-2 h-2 bg-teal-500 rounded-full animate-dot-bounce animation-delay-200"></span>
                         <span className="w-2 h-2 bg-teal-500 rounded-full animate-dot-bounce animation-delay-400"></span>
-                      </div
