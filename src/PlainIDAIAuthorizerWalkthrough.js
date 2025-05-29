@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Shield, Check, AlertTriangle, Lock, Unlock, Server, Database, User, Bot, FileText, Filter, Eye, EyeOff, ArrowRight, ChevronRight } from 'lucide-react';
+import { Shield, Check, AlertTriangle, Lock, Unlock, Server, Database, User, Bot, FileText, Filter, Eye, EyeOff, ArrowRight, ChevronRight, Calendar, Download } from 'lucide-react';
 
 export default function PlainIDAIAuthorizerWalkthrough() {
   // Demo state
@@ -9,6 +9,9 @@ export default function PlainIDAIAuthorizerWalkthrough() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [showComparison, setShowComparison] = useState(false);
   const [animateIn, setAnimateIn] = useState(false);
+  
+  // New state for CTA modal
+  const [showCTAModal, setShowCTAModal] = useState(false);
   
   // Animation helper and scroll handler
   useEffect(() => {
@@ -42,6 +45,13 @@ export default function PlainIDAIAuthorizerWalkthrough() {
     }
     
     return () => setAnimateIn(false);
+  }, [currentStep]);
+  
+  // Show CTA modal after user completes pipeline every time
+  useEffect(() => {
+    if (currentStep === 6) {
+      setTimeout(() => setShowCTAModal(true), 2000);
+    }
   }, [currentStep]);
 
   // Sample messages and data categories with role-based access
@@ -81,6 +91,7 @@ export default function PlainIDAIAuthorizerWalkthrough() {
   const resetWalkthrough = () => {
     setCurrentStep(0);
     setIsProcessing(false);
+    setShowCTAModal(false);
   };
   
   // Start pipeline animation
@@ -205,6 +216,66 @@ export default function PlainIDAIAuthorizerWalkthrough() {
         {...props}
       >
         {children}
+      </div>
+    );
+  };
+  
+  // CTA Modal Component
+  const CTAModal = () => {
+    if (!showCTAModal) return null;
+    
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[100] animate-fadeIn">
+        <div className="bg-white rounded-2xl shadow-2xl max-w-lg w-full mx-4 transform transition-all animate-slideUp">
+          <div className="p-8">
+            <div className="flex items-center justify-center mb-6">
+              <div className="w-16 h-16 bg-gradient-to-r from-teal-500 to-teal-600 rounded-xl flex items-center justify-center shadow-lg">
+                <Shield size={32} className="text-white" />
+              </div>
+            </div>
+            
+            <h3 className="text-2xl font-bold text-center text-deep-teal mb-4">
+              Ready to Secure Your GenAI?
+            </h3>
+            
+            <p className="text-center text-gray-600 mb-8">
+              See how PlainID can protect your AI applications with enterprise-grade authorization in just 30 minutes.
+            </p>
+            
+            <div className="space-y-3">
+              <Button 
+                primary
+                onClick={() => {
+                  window.open('https://www.plainid.com/contact/', '_blank');
+                  setShowCTAModal(false);
+                }}
+                icon={<Calendar size={18} />}
+                className="w-full justify-center"
+              >
+                Schedule Live Demo
+              </Button>
+              
+              <Button 
+                secondary
+                onClick={() => {
+                  window.open('https://go.plainid.com/hubfs/Ebooks%20and%20Whitepapers%20and%20Reports/AI%20Whitpaper%20-%20Enhancing%20Data%20Security%20with%20Dynamic%20Authorization%20A%20Guide%20to%20Mitigating%20Vulnerabilities%20in%20LLMs.pdf', '_blank');
+                  setShowCTAModal(false);
+                }}
+                icon={<Download size={18} />}
+                className="w-full justify-center"
+              >
+                Download Whitepaper
+              </Button>
+              
+              <button
+                onClick={() => setShowCTAModal(false)}
+                className="w-full text-center text-sm text-gray-500 hover:text-gray-700 transition-colors py-2"
+              >
+                Continue Exploring
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     );
   };
@@ -788,11 +859,11 @@ export default function PlainIDAIAuthorizerWalkthrough() {
       </main>
       
       {/* Footer */}
-      <footer className="bg-gradient-to-r from-deep-teal to-slate text-white py-10 mt-8">
+      <footer className="bg-gradient-to-r from-deep-teal to-slate text-white py-8 mt-8">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="mb-8 md:mb-0 text-center md:text-left">
-              <div className="flex items-center justify-center md:justify-start mb-3">
+          <div className="flex justify-between items-center">
+            <div className="text-left">
+              <div className="flex items-center mb-2">
                 <div className="bg-gradient-to-r from-teal-500 to-teal-600 text-white p-2 rounded-lg shadow-sm">
                   <Shield size={18} />
                 </div>
@@ -803,17 +874,30 @@ export default function PlainIDAIAuthorizerWalkthrough() {
               </div>
               <p className="text-gray-300 text-sm">Securing GenAI Applications with Dynamic Authorization</p>
             </div>
-            <div className="flex flex-wrap justify-center gap-3">
+            <div className="flex gap-3">
               <div className="text-sm px-4 py-2 bg-teal-500 bg-opacity-20 rounded-lg font-medium hover:bg-opacity-30 transition-colors cursor-pointer transform hover:scale-105 transition-transform duration-300 hover:shadow-sm">Policy-Based Access</div>
               <div className="text-sm px-4 py-2 bg-teal-500 bg-opacity-20 rounded-lg font-medium hover:bg-opacity-30 transition-colors cursor-pointer transform hover:scale-105 transition-transform duration-300 hover:shadow-sm">LLM Security</div>
               <div className="text-sm px-4 py-2 bg-teal-500 bg-opacity-20 rounded-lg font-medium hover:bg-opacity-30 transition-colors cursor-pointer transform hover:scale-105 transition-transform duration-300 hover:shadow-sm">Authorization Controls</div>
             </div>
           </div>
-          <div className="mt-10 pt-6 border-t border-gray-700/50 text-center">
-            <p className="text-sm text-gray-400">Made by the SE Team for Walkthrough Purposes Only</p>
+          <div className="mt-8 pt-6 border-t border-gray-700/50 text-center">
+            <p className="text-sm text-gray-400">
+              Made by the{' '}
+              <a 
+                href="mailto:presales@plainid.com"
+                className="text-gray-400 hover:text-teal-400 transition-colors duration-200 underline-offset-2 hover:underline cursor-pointer"
+                title="Contact the SE Team"
+              >
+                SE Team
+              </a>
+              {' '}for Walkthrough Purposes Only
+            </p>
           </div>
         </div>
       </footer>
+      
+      {/* CTA Modal */}
+      <CTAModal />
       
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
@@ -865,6 +949,16 @@ export default function PlainIDAIAuthorizerWalkthrough() {
           50% { transform: translateY(-3px); }
         }
         
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideUp {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        
         .animate-ripple {
           animation: ripple 1s linear;
         }
@@ -884,6 +978,14 @@ export default function PlainIDAIAuthorizerWalkthrough() {
         
         .animate-dot-bounce {
           animation: dot-bounce 1s ease-in-out infinite;
+        }
+        
+        .animate-fadeIn {
+          animation: fadeIn 0.5s ease-out;
+        }
+        
+        .animate-slideUp {
+          animation: slideUp 0.3s ease-out;
         }
         
         .animation-delay-200 {
