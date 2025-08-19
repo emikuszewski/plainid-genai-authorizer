@@ -1,7 +1,11 @@
+## **package.json**
+```json
 {
   "name": "plainid-genai-authorizer",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
+  "description": "Enterprise Authorization for LangChain and AI Applications",
+  "keywords": ["plainid", "langchain", "authorization", "ai-security", "guardrails"],
   "dependencies": {
     "lucide-react": "^0.263.1",
     "react": "^18.2.0",
