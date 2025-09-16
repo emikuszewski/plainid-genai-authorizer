@@ -254,6 +254,19 @@ export default function PlainIDLangChainDemo() {
     };
   };
   
+  // Get unsecured response - always returns full data regardless of permissions
+  const getUnsecuredResponse = () => {
+    const unsecuredResponses = [
+      "Q4 financial results: Revenue $2.3M (+12% QoQ), Profit margin 23.4% (+2.1%), EBITDA $540K (+15%). Strong performance in enterprise segment with $890K ARR.",
+      "EU customer satisfaction: 87.3% (+4.2 pts), NPS score 52 (+8), retention rate 94.1%. Top satisfaction drivers: product reliability (8.9/10), support quality (8.7/10).",
+      "Engineering dept: 3 employees below expectations (2 missed deadlines, 1 communication). Performance improvement plans active. Retention risk: medium for 2 individuals.",
+      "Security architecture uses zero-trust model, quantum-resistant encryption (AES-256), real-time threat detection with <0.001% false positive rate. Multi-cloud deployment: AWS, Azure, GCP.",
+      "Senior Engineer salary range: €75K-€110K (median €89K). Total comp with equity: €95K-€140K. Market positioning: 75th percentile for EU tech."
+    ];
+    
+    return unsecuredResponses[queryIndex];
+  };
+  
   // Reset demo
   const resetDemo = () => {
     setCurrentGuardrail(0);
@@ -433,7 +446,7 @@ export default function PlainIDLangChainDemo() {
             </div>
             
             {/* Configuration */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-6">
               <div>
                 <h4 className="text-gray-700 font-medium mb-3 text-sm uppercase tracking-wider">User Role & Context</h4>
                 <div className="space-y-3">
@@ -530,7 +543,7 @@ export default function PlainIDLangChainDemo() {
                 <div>
                   <h4 className="font-medium text-gray-700 mb-2">Response</h4>
                   <div className="bg-red-50 p-4 rounded-lg border border-red-200">
-                    <p className="text-gray-900 font-medium">{response.response}</p>
+                    <p className="text-gray-900 font-medium">{getUnsecuredResponse()}</p>
                     {!isAuthorized() && (
                       <div className="mt-2 p-2 bg-red-100 border border-red-300 rounded">
                         <p className="text-red-700 text-sm flex items-center">
