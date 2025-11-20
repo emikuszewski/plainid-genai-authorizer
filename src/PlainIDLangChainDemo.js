@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Shield, Send, User, Filter, Database, Eye, Check, AlertTriangle, Lock, ChevronRight, Calendar, Download, MapPin, Users, Layers, Menu, Plus, MessageSquare, ArrowRight, Unlock } from 'lucide-react';
+import { Shield, Send, User, Filter, Database, Eye, Check, AlertTriangle, Lock, ChevronRight, Calendar, Download, MapPin, Users, Layers, Menu, Plus, MessageSquare, ArrowRight, Unlock, Paperclip, Camera, X, FileText, Image as ImageIcon, FileSpreadsheet, File } from 'lucide-react';
 
 export default function PlainIDChatFullContent() {
   const [userRole, setUserRole] = useState('manager');
@@ -11,6 +11,7 @@ export default function PlainIDChatFullContent() {
   const [showCTAModal, setShowCTAModal] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [showComparison, setShowComparison] = useState(false);
+  const [attachedFiles, setAttachedFiles] = useState([]);
   const messagesEndRef = React.useRef(null);
 
   // Auto-scroll to latest message
@@ -69,6 +70,49 @@ export default function PlainIDChatFullContent() {
       categories: ['technical_documentation'],
       context: { region: 'eu-central', clearance: 'standard', department: 'engineering' }
     }
+  };
+
+  // File helper functions
+  const getFileIcon = (filename) => {
+    const ext = filename.split('.').pop().toLowerCase();
+    const iconMap = {
+      pdf: { Icon: FileText, color: 'text-red-600', bg: 'bg-red-50' },
+      doc: { Icon: FileText, color: 'text-blue-600', bg: 'bg-blue-50' },
+      docx: { Icon: FileText, color: 'text-blue-600', bg: 'bg-blue-50' },
+      txt: { Icon: FileText, color: 'text-gray-600', bg: 'bg-gray-50' },
+      xlsx: { Icon: FileSpreadsheet, color: 'text-green-600', bg: 'bg-green-50' },
+      csv: { Icon: FileSpreadsheet, color: 'text-green-600', bg: 'bg-green-50' },
+      png: { Icon: ImageIcon, color: 'text-blue-600', bg: 'bg-blue-50' },
+      jpg: { Icon: ImageIcon, color: 'text-blue-600', bg: 'bg-blue-50' },
+      jpeg: { Icon: ImageIcon, color: 'text-blue-600', bg: 'bg-blue-50' },
+      gif: { Icon: ImageIcon, color: 'text-purple-600', bg: 'bg-purple-50' },
+      webp: { Icon: ImageIcon, color: 'text-blue-600', bg: 'bg-blue-50' },
+    };
+    return iconMap[ext] || { Icon: File, color: 'text-gray-600', bg: 'bg-gray-50' };
+  };
+
+  const formatFileSize = (bytes) => {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+    return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+  };
+
+  const handleFileUpload = (type) => {
+    if (isProcessing || attachedFiles.length >= 5) return;
+    
+    // Simulate file upload
+    const newFile = {
+      id: Date.now(),
+      name: type === 'document' ? `Document_${attachedFiles.length + 1}.pdf` : `Screenshot_${attachedFiles.length + 1}.png`,
+      size: Math.floor(Math.random() * 2000000) + 100000,
+      type: type === 'document' ? 'pdf' : 'png'
+    };
+    
+    setAttachedFiles([...attachedFiles, newFile]);
+  };
+
+  const removeFile = (fileId) => {
+    setAttachedFiles(attachedFiles.filter(f => f.id !== fileId));
   };
 
   // Check authorization for current query and role
@@ -192,9 +236,11 @@ export default function PlainIDChatFullContent() {
     const userMessage = {
       type: 'user',
       text: query.text,
+      files: [...attachedFiles],
       timestamp: new Date()
     };
     setMessages([userMessage]);
+    setAttachedFiles([]); // Clear files after sending
     setCurrentGuardrail(1);
     setIsProcessing(true);
 
@@ -341,6 +387,7 @@ export default function PlainIDChatFullContent() {
               setMessages([]);
               setCurrentGuardrail(0);
               setIsProcessing(false);
+              setAttachedFiles([]);
             }}
             className="w-full flex items-center justify-center px-3 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors"
           >
@@ -664,7 +711,26 @@ export default function PlainIDChatFullContent() {
                               <User size={20} className="text-white" />
                             </div>
                             <div className="bg-gradient-to-br from-blue-500 to-blue-600 text-white px-5 py-3 rounded-2xl rounded-tr-md max-w-lg shadow-lg">
-                              <p className="text-sm">{msg.text}</p>
+                              <p className="text-sm mb-2">{msg.text}</p>
+                              {msg.files && msg.files.length > 0 && (
+                                <div className="space-y-2 pt-3 border-t border-blue-400">
+                                  {msg.files.map((file) => {
+                                    const iconData = getFileIcon(file.name);
+                                    const IconComponent = iconData.Icon;
+                                    return (
+                                      <div key={file.id} className="flex items-center space-x-2 bg-white/20 rounded-lg px-3 py-2">
+                                        <div className="flex-shrink-0">
+                                          <IconComponent size={16} className="text-white" />
+                                        </div>
+                                        <div className="flex-grow min-w-0">
+                                          <div className="text-xs font-medium truncate">{file.name}</div>
+                                          <div className="text-xs opacity-75">{formatFileSize(file.size)}</div>
+                                        </div>
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+                              )}
                             </div>
                           </div>
                         </div>
@@ -874,10 +940,65 @@ export default function PlainIDChatFullContent() {
               )}
             </div>
 
+            {/* File Preview Area */}
+            {attachedFiles.length > 0 && (
+              <div className="bg-gradient-to-r from-teal-50 to-blue-50 border-t border-gray-200 px-6 py-4">
+                <div className="max-w-4xl mx-auto">
+                  <div className="text-sm font-medium text-gray-700 mb-3">Selected Files:</div>
+                  <div className="flex flex-wrap gap-3">
+                    {attachedFiles.map((file) => {
+                      const iconData = getFileIcon(file.name);
+                      const IconComponent = iconData.Icon;
+                      return (
+                        <div key={file.id} className="flex items-center space-x-2 bg-white border border-gray-200 rounded-lg px-3 py-2 shadow-sm hover:shadow-md transition-shadow">
+                          <div className={`${iconData.bg} p-2 rounded flex-shrink-0`}>
+                            <IconComponent size={16} className={iconData.color} />
+                          </div>
+                          <div className="flex-grow min-w-0">
+                            <div className="text-sm font-medium text-gray-900 truncate" title={file.name}>{file.name}</div>
+                            <div className="text-xs text-gray-500">{formatFileSize(file.size)}</div>
+                          </div>
+                          <button 
+                            onClick={() => removeFile(file.id)} 
+                            className="flex-shrink-0 w-6 h-6 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded transition-colors flex items-center justify-center"
+                            title="Remove file"
+                            disabled={isProcessing}
+                          >
+                            <X size={14} />
+                          </button>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            )}
+
             {/* Input Area */}
             <div className="bg-white border-t border-gray-200 px-6 py-4">
               <div className="max-w-4xl mx-auto">
                 <div className="flex items-end space-x-3">
+                  {/* Upload Files Button */}
+                  <button
+                    onClick={() => handleFileUpload('document')}
+                    disabled={isProcessing || attachedFiles.length >= 5}
+                    className="flex-shrink-0 w-10 h-10 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded-lg flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed transition-all hover:scale-105 active:scale-95"
+                    title="Upload files"
+                  >
+                    <Paperclip size={20} />
+                  </button>
+
+                  {/* Upload Screenshot Button */}
+                  <button
+                    onClick={() => handleFileUpload('screenshot')}
+                    disabled={isProcessing || attachedFiles.length >= 5}
+                    className="flex-shrink-0 w-10 h-10 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded-lg flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed transition-all hover:scale-105 active:scale-95"
+                    title="Upload screenshot"
+                  >
+                    <Camera size={20} />
+                  </button>
+
+                  {/* Text Input */}
                   <div className="flex-grow relative">
                     <input
                       type="text"
