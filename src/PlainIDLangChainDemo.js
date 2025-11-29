@@ -392,7 +392,7 @@ export default function PlainIDChatFullContent() {
             className="w-full flex items-center justify-center px-3 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors"
           >
             <Plus size={16} className="mr-2" />
-            <span className="text-sm font-medium">New Demo</span>
+            <span className="text-sm font-medium">New Chat</span>
           </button>
         </div>
         
