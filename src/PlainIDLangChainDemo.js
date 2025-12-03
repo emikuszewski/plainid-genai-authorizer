@@ -13,6 +13,7 @@ export default function PlainIDChatFullContent() {
   const [showComparison, setShowComparison] = useState(false);
   const [attachedFiles, setAttachedFiles] = useState([]);
   const [selectedIndustry, setSelectedIndustry] = useState('all');
+  const [hoveredIndustry, setHoveredIndustry] = useState(null);
   const [showFollowUps, setShowFollowUps] = useState(false);
   const [activeFollowUp, setActiveFollowUp] = useState(null); // Track active follow-up question
   const messagesEndRef = React.useRef(null);
@@ -1199,25 +1200,43 @@ export default function PlainIDChatFullContent() {
           </button>
         </div>
 
-        {/* Industry Filter */}
+        {/* Industry Filter - Icon Grid Design */}
         <div className="p-3 border-b border-gray-700">
-          <div className="text-xs text-gray-400 mb-2 px-2">Filter by Industry</div>
-          <div className="space-y-1">
+          <div className="flex items-center justify-between mb-2">
+            <div className="text-xs text-gray-400">Industry</div>
+            <div className="text-xs text-teal-400 font-medium truncate max-w-[120px]">
+              {industries.find(i => i.id === selectedIndustry)?.name}
+            </div>
+          </div>
+          <div className="flex justify-between relative">
             {industries.map((industry) => {
               const IconComponent = industry.icon;
+              const isSelected = selectedIndustry === industry.id;
+              const isHovered = hoveredIndustry === industry.id;
+              
               return (
-                <button
-                  key={industry.id}
-                  onClick={() => setSelectedIndustry(industry.id)}
-                  className={`w-full flex items-center px-3 py-2 rounded-lg text-sm transition-colors ${
-                    selectedIndustry === industry.id 
-                      ? 'bg-teal-500 text-white' 
-                      : 'text-gray-300 hover:bg-gray-800'
-                  }`}
-                >
-                  <IconComponent size={16} className="mr-2 flex-shrink-0" />
-                  <span className="truncate">{industry.name}</span>
-                </button>
+                <div key={industry.id} className="relative">
+                  <button
+                    onClick={() => setSelectedIndustry(industry.id)}
+                    onMouseEnter={() => setHoveredIndustry(industry.id)}
+                    onMouseLeave={() => setHoveredIndustry(null)}
+                    className={`w-10 h-10 flex items-center justify-center rounded-lg transition-all duration-200 ${
+                      isSelected 
+                        ? 'bg-teal-500 text-white ring-2 ring-teal-400 ring-offset-2 ring-offset-gray-900' 
+                        : 'bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white'
+                    }`}
+                  >
+                    <IconComponent size={18} />
+                  </button>
+                  
+                  {/* Tooltip */}
+                  {isHovered && (
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-gray-700 text-white text-xs rounded whitespace-nowrap z-10 shadow-lg">
+                      {industry.name}
+                      <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-700"></div>
+                    </div>
+                  )}
+                </div>
               );
             })}
           </div>
