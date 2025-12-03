@@ -14,6 +14,7 @@ export default function PlainIDChatFullContent() {
   const [attachedFiles, setAttachedFiles] = useState([]);
   const [selectedIndustry, setSelectedIndustry] = useState('all');
   const [showFollowUps, setShowFollowUps] = useState(false);
+  const [activeFollowUp, setActiveFollowUp] = useState(null); // Track active follow-up question
   const messagesEndRef = React.useRef(null);
 
   // Auto-scroll to latest message
@@ -262,6 +263,277 @@ export default function PlainIDChatFullContent() {
       ]
     }
   ];
+
+  // Follow-up responses - contextual responses for each follow-up question
+  const followUpResponses = {
+    // === Q4 Financial Results Follow-ups ===
+    'How does this compare to Q3?': {
+      category: 'financial_data',
+      topics: ['revenue', 'profit', 'quarterly_comparison'],
+      responses: {
+        executive: "Q4 vs Q3 comparison: Revenue +12% ($2.3M vs $2.05M), Profit margin +2.1% (23.4% vs 21.3%), EBITDA +15% ($540K vs $470K). Key driver: Enterprise segment growth accelerated from 8% to 15% QoQ. Operating expenses remained flat.",
+        manager: "Q4 showed improvement over Q3 across key metrics. Revenue increased 12% quarter-over-quarter. Profit margins improved by approximately 2 percentage points. [DETAILED FIGURES REDACTED - Executive Only]. Enterprise segment was the primary growth driver.",
+        employee: "Access Denied: Financial comparison data requires manager-level clearance or higher."
+      },
+      followUps: ['What about year-over-year trends?', 'Show Q1 and Q2 data', 'What is the forecast for Q1 next year?']
+    },
+    'What drove the revenue growth?': {
+      category: 'financial_data',
+      topics: ['revenue', 'growth_drivers', 'analysis'],
+      responses: {
+        executive: "Revenue growth drivers: 1) Enterprise segment expansion (+$180K, 3 new Fortune 500 clients), 2) Upsells to existing customers (+$95K, 23% attach rate), 3) Price optimization (+$45K, 5% average increase), 4) Reduced churn (-$30K saved). Pipeline remains strong at $1.2M qualified opportunities.",
+        manager: "Key revenue drivers this quarter: New enterprise customer acquisitions, successful upselling to existing accounts, and improved pricing. [SPECIFIC FIGURES REDACTED]. Customer retention also contributed positively to overall growth.",
+        employee: "Access Denied: Revenue analysis requires manager-level clearance or higher."
+      },
+      followUps: ['Which products drove the most growth?', 'Show customer acquisition details', 'What is the churn rate?']
+    },
+    'Show me the regional breakdown': {
+      category: 'financial_data',
+      topics: ['revenue', 'regional', 'geography'],
+      responses: {
+        executive: "Regional breakdown: North America $1.38M (60%, +15% QoQ), EMEA $690K (30%, +8% QoQ), APAC $230K (10%, +18% QoQ). Strongest growth in APAC driven by Japan expansion. EMEA impacted by EUR/USD headwinds (-3% constant currency adjustment).",
+        manager: "Regional performance: North America leads with 60% of revenue and strongest absolute growth. EMEA represents 30% with moderate growth. APAC showing highest percentage growth at 10% of total. [SPECIFIC FIGURES REDACTED].",
+        employee: "Access Denied: Regional financial data requires manager-level clearance or higher."
+      },
+      followUps: ['Show country-level details', 'What is driving APAC growth?', 'How do margins vary by region?']
+    },
+
+    // === Customer Satisfaction Follow-ups ===
+    'What about North America trends?': {
+      category: 'customer_analytics',
+      topics: ['customer_data', 'analytics', 'north_america'],
+      responses: {
+        executive: "North America satisfaction: 89.1% (+3.8 pts), NPS 58 (+6). Top performers: Product uptime (9.2/10), Feature completeness (8.8/10). Areas for improvement: Onboarding speed (7.1/10), Documentation (7.4/10). 2 enterprise accounts flagged for executive attention ($520K ARR at risk).",
+        manager: "North America customer satisfaction is at 89.1%, up 3.8 points. NPS improved to 58. Product uptime and features rated highly. Onboarding and documentation identified as improvement areas. Some accounts require attention.",
+        employee: "North America customer satisfaction shows positive trends, currently above the EU region. Product reliability is a strength. Some process improvements identified for onboarding experience."
+      },
+      followUps: ['Compare all regions side by side', 'Show at-risk accounts', 'What actions are planned for improvements?']
+    },
+    'Which products have the lowest satisfaction?': {
+      category: 'customer_analytics',
+      topics: ['customer_data', 'product_satisfaction', 'analytics'],
+      responses: {
+        executive: "Lowest satisfaction by product: 1) Legacy API v1 - 72% (end-of-life Q2, migration support needed), 2) Mobile App - 78% (v2.0 launching next month), 3) Reporting Module - 81% (UX refresh in progress). Action plans in place for all three with expected +10pt improvement within 2 quarters.",
+        manager: "Products with lower satisfaction scores: Legacy API (migration recommended), Mobile App (new version coming), and Reporting Module (improvements underway). All have active improvement plans with expected resolution timelines.",
+        employee: "Some products have been identified for improvement. The mobile app and reporting features are receiving updates. Contact product team for specific feedback channels."
+      },
+      followUps: ['What is the migration plan for legacy API?', 'When does Mobile App v2 launch?', 'Show the UX refresh timeline']
+    },
+    'Show me the support ticket volume': {
+      category: 'customer_analytics',
+      topics: ['support', 'tickets', 'analytics'],
+      responses: {
+        executive: "Support metrics Q4: 2,847 tickets (+5% QoQ), Avg resolution 4.2 hrs (-18%), First response 12 min (-25%), CSAT 94.2% (+1.8pts). Top categories: Integration questions (32%), Feature requests (24%), Bug reports (18%). Headcount efficiency improved 15%.",
+        manager: "Support ticket volume increased 5% this quarter but resolution times improved significantly. Average resolution down to 4.2 hours. Customer satisfaction with support at 94.2%. Integration questions remain the top category.",
+        employee: "Support team metrics show improvement in response times this quarter. Customer satisfaction with support remains high. Integration documentation being enhanced to reduce common questions."
+      },
+      followUps: ['Show ticket trends by category', 'What are the most common issues?', 'How does this compare to last year?']
+    },
+
+    // === HR Records Follow-ups ===
+    'What improvement plans are in place?': {
+      category: 'hr_records',
+      topics: ['performance', 'improvement_plans', 'hr_sensitive'],
+      responses: {
+        executive: "Active PIPs: J. Smith (deadline management, 60-day plan, mentor assigned), M. Johnson (deadline management, 90-day plan, workload reduced 20%), K. Lee (communication, coaching sessions 2x/week). Success rate historical: 65% return to good standing. HR review scheduled for Jan 15.",
+        manager: "Three performance improvement plans are active in your department. Two focused on deadline management with structured support and adjusted workloads. One addressing communication skills with regular coaching. Progress reviews scheduled monthly.",
+        employee: "Access Denied: Performance improvement plan details require manager-level clearance."
+      },
+      followUps: ['What is the success rate of PIPs?', 'Show the review schedule', 'What support resources are available?']
+    },
+    'Show retention risk analysis': {
+      category: 'hr_records',
+      topics: ['retention', 'risk', 'hr_sensitive'],
+      responses: {
+        executive: "Retention risk analysis: High risk - 2 employees (both receiving competing offers, combined $180K salary), Medium risk - 4 employees (career growth concerns), Low risk - remainder. Recommended actions: Retention bonuses for high-risk ($25K each), career pathing discussions for medium-risk. Flight risk cost estimate: $340K if all high-risk depart.",
+        manager: "Retention analysis shows 2 high-risk employees in your department with external interest, 4 medium-risk with career growth concerns. Recommend scheduling stay interviews and discussing development opportunities. HR can support with retention planning.",
+        employee: "Access Denied: Retention risk data requires manager-level clearance."
+      },
+      followUps: ['What retention actions are recommended?', 'Show historical turnover data', 'What is the cost of turnover?']
+    },
+    'Compare to company-wide metrics': {
+      category: 'hr_records',
+      topics: ['performance', 'benchmarks', 'comparison'],
+      responses: {
+        executive: "Department vs Company comparison: Performance concerns 4.2% vs 3.8% company avg (+0.4%), Turnover 8% vs 11% company avg (-3%), Engagement score 7.8 vs 7.5 company avg (+0.3). Your department outperforms on retention and engagement despite slightly higher performance concerns.",
+        manager: "Your department's performance concern rate is slightly above company average but retention is significantly better. Engagement scores also above company benchmark. Overall health metrics are positive relative to peers.",
+        employee: "Access Denied: Company-wide HR comparison data requires manager-level clearance."
+      },
+      followUps: ['Show department ranking', 'What drives engagement scores?', 'How do we compare to industry?']
+    },
+
+    // === Technical Documentation Follow-ups ===
+    'What compliance certifications do we have?': {
+      category: 'technical_documentation',
+      topics: ['compliance', 'certifications', 'security'],
+      responses: {
+        executive: "Current certifications: SOC2 Type II (renewed Oct 2024), ISO 27001 (valid through 2026), HIPAA BAA available, GDPR compliant, FedRAMP Moderate (in progress, expected Q2 2025). Audit findings: 0 critical, 2 minor (remediated). Investment in FedRAMP: $180K.",
+        manager: "We maintain SOC2 Type II, ISO 27001, and HIPAA compliance. GDPR compliant for EU operations. FedRAMP certification in progress for government sector expansion. All recent audits passed with no critical findings.",
+        employee: "Our product maintains SOC2 Type II and ISO 27001 certifications. HIPAA and GDPR compliance supported. Additional certifications available - contact security team for customer-specific requirements."
+      },
+      followUps: ['When is the next SOC2 audit?', 'What is FedRAMP status?', 'Show compliance roadmap']
+    },
+    'How does encryption work?': {
+      category: 'technical_documentation',
+      topics: ['encryption', 'security', 'technical'],
+      responses: {
+        executive: "Encryption architecture: Data at rest - AES-256-GCM with customer-managed keys option, Data in transit - TLS 1.3 with perfect forward secrecy, Key management - AWS KMS with HSM backing, Rotation - automatic 90-day rotation. Quantum-resistant algorithms (CRYSTALS-Kyber) in beta testing.",
+        manager: "We use AES-256 encryption for data at rest and TLS 1.3 for data in transit. Customer-managed encryption keys available for enterprise tier. Automatic key rotation enabled. Quantum-resistant encryption being evaluated.",
+        employee: "All data is encrypted using industry-standard AES-256 encryption at rest and TLS 1.3 in transit. Detailed encryption specifications available in our security whitepaper."
+      },
+      followUps: ['What is the key management process?', 'Show quantum-resistant roadmap', 'How do we handle key rotation?']
+    },
+    'Show me the deployment options': {
+      category: 'technical_documentation',
+      topics: ['deployment', 'infrastructure', 'technical'],
+      responses: {
+        executive: "Deployment options: 1) Multi-tenant SaaS (default, $0 infrastructure), 2) Dedicated instance ($2K/mo, isolated compute), 3) Private cloud (AWS/Azure/GCP, $5K/mo minimum), 4) On-premise (Enterprise only, $50K setup + $8K/mo). Current mix: 78% SaaS, 15% dedicated, 5% private cloud, 2% on-premise.",
+        manager: "Four deployment options available: standard SaaS (most common), dedicated instances for isolation requirements, private cloud deployment in customer's cloud account, and on-premise for specific compliance needs. Contact sales for pricing details.",
+        employee: "Deployment options include cloud SaaS (default), dedicated instances, private cloud, and on-premise installations. Each option addresses different security and compliance requirements. See documentation for technical specifications."
+      },
+      followUps: ['What are the SLAs for each option?', 'Show pricing comparison', 'What is the migration process?']
+    },
+
+    // === Compensation Follow-ups ===
+    'How does this compare to market rates?': {
+      category: 'compensation_data',
+      topics: ['compensation', 'market', 'benchmarks'],
+      responses: {
+        executive: "Market comparison (Radford data): Our senior engineer median €89K vs market €85K (105% of market). Total comp €117K vs market €108K (108%). We're positioned at 75th percentile intentionally to attract top talent. Recommendation: Maintain current positioning, review annually.",
+        manager: "Our compensation is competitive with market rates for senior engineers. We position above median intentionally for talent acquisition. [SPECIFIC PERCENTILES AND FIGURES REDACTED - Executive Only]. HR can provide band details for hiring decisions.",
+        employee: "Access Denied: Market compensation comparison requires executive-level clearance."
+      },
+      followUps: ['Show all level comparisons', 'What is our compensation philosophy?', 'When is the next market adjustment?']
+    },
+    'What about equity compensation?': {
+      category: 'compensation_data',
+      topics: ['equity', 'compensation', 'stock'],
+      responses: {
+        executive: "Equity structure: Senior engineers receive €15K-€30K initial grant (4-year vest, 1-year cliff). Refresh grants: €10K-€20K annually for top performers. Current 409A valuation: $12.50/share (+25% YoY). Dilution budget: 3% annually. Total equity pool: 12% of fully diluted shares.",
+        manager: "Equity compensation is part of senior engineer packages with standard 4-year vesting. Refresh grants available for top performers. [SPECIFIC VALUATIONS REDACTED]. Contact HR for equity planning discussions.",
+        employee: "Access Denied: Equity compensation details require executive-level clearance."
+      },
+      followUps: ['What is the vesting schedule?', 'How are refresh grants determined?', 'Show equity band guidelines']
+    },
+    'Show me the bonus structure': {
+      category: 'compensation_data',
+      topics: ['bonus', 'compensation', 'incentives'],
+      responses: {
+        executive: "Bonus structure for senior engineers: Target 15% of base salary (€11K-€16K). Components: Company performance 50% (threshold 80%, target 100%, max 150%), Individual performance 50% (rating-based multiplier 0-150%). Q4 payout forecast: 112% of target based on current projections.",
+        manager: "Senior engineer bonus targets are 15% of base salary, split between company and individual performance factors. [SPECIFIC PAYOUT PROJECTIONS REDACTED]. Performance ratings due by end of month.",
+        employee: "Access Denied: Bonus structure details require executive-level clearance."
+      },
+      followUps: ['When are bonuses paid?', 'How is company performance measured?', 'What determines individual multiplier?']
+    },
+
+    // === MNPI Follow-ups ===
+    'When is the official release date?': {
+      category: 'mnpi_data',
+      topics: ['mnpi', 'release_date', 'timing'],
+      responses: {
+        executive: "Official release schedule: Fund performance - Jan 15 (10 days), Earnings - Jan 28 after market close, M&A announcement - pending board approval (expected Feb). Quiet period begins Jan 5. All employees reminded of trading restrictions via compliance memo.",
+        manager: "Access Denied: Release timing for material non-public information requires executive clearance and compliance approval.",
+        employee: "Access Denied: MNPI release schedules are restricted to authorized personnel only."
+      },
+      followUps: ['What are the quiet period rules?', 'Who needs to be notified?', 'Show the IR calendar']
+    },
+    'How does this compare to benchmark?': {
+      category: 'mnpi_data',
+      topics: ['mnpi', 'benchmark', 'performance'],
+      responses: {
+        executive: "Benchmark comparison (CONFIDENTIAL): Fund A vs S&P 500 - outperformed by 340bps, Fund B vs Russell 2000 - underperformed by 120bps, Fund C vs MSCI EM - outperformed by 520bps. Attribution: Security selection +280bps, Sector allocation +60bps. Top contributor: Tech overweight.",
+        manager: "Access Denied: Pre-release benchmark comparisons are MNPI and require executive clearance.",
+        employee: "Access Denied: Performance benchmark data is restricted to authorized personnel only."
+      },
+      followUps: ['Show attribution analysis', 'What drove outperformance?', 'Compare to peer funds']
+    },
+    'Show me the top holdings changes': {
+      category: 'mnpi_data',
+      topics: ['mnpi', 'holdings', 'portfolio'],
+      responses: {
+        executive: "Holdings changes (CONFIDENTIAL - pre-13F): New positions - NVDA (+$12M), MSFT (+$8M). Increased - AAPL (+$5M, now 4.2% of fund). Decreased - TSLA (-$15M, reduced to 1.1%). Exited - META (sold entire $20M position). Changes reflect AI thesis and valuation discipline.",
+        manager: "Access Denied: Holdings changes are MNPI pending 13F filing and require executive clearance.",
+        employee: "Access Denied: Portfolio holdings information is restricted to authorized personnel only."
+      },
+      followUps: ['What is the investment thesis?', 'When is the 13F filing?', 'Show sector allocation changes']
+    },
+
+    // === Product Roadmap Follow-ups ===
+    'What is the release timeline?': {
+      category: 'product_roadmap',
+      topics: ['roadmap', 'timeline', 'releases'],
+      responses: {
+        executive: "Release timeline: Q1 - AI Assistant (beta Jan, GA March, $500K MRR impact), Q2 - Enterprise SSO (April, 3 customers waiting, $200K pipeline), Q3 - API v3 with GraphQL (July), Q4 - Mobile App v2 (Oct). Total engineering investment: $2.1M. Dependencies: AI team hire (in progress).",
+        manager: "Planned releases: Q1 brings AI capabilities, Q2 focuses on enterprise security features, Q3 delivers API improvements, Q4 launches mobile updates. [SPECIFIC DATES AND REVENUE PROJECTIONS REDACTED]. Engineering is on track.",
+        employee: "Access Denied: Detailed product release timelines require manager-level clearance."
+      },
+      followUps: ['What are the key dependencies?', 'Show the resource allocation', 'What are the risks?']
+    },
+    'Which customers requested these features?': {
+      category: 'product_roadmap',
+      topics: ['roadmap', 'customers', 'requests'],
+      responses: {
+        executive: "Feature requests by customer: AI Assistant - Acme Corp ($150K ARR), GlobalTech ($200K ARR), MegaCorp ($180K ARR). Enterprise SSO - specifically requested by FinanceFirst (blocked deal, $300K). API v3 - Developer community (120 requests), plus TechStart (expansion contingent).",
+        manager: "Several enterprise customers have requested the upcoming features, particularly AI capabilities and SSO. [CUSTOMER NAMES AND ARR REDACTED]. These features are tied to pipeline opportunities and retention.",
+        employee: "Access Denied: Customer-specific feature requests require manager-level clearance."
+      },
+      followUps: ['Show the request prioritization', 'What is at risk if delayed?', 'How do we communicate timelines?']
+    },
+    'Show competitive analysis': {
+      category: 'product_roadmap',
+      topics: ['competitive', 'analysis', 'market'],
+      responses: {
+        executive: "Competitive landscape: Competitor A launched AI features (6 months ahead), but limited to chat. Our AI Assistant includes workflow automation (differentiated). Competitor B announced SSO but delayed to Q3. Our API v3 will have feature parity with Competitor C. Market window: 6-9 months to establish leadership.",
+        manager: "Competitive analysis shows we're tracking well against main competitors. Some competitors have launched AI features but with limited scope. Our roadmap addresses gaps while maintaining differentiation. [SPECIFIC COMPETITOR DETAILS REDACTED].",
+        employee: "Access Denied: Competitive analysis details require manager-level clearance."
+      },
+      followUps: ['How do we differentiate?', 'What is our win rate?', 'Show feature comparison matrix']
+    },
+
+    // === Healthcare Follow-ups ===
+    'What is the efficacy data?': {
+      category: 'clinical_data',
+      topics: ['clinical_trials', 'efficacy', 'mnpi'],
+      responses: {
+        executive: "Efficacy data (CONFIDENTIAL): Primary endpoint - 73% response rate vs 45% placebo (p<0.001). Secondary endpoints - Duration of response 8.2 months vs 4.1 months, Quality of life improvement +18 points vs +5 points. Subgroup analysis shows strongest response in treatment-naive patients (81%).",
+        manager: "Access Denied: Clinical efficacy data is MNPI and requires executive and medical affairs clearance.",
+        employee: "Access Denied: Clinical trial data is restricted to authorized research personnel."
+      },
+      followUps: ['Show subgroup analysis', 'What is the safety profile?', 'Compare to competitor drugs']
+    },
+    'Show adverse event summary': {
+      category: 'clinical_data',
+      topics: ['clinical_trials', 'safety', 'adverse_events'],
+      responses: {
+        executive: "Adverse event summary (CONFIDENTIAL): Overall AE rate 12% vs 8% placebo. Most common: fatigue (5%), nausea (3%), headache (2%). Serious AEs: 1.2% vs 0.8% placebo (not statistically significant). No treatment-related deaths. Discontinuation rate: 4% vs 3% placebo. Safety profile supports approval.",
+        manager: "Access Denied: Adverse event data is MNPI and requires executive and medical affairs clearance.",
+        employee: "Access Denied: Clinical safety data is restricted to authorized research personnel."
+      },
+      followUps: ['What are the serious AEs?', 'How does this compare to approved drugs?', 'What is the discontinuation rate?']
+    },
+    'When is FDA submission planned?': {
+      category: 'clinical_data',
+      topics: ['regulatory', 'fda', 'submission'],
+      responses: {
+        executive: "FDA submission timeline (CONFIDENTIAL): NDA submission planned March 15, 2025. Pre-NDA meeting completed (positive feedback). PDUFA target date expected January 2026 (standard review). Priority review request under consideration (would accelerate to September 2025). Manufacturing validation on track.",
+        manager: "Access Denied: FDA submission timing is MNPI and requires executive and regulatory affairs clearance.",
+        employee: "Access Denied: Regulatory submission information is restricted to authorized personnel."
+      },
+      followUps: ['What feedback did FDA provide?', 'Are we pursuing priority review?', 'What are the approval odds?']
+    },
+
+    // === Generic follow-ups for unmapped questions ===
+    'default': {
+      category: 'general',
+      topics: ['general'],
+      responses: {
+        executive: "I can provide additional details on this topic. Based on your executive access, you have full visibility into the relevant data and analysis. Would you like me to focus on a specific aspect?",
+        manager: "I can provide more information on this topic within your access level. Some details may be restricted to executive clearance. What specific aspect would you like to explore?",
+        employee: "I can help with general information on this topic. Detailed data may require additional clearance. Please let me know what specific information you're looking for."
+      },
+      followUps: []
+    }
+  };
   
   // Enhanced role-based permissions with context - FIXED: Manager now has financial_data access
   const rolePermissions = {
@@ -343,14 +615,28 @@ export default function PlainIDChatFullContent() {
   };
 
   // Check authorization for current query and role
-  const isAuthorized = () => {
+  const isAuthorized = (followUpText = null) => {
+    if (followUpText && followUpResponses[followUpText]) {
+      const followUp = followUpResponses[followUpText];
+      const role = rolePermissions[userRole];
+      return role.categories.includes(followUp.category);
+    }
     const query = sampleQueries[queryIndex];
     const role = rolePermissions[userRole];
     return role.categories.includes(query.category);
   };
 
   // Get classification result
-  const getClassificationResult = () => {
+  const getClassificationResult = (followUpText = null) => {
+    if (followUpText && followUpResponses[followUpText]) {
+      const followUp = followUpResponses[followUpText];
+      return {
+        category: followUp.category,
+        confidence: 0.87 + Math.random() * 0.1,
+        topics: followUp.topics,
+        authorized: isAuthorized(followUpText)
+      };
+    }
     const query = sampleQueries[queryIndex];
     return {
       category: query.category,
@@ -361,11 +647,13 @@ export default function PlainIDChatFullContent() {
   };
 
   // Get document filtering results
-  const getDocumentResults = () => {
+  const getDocumentResults = (followUpText = null) => {
     const role = rolePermissions[userRole];
-    const query = sampleQueries[queryIndex];
+    const category = followUpText && followUpResponses[followUpText] 
+      ? followUpResponses[followUpText].category 
+      : sampleQueries[queryIndex].category;
     
-    if (!isAuthorized()) {
+    if (!isAuthorized(followUpText)) {
       return {
         totalDocs: 0,
         filteredDocs: [],
@@ -457,7 +745,7 @@ export default function PlainIDChatFullContent() {
       ]
     };
     
-    const allDocs = docsByCategory[query.category] || [
+    const allDocs = docsByCategory[category] || [
       { name: "General_Document.pdf", metadata: { region: "global", classification: "internal", department: "general" }}
     ];
     
@@ -478,14 +766,36 @@ export default function PlainIDChatFullContent() {
   };
 
   // Get redacted response based on role and query
-  const getRedactedResponse = () => {
+  const getRedactedResponse = (followUpText = null) => {
+    // If this is a follow-up question, get response from followUpResponses
+    if (followUpText && followUpResponses[followUpText]) {
+      const followUp = followUpResponses[followUpText];
+      const role = rolePermissions[userRole];
+      
+      if (!role.categories.includes(followUp.category)) {
+        return {
+          response: `Access Denied: You don't have permission to access ${followUp.category.replace(/_/g, ' ')} based on your current role and context.`,
+          redactionLevel: "complete",
+          followUps: []
+        };
+      }
+      
+      return {
+        response: followUp.responses[userRole] || followUp.responses.employee || "Information not available.",
+        redactionLevel: userRole === 'executive' ? 'none' : userRole === 'manager' ? 'partial' : 'high',
+        followUps: followUp.followUps || []
+      };
+    }
+    
+    // Otherwise, use original query responses
     const query = sampleQueries[queryIndex];
     const role = rolePermissions[userRole];
     
     if (!isAuthorized()) {
       return {
         response: `Access Denied: You don't have permission to access ${query.category.replace(/_/g, ' ')} based on your current role and context.`,
-        redactionLevel: "complete"
+        redactionLevel: "complete",
+        followUps: []
       };
     }
     
@@ -584,19 +894,26 @@ export default function PlainIDChatFullContent() {
     if (categoryResponses) {
       return {
         response: categoryResponses[userRole] || categoryResponses.employee || "Information not available for this query.",
-        redactionLevel: userRole === 'executive' ? 'none' : userRole === 'manager' ? 'partial' : 'high'
+        redactionLevel: userRole === 'executive' ? 'none' : userRole === 'manager' ? 'partial' : 'high',
+        followUps: query.followUps || []
       };
     }
     
     // Default response for unmapped categories
     return {
       response: "Information retrieved based on your access level. Some details may be redacted based on your role permissions.",
-      redactionLevel: userRole === 'executive' ? 'none' : 'partial'
+      redactionLevel: userRole === 'executive' ? 'none' : 'partial',
+      followUps: query.followUps || []
     };
   };
 
   // Get unsecured response - always returns full data regardless of permissions
-  const getUnsecuredResponse = () => {
+  const getUnsecuredResponse = (followUpText = null) => {
+    // If this is a follow-up, return the executive-level response (full data)
+    if (followUpText && followUpResponses[followUpText]) {
+      return followUpResponses[followUpText].responses.executive;
+    }
+    
     const query = sampleQueries[queryIndex];
     
     const unsecuredResponses = {
@@ -621,24 +938,94 @@ export default function PlainIDChatFullContent() {
     return unsecuredResponses[query.category] || "Full data access without authorization controls - all sensitive information exposed.";
   };
 
-  // Handle follow-up question click
+  // Handle follow-up question click - starts a new chat with the follow-up
   const handleFollowUpClick = (followUpText) => {
-    // Find a matching query or use the follow-up text as-is
-    const matchingQueryIndex = sampleQueries.findIndex(q => 
-      q.text.toLowerCase().includes(followUpText.toLowerCase().split(' ').slice(0, 3).join(' '))
-    );
-    
-    if (matchingQueryIndex !== -1) {
-      setQueryIndex(matchingQueryIndex);
-      setInputText(sampleQueries[matchingQueryIndex].text);
-    } else {
-      setInputText(followUpText);
-    }
+    // Clear messages and start fresh
+    setMessages([]);
     setShowFollowUps(false);
+    setActiveFollowUp(followUpText);
+    setInputText(followUpText);
+    
+    // Trigger the send flow after a brief delay to allow state to update
+    setTimeout(() => {
+      handleSendFollowUp(followUpText);
+    }, 100);
+  };
+
+  // Handle sending a follow-up question
+  const handleSendFollowUp = (followUpText) => {
+    // Add user message
+    const userMessage = {
+      type: 'user',
+      text: followUpText,
+      files: [],
+      timestamp: new Date()
+    };
+    setMessages([userMessage]);
+    setCurrentGuardrail(1);
+    setIsProcessing(true);
+
+    // Guardrail 1: Categorizer
+    setTimeout(() => {
+      const classification = getClassificationResult(followUpText);
+      setMessages(prev => [...prev, {
+        type: 'guardrail',
+        guardrail: 'categorizer',
+        classification: classification,
+        timestamp: new Date()
+      }]);
+      setCurrentGuardrail(2);
+    }, 2000);
+
+    // Guardrail 2: Retriever
+    setTimeout(() => {
+      const docResults = getDocumentResults(followUpText);
+      setMessages(prev => [...prev, {
+        type: 'guardrail',
+        guardrail: 'retriever',
+        docResults: docResults,
+        timestamp: new Date()
+      }]);
+      setCurrentGuardrail(3);
+    }, 4000);
+
+    // Guardrail 3: Anonymizer
+    setTimeout(() => {
+      const response = getRedactedResponse(followUpText);
+      setMessages(prev => [...prev, {
+        type: 'guardrail',
+        guardrail: 'anonymizer',
+        response: response,
+        timestamp: new Date()
+      }]);
+      setCurrentGuardrail(4);
+    }, 6000);
+
+    // Final response
+    setTimeout(() => {
+      const finalResponse = getRedactedResponse(followUpText);
+      setMessages(prev => [...prev, {
+        type: 'assistant',
+        text: finalResponse.response,
+        redactionLevel: finalResponse.redactionLevel,
+        followUps: finalResponse.followUps,
+        timestamp: new Date()
+      }]);
+      setIsProcessing(false);
+      setCurrentGuardrail(0);
+      setActiveFollowUp(null);
+      setShowFollowUps(true);
+      
+      // Show CTA modal
+      setTimeout(() => setShowCTAModal(true), 2000);
+    }, 8000);
   };
 
   const handleSendMessage = () => {
     const query = sampleQueries[queryIndex];
+    
+    // Reset follow-up state
+    setActiveFollowUp(null);
     
     // Add user message
     const userMessage = {
@@ -696,7 +1083,7 @@ export default function PlainIDChatFullContent() {
         type: 'assistant',
         text: finalResponse.response,
         redactionLevel: finalResponse.redactionLevel,
-        followUps: query.followUps,
+        followUps: finalResponse.followUps,
         timestamp: new Date()
       }]);
       setIsProcessing(false);
@@ -713,6 +1100,7 @@ export default function PlainIDChatFullContent() {
     const actualIndex = sampleQueries.findIndex(q => q.text === filteredQueries[index].text);
     setQueryIndex(actualIndex);
     setInputText(sampleQueries[actualIndex].text);
+    setActiveFollowUp(null);
   };
 
   const BetaTag = () => (
@@ -777,9 +1165,9 @@ export default function PlainIDChatFullContent() {
   };
 
   const currentRole = rolePermissions[userRole];
-  const classification = getClassificationResult();
-  const docResults = getDocumentResults();
-  const response = getRedactedResponse();
+  const classification = getClassificationResult(activeFollowUp);
+  const docResults = getDocumentResults(activeFollowUp);
+  const response = getRedactedResponse(activeFollowUp);
 
   return (
     <div className="flex h-screen bg-gray-50">
@@ -802,6 +1190,7 @@ export default function PlainIDChatFullContent() {
               setIsProcessing(false);
               setAttachedFiles([]);
               setShowFollowUps(false);
+              setActiveFollowUp(null);
             }}
             className="w-full flex items-center justify-center px-3 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors"
           >
@@ -965,7 +1354,7 @@ export default function PlainIDChatFullContent() {
                     <div>
                       <h4 className="font-medium text-gray-700 mb-2 text-sm">Query</h4>
                       <div className="bg-gray-50 p-3 rounded-lg border border-gray-200">
-                        <p className="text-sm text-gray-900">{sampleQueries[queryIndex].text}</p>
+                        <p className="text-sm text-gray-900">{activeFollowUp || sampleQueries[queryIndex].text}</p>
                       </div>
                     </div>
 
@@ -1000,8 +1389,8 @@ export default function PlainIDChatFullContent() {
                     <div>
                       <h4 className="font-medium text-gray-700 mb-2 text-sm">Response</h4>
                       <div className="bg-red-50 p-4 rounded-lg border border-red-200">
-                        <p className="text-sm text-gray-900 mb-3">{getUnsecuredResponse()}</p>
-                        {!isAuthorized() && (
+                        <p className="text-sm text-gray-900 mb-3">{getUnsecuredResponse(activeFollowUp)}</p>
+                        {!isAuthorized(activeFollowUp) && (
                           <div className="mt-3 p-2 bg-red-100 border border-red-300 rounded">
                             <p className="text-red-700 text-xs flex items-center">
                               <AlertTriangle size={14} className="mr-2" />
@@ -1030,7 +1419,7 @@ export default function PlainIDChatFullContent() {
                     <div>
                       <h4 className="font-medium text-gray-700 mb-2 text-sm">Query</h4>
                       <div className="bg-gray-50 p-3 rounded-lg border border-gray-200">
-                        <p className="text-sm text-gray-900">{sampleQueries[queryIndex].text}</p>
+                        <p className="text-sm text-gray-900">{activeFollowUp || sampleQueries[queryIndex].text}</p>
                       </div>
                     </div>
 
@@ -1126,7 +1515,7 @@ export default function PlainIDChatFullContent() {
                       <p>2. <strong>Select your role</strong> from the sidebar (Executive, Manager, or Employee)</p>
                       <p>3. <strong>Choose a query</strong> from the sidebar or type your own</p>
                       <p>4. <strong>Send the message</strong> to see the three-layer authorization process in action</p>
-                      <p>5. <strong>Try follow-up questions</strong> to continue the conversation</p>
+                      <p>5. <strong>Try follow-up questions</strong> to continue the conversation with new contextual responses</p>
                     </div>
                   </div>
 
@@ -1373,7 +1762,8 @@ export default function PlainIDChatFullContent() {
                                       <button
                                         key={idx}
                                         onClick={() => handleFollowUpClick(followUp)}
-                                        className="px-3 py-1.5 text-xs bg-gray-100 hover:bg-teal-50 hover:text-teal-700 text-gray-700 rounded-full border border-gray-200 hover:border-teal-300 transition-colors flex items-center"
+                                        disabled={isProcessing}
+                                        className="px-3 py-1.5 text-xs bg-gray-100 hover:bg-teal-50 hover:text-teal-700 text-gray-700 rounded-full border border-gray-200 hover:border-teal-300 transition-colors flex items-center disabled:opacity-50 disabled:cursor-not-allowed"
                                       >
                                         <ChevronRight size={12} className="mr-1" />
                                         {followUp}
