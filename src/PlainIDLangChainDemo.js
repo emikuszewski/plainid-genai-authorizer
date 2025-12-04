@@ -1019,7 +1019,7 @@ export default function PlainIDChatFullContent() {
       
       // Show CTA modal
       // setTimeout(() => setShowCTAModal(true), 2000);
-    //}, 8000);
+    }, 8000);
   };
 
   const handleSendMessage = () => {
@@ -1093,7 +1093,7 @@ export default function PlainIDChatFullContent() {
       
       // Show CTA modal
       // setTimeout(() => setShowCTAModal(true), 2000);
-    //}, 8000);
+    }, 8000);
   };
 
   const selectQuery = (index) => {
