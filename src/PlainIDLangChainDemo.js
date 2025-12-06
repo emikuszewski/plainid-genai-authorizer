@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Shield, Send, User, Filter, Database, Eye, Check, AlertTriangle, Lock, ChevronRight, Calendar, Download, MapPin, Users, Layers, Menu, Plus, MessageSquare, ArrowRight, Unlock, Paperclip, Camera, X, FileText, Image as ImageIcon, FileSpreadsheet, File, Building2, Cpu, HeartPulse, DollarSign, Upload } from 'lucide-react';
+import { Shield, Send, User, Filter, Database, Eye, Check, AlertTriangle, Lock, ChevronRight, Calendar, Download, MapPin, Users, Layers, Menu, Plus, MessageSquare, ArrowRight, Unlock, Paperclip, Camera, X, FileText, Image as ImageIcon, FileSpreadsheet, File, Building2, Cpu, HeartPulse, DollarSign, Upload, Sparkles } from 'lucide-react';
 
 export default function PlainIDChatFullContent() {
   const [userRole, setUserRole] = useState('manager');
@@ -292,9 +292,18 @@ export default function PlainIDChatFullContent() {
       category: 'financial_data',
       topics: ['revenue', 'profit', 'quarterly_comparison'],
       responses: {
-        executive: "Q4 vs Q3 comparison: Revenue +12% ($2.3M vs $2.05M), Profit margin +2.1% (23.4% vs 21.3%), EBITDA +15% ($540K vs $470K). Key driver: Enterprise segment growth accelerated from 8% to 15% QoQ. Operating expenses remained flat.",
-        manager: "Q4 showed improvement over Q3 across key metrics. Revenue increased 12% quarter-over-quarter. Profit margins improved by approximately ████████████████. Enterprise segment was the primary growth driver.",
-        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance"
+        executive: {
+          text: "Q4 vs Q3 comparison: Revenue +12% ($2.3M vs $2.05M), Profit margin +2.1% (23.4% vs 21.3%), EBITDA +15% ($540K vs $470K). Key driver: Enterprise segment growth accelerated from 8% to 15% QoQ. Operating expenses remained flat.",
+          generalized: false
+        },
+        manager: {
+          text: "Q4 showed improvement over Q3 across key metrics. Revenue increased 12% quarter-over-quarter. Profit margins improved notably. Enterprise segment was the primary growth driver with accelerated performance.",
+          generalized: true
+        },
+        employee: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance",
+          generalized: false
+        }
       },
       followUps: ['What about year-over-year trends?', 'Show Q1 and Q2 data', 'What is the forecast for Q1 next year?']
     },
@@ -302,9 +311,18 @@ export default function PlainIDChatFullContent() {
       category: 'financial_data',
       topics: ['revenue', 'growth_drivers', 'analysis'],
       responses: {
-        executive: "Revenue growth drivers: 1) Enterprise segment expansion (+$180K, 3 new Fortune 500 clients), 2) Upsells to existing customers (+$95K, 23% attach rate), 3) Price optimization (+$45K, 5% average increase), 4) Reduced churn (-$30K saved). Pipeline remains strong at $1.2M qualified opportunities.",
-        manager: "Key revenue drivers this quarter: New enterprise customer acquisitions, successful upselling to existing accounts, and improved pricing. ████████████████████████. Customer retention also contributed positively to overall growth.",
-        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance"
+        executive: {
+          text: "Revenue growth drivers: 1) Enterprise segment expansion (+$180K, 3 new Fortune 500 clients), 2) Upsells to existing customers (+$95K, 23% attach rate), 3) Price optimization (+$45K, 5% average increase), 4) Reduced churn (-$30K saved). Pipeline remains strong at $1.2M qualified opportunities.",
+          generalized: false
+        },
+        manager: {
+          text: "Key revenue drivers this quarter: New enterprise customer acquisitions, successful upselling to existing accounts, and improved pricing strategy. Customer retention also contributed positively to overall growth. Pipeline remains healthy.",
+          generalized: true
+        },
+        employee: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance",
+          generalized: false
+        }
       },
       followUps: ['Which products drove the most growth?', 'Show customer acquisition details', 'What is the churn rate?']
     },
@@ -312,9 +330,18 @@ export default function PlainIDChatFullContent() {
       category: 'financial_data',
       topics: ['revenue', 'regional', 'geography'],
       responses: {
-        executive: "Regional breakdown: North America $1.38M (60%, +15% QoQ), EMEA $690K (30%, +8% QoQ), APAC $230K (10%, +18% QoQ). Strongest growth in APAC driven by Japan expansion. EMEA impacted by EUR/USD headwinds (-3% constant currency adjustment).",
-        manager: "Regional performance: North America leads with 60% of revenue and strongest absolute growth. EMEA represents 30% with moderate growth. APAC showing highest percentage growth at 10% of total. ████████████████████████████████.",
-        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance"
+        executive: {
+          text: "Regional breakdown: North America $1.38M (60%, +15% QoQ), EMEA $690K (30%, +8% QoQ), APAC $230K (10%, +18% QoQ). Strongest growth in APAC driven by Japan expansion. EMEA impacted by EUR/USD headwinds (-3% constant currency adjustment).",
+          generalized: false
+        },
+        manager: {
+          text: "Regional performance: North America leads with the majority of revenue and strongest absolute growth. EMEA represents a significant portion with moderate growth. APAC showing highest percentage growth driven by expansion initiatives.",
+          generalized: true
+        },
+        employee: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance",
+          generalized: false
+        }
       },
       followUps: ['Show country-level details', 'What is driving APAC growth?', 'How do margins vary by region?']
     },
@@ -324,9 +351,18 @@ export default function PlainIDChatFullContent() {
       category: 'customer_analytics',
       topics: ['customer_data', 'analytics', 'north_america'],
       responses: {
-        executive: "North America satisfaction: 89.1% (+3.8 pts), NPS 58 (+6). Top performers: Product uptime (9.2/10), Feature completeness (8.8/10). Areas for improvement: Onboarding speed (7.1/10), Documentation (7.4/10). 2 enterprise accounts flagged for executive attention ($520K ARR at risk).",
-        manager: "North America customer satisfaction is at 89.1%, up 3.8 points. NPS improved to 58. Product uptime and features rated highly. Onboarding and documentation identified as improvement areas. Some accounts require attention.",
-        employee: "North America customer satisfaction shows positive trends, currently above the EU region. Product reliability is a strength. Some process improvements identified for onboarding experience."
+        executive: {
+          text: "North America satisfaction: 89.1% (+3.8 pts), NPS 58 (+6). Top performers: Product uptime (9.2/10), Feature completeness (8.8/10). Areas for improvement: Onboarding speed (7.1/10), Documentation (7.4/10). 2 enterprise accounts flagged for executive attention ($520K ARR at risk).",
+          generalized: false
+        },
+        manager: {
+          text: "North America customer satisfaction is strong and improving, up several points this quarter. NPS also improved. Product uptime and features rated highly. Onboarding and documentation identified as improvement areas. Some accounts require attention.",
+          generalized: true
+        },
+        employee: {
+          text: "North America customer satisfaction shows positive trends, performing above the EU region. Product reliability is a strength. Some process improvements identified for onboarding experience.",
+          generalized: true
+        }
       },
       followUps: ['Compare all regions side by side', 'Show at-risk accounts', 'What actions are planned for improvements?']
     },
@@ -334,9 +370,18 @@ export default function PlainIDChatFullContent() {
       category: 'customer_analytics',
       topics: ['customer_data', 'product_satisfaction', 'analytics'],
       responses: {
-        executive: "Lowest satisfaction by product: 1) Legacy API v1 - 72% (end-of-life Q2, migration support needed), 2) Mobile App - 78% (v2.0 launching next month), 3) Reporting Module - 81% (UX refresh in progress). Action plans in place for all three with expected +10pt improvement within 2 quarters.",
-        manager: "Products with lower satisfaction scores: Legacy API (migration recommended), Mobile App (new version coming), and Reporting Module (improvements underway). All have active improvement plans with expected resolution timelines.",
-        employee: "Some products have been identified for improvement. The mobile app and reporting features are receiving updates. Contact product team for specific feedback channels."
+        executive: {
+          text: "Lowest satisfaction by product: 1) Legacy API v1 - 72% (end-of-life Q2, migration support needed), 2) Mobile App - 78% (v2.0 launching next month), 3) Reporting Module - 81% (UX refresh in progress). Action plans in place for all three with expected +10pt improvement within 2 quarters.",
+          generalized: false
+        },
+        manager: {
+          text: "Products with lower satisfaction scores: Legacy API (migration recommended), Mobile App (new version coming), and Reporting Module (improvements underway). All have active improvement plans with expected resolution timelines.",
+          generalized: true
+        },
+        employee: {
+          text: "Some products have been identified for improvement. The mobile app and reporting features are receiving updates. Contact product team for specific feedback channels.",
+          generalized: true
+        }
       },
       followUps: ['What is the migration plan for legacy API?', 'When does Mobile App v2 launch?', 'Show the UX refresh timeline']
     },
@@ -344,9 +389,18 @@ export default function PlainIDChatFullContent() {
       category: 'customer_analytics',
       topics: ['support', 'tickets', 'analytics'],
       responses: {
-        executive: "Support metrics Q4: 2,847 tickets (+5% QoQ), Avg resolution 4.2 hrs (-18%), First response 12 min (-25%), CSAT 94.2% (+1.8pts). Top categories: Integration questions (32%), Feature requests (24%), Bug reports (18%). Headcount efficiency improved 15%.",
-        manager: "Support ticket volume increased 5% this quarter but resolution times improved significantly. Average resolution down to 4.2 hours. Customer satisfaction with support at 94.2%. Integration questions remain the top category.",
-        employee: "Support team metrics show improvement in response times this quarter. Customer satisfaction with support remains high. Integration documentation being enhanced to reduce common questions."
+        executive: {
+          text: "Support metrics Q4: 2,847 tickets (+5% QoQ), Avg resolution 4.2 hrs (-18%), First response 12 min (-25%), CSAT 94.2% (+1.8pts). Top categories: Integration questions (32%), Feature requests (24%), Bug reports (18%). Headcount efficiency improved 15%.",
+          generalized: false
+        },
+        manager: {
+          text: "Support ticket volume increased slightly this quarter but resolution times improved significantly. Average resolution down substantially. Customer satisfaction with support remains high. Integration questions remain the top category.",
+          generalized: true
+        },
+        employee: {
+          text: "Support team metrics show improvement in response times this quarter. Customer satisfaction with support remains high. Integration documentation being enhanced to reduce common questions.",
+          generalized: true
+        }
       },
       followUps: ['Show ticket trends by category', 'What are the most common issues?', 'How does this compare to last year?']
     },
@@ -356,9 +410,18 @@ export default function PlainIDChatFullContent() {
       category: 'hr_records',
       topics: ['performance', 'improvement_plans', 'hr_sensitive'],
       responses: {
-        executive: "Active PIPs: J. Smith (deadline management, 60-day plan, mentor assigned), M. Johnson (deadline management, 90-day plan, workload reduced 20%), K. Lee (communication, coaching sessions 2x/week). Success rate historical: 65% return to good standing. HR review scheduled for Jan 15.",
-        manager: "Three performance improvement plans are active in your department. Two focused on deadline management with structured support and adjusted workloads. One addressing communication skills with regular coaching. Progress reviews scheduled monthly.",
-        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance"
+        executive: {
+          text: "Active PIPs: J. Smith (deadline management, 60-day plan, mentor assigned), M. Johnson (deadline management, 90-day plan, workload reduced 20%), K. Lee (communication, coaching sessions 2x/week). Success rate historical: 65% return to good standing. HR review scheduled for Jan 15.",
+          generalized: false
+        },
+        manager: {
+          text: "Three performance improvement plans are active in your department. Two focused on deadline management with structured support and adjusted workloads. One addressing communication skills with regular coaching. Progress reviews scheduled monthly.",
+          generalized: true
+        },
+        employee: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance",
+          generalized: false
+        }
       },
       followUps: ['What is the success rate of PIPs?', 'Show the review schedule', 'What support resources are available?']
     },
@@ -366,9 +429,18 @@ export default function PlainIDChatFullContent() {
       category: 'hr_records',
       topics: ['retention', 'risk', 'hr_sensitive'],
       responses: {
-        executive: "Retention risk analysis: High risk - 2 employees (both receiving competing offers, combined $180K salary), Medium risk - 4 employees (career growth concerns), Low risk - remainder. Recommended actions: Retention bonuses for high-risk ($25K each), career pathing discussions for medium-risk. Flight risk cost estimate: $340K if all high-risk depart.",
-        manager: "Retention analysis shows 2 high-risk employees in your department with external interest, 4 medium-risk with career growth concerns. Recommend scheduling stay interviews and discussing development opportunities. HR can support with retention planning.",
-        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance"
+        executive: {
+          text: "Retention risk analysis: High risk - 2 employees (both receiving competing offers, combined $180K salary), Medium risk - 4 employees (career growth concerns), Low risk - remainder. Recommended actions: Retention bonuses for high-risk ($25K each), career pathing discussions for medium-risk. Flight risk cost estimate: $340K if all high-risk depart.",
+          generalized: false
+        },
+        manager: {
+          text: "Retention analysis shows a small number of high-risk employees in your department with external interest, and several medium-risk with career growth concerns. Recommend scheduling stay interviews and discussing development opportunities. HR can support with retention planning.",
+          generalized: true
+        },
+        employee: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance",
+          generalized: false
+        }
       },
       followUps: ['What retention actions are recommended?', 'Show historical turnover data', 'What is the cost of turnover?']
     },
@@ -376,9 +448,18 @@ export default function PlainIDChatFullContent() {
       category: 'hr_records',
       topics: ['performance', 'benchmarks', 'comparison'],
       responses: {
-        executive: "Department vs Company comparison: Performance concerns 4.2% vs 3.8% company avg (+0.4%), Turnover 8% vs 11% company avg (-3%), Engagement score 7.8 vs 7.5 company avg (+0.3). Your department outperforms on retention and engagement despite slightly higher performance concerns.",
-        manager: "Your department's performance concern rate is slightly above company average but retention is significantly better. Engagement scores also above company benchmark. Overall health metrics are positive relative to peers.",
-        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance"
+        executive: {
+          text: "Department vs Company comparison: Performance concerns 4.2% vs 3.8% company avg (+0.4%), Turnover 8% vs 11% company avg (-3%), Engagement score 7.8 vs 7.5 company avg (+0.3). Your department outperforms on retention and engagement despite slightly higher performance concerns.",
+          generalized: false
+        },
+        manager: {
+          text: "Your department's performance concern rate is slightly above company average but retention is significantly better. Engagement scores also above company benchmark. Overall health metrics are positive relative to peers.",
+          generalized: true
+        },
+        employee: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance",
+          generalized: false
+        }
       },
       followUps: ['Show department ranking', 'What drives engagement scores?', 'How do we compare to industry?']
     },
@@ -388,9 +469,18 @@ export default function PlainIDChatFullContent() {
       category: 'technical_documentation',
       topics: ['compliance', 'certifications', 'security'],
       responses: {
-        executive: "Current certifications: SOC2 Type II (renewed Oct 2024), ISO 27001 (valid through 2026), HIPAA BAA available, GDPR compliant, FedRAMP Moderate (in progress, expected Q2 2025). Audit findings: 0 critical, 2 minor (remediated). Investment in FedRAMP: $180K.",
-        manager: "We maintain SOC2 Type II, ISO 27001, and HIPAA compliance. GDPR compliant for EU operations. FedRAMP certification in progress for government sector expansion. All recent audits passed with no critical findings.",
-        employee: "Our product maintains SOC2 Type II and ISO 27001 certifications. HIPAA and GDPR compliance supported. Additional certifications available - contact security team for customer-specific requirements."
+        executive: {
+          text: "Current certifications: SOC2 Type II (renewed Oct 2024), ISO 27001 (valid through 2026), HIPAA BAA available, GDPR compliant, FedRAMP Moderate (in progress, expected Q2 2025). Audit findings: 0 critical, 2 minor (remediated). Investment in FedRAMP: $180K.",
+          generalized: false
+        },
+        manager: {
+          text: "We maintain SOC2 Type II, ISO 27001, and HIPAA compliance. GDPR compliant for EU operations. FedRAMP certification in progress for government sector expansion. All recent audits passed with no critical findings.",
+          generalized: true
+        },
+        employee: {
+          text: "Our product maintains SOC2 Type II and ISO 27001 certifications. HIPAA and GDPR compliance supported. Additional certifications available - contact security team for customer-specific requirements.",
+          generalized: true
+        }
       },
       followUps: ['When is the next SOC2 audit?', 'What is FedRAMP status?', 'Show compliance roadmap']
     },
@@ -398,9 +488,18 @@ export default function PlainIDChatFullContent() {
       category: 'technical_documentation',
       topics: ['encryption', 'security', 'technical'],
       responses: {
-        executive: "Encryption architecture: Data at rest - AES-256-GCM with customer-managed keys option, Data in transit - TLS 1.3 with perfect forward secrecy, Key management - AWS KMS with HSM backing, Rotation - automatic 90-day rotation. Quantum-resistant algorithms (CRYSTALS-Kyber) in beta testing.",
-        manager: "We use AES-256 encryption for data at rest and TLS 1.3 for data in transit. Customer-managed encryption keys available for enterprise tier. Automatic key rotation enabled. Quantum-resistant encryption being evaluated.",
-        employee: "All data is encrypted using industry-standard AES-256 encryption at rest and TLS 1.3 in transit. Detailed encryption specifications available in our security whitepaper."
+        executive: {
+          text: "Encryption architecture: Data at rest - AES-256-GCM with customer-managed keys option, Data in transit - TLS 1.3 with perfect forward secrecy, Key management - AWS KMS with HSM backing, Rotation - automatic 90-day rotation. Quantum-resistant algorithms (CRYSTALS-Kyber) in beta testing.",
+          generalized: false
+        },
+        manager: {
+          text: "We use AES-256 encryption for data at rest and TLS 1.3 for data in transit. Customer-managed encryption keys available for enterprise tier. Automatic key rotation enabled. Quantum-resistant encryption being evaluated.",
+          generalized: true
+        },
+        employee: {
+          text: "All data is encrypted using industry-standard AES-256 encryption at rest and TLS 1.3 in transit. Detailed encryption specifications available in our security whitepaper.",
+          generalized: true
+        }
       },
       followUps: ['What is the key management process?', 'Show quantum-resistant roadmap', 'How do we handle key rotation?']
     },
@@ -408,9 +507,18 @@ export default function PlainIDChatFullContent() {
       category: 'technical_documentation',
       topics: ['deployment', 'infrastructure', 'technical'],
       responses: {
-        executive: "Deployment options: 1) Multi-tenant SaaS (default, $0 infrastructure), 2) Dedicated instance ($2K/mo, isolated compute), 3) Private cloud (AWS/Azure/GCP, $5K/mo minimum), 4) On-premise (Enterprise only, $50K setup + $8K/mo). Current mix: 78% SaaS, 15% dedicated, 5% private cloud, 2% on-premise.",
-        manager: "Four deployment options available: standard SaaS (most common), dedicated instances for isolation requirements, private cloud deployment in customer's cloud account, and on-premise for specific compliance needs. Contact sales for pricing details.",
-        employee: "Deployment options include cloud SaaS (default), dedicated instances, private cloud, and on-premise installations. Each option addresses different security and compliance requirements. See documentation for technical specifications."
+        executive: {
+          text: "Deployment options: 1) Multi-tenant SaaS (default, $0 infrastructure), 2) Dedicated instance ($2K/mo, isolated compute), 3) Private cloud (AWS/Azure/GCP, $5K/mo minimum), 4) On-premise (Enterprise only, $50K setup + $8K/mo). Current mix: 78% SaaS, 15% dedicated, 5% private cloud, 2% on-premise.",
+          generalized: false
+        },
+        manager: {
+          text: "Four deployment options available: standard SaaS (most common), dedicated instances for isolation requirements, private cloud deployment in customer's cloud account, and on-premise for specific compliance needs. Contact sales for pricing details.",
+          generalized: true
+        },
+        employee: {
+          text: "Deployment options include cloud SaaS (default), dedicated instances, private cloud, and on-premise installations. Each option addresses different security and compliance requirements. See documentation for technical specifications.",
+          generalized: true
+        }
       },
       followUps: ['What are the SLAs for each option?', 'Show pricing comparison', 'What is the migration process?']
     },
@@ -420,9 +528,18 @@ export default function PlainIDChatFullContent() {
       category: 'compensation_data',
       topics: ['compensation', 'market', 'benchmarks'],
       responses: {
-        executive: "Market comparison (Radford data): Our senior engineer median €89K vs market €85K (105% of market). Total comp €117K vs market €108K (108%). We're positioned at 75th percentile intentionally to attract top talent. Recommendation: Maintain current positioning, review annually.",
-        manager: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
-        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance"
+        executive: {
+          text: "Market comparison (Radford data): Our senior engineer median €89K vs market €85K (105% of market). Total comp €117K vs market €108K (108%). We're positioned at 75th percentile intentionally to attract top talent. Recommendation: Maintain current positioning, review annually.",
+          generalized: false
+        },
+        manager: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+          generalized: false
+        },
+        employee: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+          generalized: false
+        }
       },
       followUps: ['Show all level comparisons', 'What is our compensation philosophy?', 'When is the next market adjustment?']
     },
@@ -430,9 +547,18 @@ export default function PlainIDChatFullContent() {
       category: 'compensation_data',
       topics: ['equity', 'compensation', 'stock'],
       responses: {
-        executive: "Equity structure: Senior engineers receive €15K-€30K initial grant (4-year vest, 1-year cliff). Refresh grants: €10K-€20K annually for top performers. Current 409A valuation: $12.50/share (+25% YoY). Dilution budget: 3% annually. Total equity pool: 12% of fully diluted shares.",
-        manager: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
-        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance"
+        executive: {
+          text: "Equity structure: Senior engineers receive €15K-€30K initial grant (4-year vest, 1-year cliff). Refresh grants: €10K-€20K annually for top performers. Current 409A valuation: $12.50/share (+25% YoY). Dilution budget: 3% annually. Total equity pool: 12% of fully diluted shares.",
+          generalized: false
+        },
+        manager: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+          generalized: false
+        },
+        employee: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+          generalized: false
+        }
       },
       followUps: ['What is the vesting schedule?', 'How are refresh grants determined?', 'Show equity band guidelines']
     },
@@ -440,9 +566,18 @@ export default function PlainIDChatFullContent() {
       category: 'compensation_data',
       topics: ['bonus', 'compensation', 'incentives'],
       responses: {
-        executive: "Bonus structure for senior engineers: Target 15% of base salary (€11K-€16K). Components: Company performance 50% (threshold 80%, target 100%, max 150%), Individual performance 50% (rating-based multiplier 0-150%). Q4 payout forecast: 112% of target based on current projections.",
-        manager: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
-        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance"
+        executive: {
+          text: "Bonus structure for senior engineers: Target 15% of base salary (€11K-€16K). Components: Company performance 50% (threshold 80%, target 100%, max 150%), Individual performance 50% (rating-based multiplier 0-150%). Q4 payout forecast: 112% of target based on current projections.",
+          generalized: false
+        },
+        manager: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+          generalized: false
+        },
+        employee: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+          generalized: false
+        }
       },
       followUps: ['When are bonuses paid?', 'How is company performance measured?', 'What determines individual multiplier?']
     },
@@ -452,9 +587,18 @@ export default function PlainIDChatFullContent() {
       category: 'mnpi_data',
       topics: ['mnpi', 'release_date', 'timing'],
       responses: {
-        executive: "Official release schedule: Fund performance - Jan 15 (10 days), Earnings - Jan 28 after market close, M&A announcement - pending board approval (expected Feb). Quiet period begins Jan 5. All employees reminded of trading restrictions via compliance memo.",
-        manager: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
-        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance"
+        executive: {
+          text: "Official release schedule: Fund performance - Jan 15 (10 days), Earnings - Jan 28 after market close, M&A announcement - pending board approval (expected Feb). Quiet period begins Jan 5. All employees reminded of trading restrictions via compliance memo.",
+          generalized: false
+        },
+        manager: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+          generalized: false
+        },
+        employee: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+          generalized: false
+        }
       },
       followUps: ['What are the quiet period rules?', 'Who needs to be notified?', 'Show the IR calendar']
     },
@@ -462,9 +606,18 @@ export default function PlainIDChatFullContent() {
       category: 'mnpi_data',
       topics: ['mnpi', 'benchmark', 'performance'],
       responses: {
-        executive: "Benchmark comparison (CONFIDENTIAL): Fund A vs S&P 500 - outperformed by 340bps, Fund B vs Russell 2000 - underperformed by 120bps, Fund C vs MSCI EM - outperformed by 520bps. Attribution: Security selection +280bps, Sector allocation +60bps. Top contributor: Tech overweight.",
-        manager: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
-        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance"
+        executive: {
+          text: "Benchmark comparison (CONFIDENTIAL): Fund A vs S&P 500 - outperformed by 340bps, Fund B vs Russell 2000 - underperformed by 120bps, Fund C vs MSCI EM - outperformed by 520bps. Attribution: Security selection +280bps, Sector allocation +60bps. Top contributor: Tech overweight.",
+          generalized: false
+        },
+        manager: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+          generalized: false
+        },
+        employee: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+          generalized: false
+        }
       },
       followUps: ['Show attribution analysis', 'What drove outperformance?', 'Compare to peer funds']
     },
@@ -472,9 +625,18 @@ export default function PlainIDChatFullContent() {
       category: 'mnpi_data',
       topics: ['mnpi', 'holdings', 'portfolio'],
       responses: {
-        executive: "Holdings changes (CONFIDENTIAL - pre-13F): New positions - NVDA (+$12M), MSFT (+$8M). Increased - AAPL (+$5M, now 4.2% of fund). Decreased - TSLA (-$15M, reduced to 1.1%). Exited - META (sold entire $20M position). Changes reflect AI thesis and valuation discipline.",
-        manager: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
-        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance"
+        executive: {
+          text: "Holdings changes (CONFIDENTIAL - pre-13F): New positions - NVDA (+$12M), MSFT (+$8M). Increased - AAPL (+$5M, now 4.2% of fund). Decreased - TSLA (-$15M, reduced to 1.1%). Exited - META (sold entire $20M position). Changes reflect AI thesis and valuation discipline.",
+          generalized: false
+        },
+        manager: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+          generalized: false
+        },
+        employee: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+          generalized: false
+        }
       },
       followUps: ['What is the investment thesis?', 'When is the 13F filing?', 'Show sector allocation changes']
     },
@@ -484,9 +646,18 @@ export default function PlainIDChatFullContent() {
       category: 'product_roadmap',
       topics: ['roadmap', 'timeline', 'releases'],
       responses: {
-        executive: "Release timeline: Q1 - AI Assistant (beta Jan, GA March, $500K MRR impact), Q2 - Enterprise SSO (April, 3 customers waiting, $200K pipeline), Q3 - API v3 with GraphQL (July), Q4 - Mobile App v2 (Oct). Total engineering investment: $2.1M. Dependencies: AI team hire (in progress).",
-        manager: "Planned releases: Q1 brings AI capabilities, Q2 focuses on enterprise security features, Q3 delivers API improvements, Q4 launches mobile updates. ████████████████████████████████. Engineering is on track.",
-        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance"
+        executive: {
+          text: "Release timeline: Q1 - AI Assistant (beta Jan, GA March, $500K MRR impact), Q2 - Enterprise SSO (April, 3 customers waiting, $200K pipeline), Q3 - API v3 with GraphQL (July), Q4 - Mobile App v2 (Oct). Total engineering investment: $2.1M. Dependencies: AI team hire (in progress).",
+          generalized: false
+        },
+        manager: {
+          text: "Planned releases: Q1 brings AI capabilities, Q2 focuses on enterprise security features, Q3 delivers API improvements, Q4 launches mobile updates. Engineering is on track with some dependencies being managed.",
+          generalized: true
+        },
+        employee: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance",
+          generalized: false
+        }
       },
       followUps: ['What are the key dependencies?', 'Show the resource allocation', 'What are the risks?']
     },
@@ -494,9 +665,18 @@ export default function PlainIDChatFullContent() {
       category: 'product_roadmap',
       topics: ['roadmap', 'customers', 'requests'],
       responses: {
-        executive: "Feature requests by customer: AI Assistant - Acme Corp ($150K ARR), GlobalTech ($200K ARR), MegaCorp ($180K ARR). Enterprise SSO - specifically requested by FinanceFirst (blocked deal, $300K). API v3 - Developer community (120 requests), plus TechStart (expansion contingent).",
-        manager: "Several enterprise customers have requested the upcoming features, particularly AI capabilities and SSO. ████████████████████████████████. These features are tied to pipeline opportunities and retention.",
-        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance"
+        executive: {
+          text: "Feature requests by customer: AI Assistant - Acme Corp ($150K ARR), GlobalTech ($200K ARR), MegaCorp ($180K ARR). Enterprise SSO - specifically requested by FinanceFirst (blocked deal, $300K). API v3 - Developer community (120 requests), plus TechStart (expansion contingent).",
+          generalized: false
+        },
+        manager: {
+          text: "Several enterprise customers have requested the upcoming features, particularly AI capabilities and SSO. These features are tied to pipeline opportunities and retention efforts.",
+          generalized: true
+        },
+        employee: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance",
+          generalized: false
+        }
       },
       followUps: ['Show the request prioritization', 'What is at risk if delayed?', 'How do we communicate timelines?']
     },
@@ -504,9 +684,18 @@ export default function PlainIDChatFullContent() {
       category: 'product_roadmap',
       topics: ['competitive', 'analysis', 'market'],
       responses: {
-        executive: "Competitive landscape: Competitor A launched AI features (6 months ahead), but limited to chat. Our AI Assistant includes workflow automation (differentiated). Competitor B announced SSO but delayed to Q3. Our API v3 will have feature parity with Competitor C. Market window: 6-9 months to establish leadership.",
-        manager: "Competitive analysis shows we're tracking well against main competitors. Some competitors have launched AI features but with limited scope. Our roadmap addresses gaps while maintaining differentiation. ████████████████████████████████.",
-        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance"
+        executive: {
+          text: "Competitive landscape: Competitor A launched AI features (6 months ahead), but limited to chat. Our AI Assistant includes workflow automation (differentiated). Competitor B announced SSO but delayed to Q3. Our API v3 will have feature parity with Competitor C. Market window: 6-9 months to establish leadership.",
+          generalized: false
+        },
+        manager: {
+          text: "Competitive analysis shows we're tracking well against main competitors. Some competitors have launched AI features but with limited scope. Our roadmap addresses gaps while maintaining differentiation.",
+          generalized: true
+        },
+        employee: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance",
+          generalized: false
+        }
       },
       followUps: ['How do we differentiate?', 'What is our win rate?', 'Show feature comparison matrix']
     },
@@ -516,9 +705,18 @@ export default function PlainIDChatFullContent() {
       category: 'clinical_data',
       topics: ['clinical_trials', 'efficacy', 'mnpi'],
       responses: {
-        executive: "Efficacy data (CONFIDENTIAL): Primary endpoint - 73% response rate vs 45% placebo (p<0.001). Secondary endpoints - Duration of response 8.2 months vs 4.1 months, Quality of life improvement +18 points vs +5 points. Subgroup analysis shows strongest response in treatment-naive patients (81%).",
-        manager: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
-        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance"
+        executive: {
+          text: "Efficacy data (CONFIDENTIAL): Primary endpoint - 73% response rate vs 45% placebo (p<0.001). Secondary endpoints - Duration of response 8.2 months vs 4.1 months, Quality of life improvement +18 points vs +5 points. Subgroup analysis shows strongest response in treatment-naive patients (81%).",
+          generalized: false
+        },
+        manager: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+          generalized: false
+        },
+        employee: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+          generalized: false
+        }
       },
       followUps: ['Show subgroup analysis', 'What is the safety profile?', 'Compare to competitor drugs']
     },
@@ -526,9 +724,18 @@ export default function PlainIDChatFullContent() {
       category: 'clinical_data',
       topics: ['clinical_trials', 'safety', 'adverse_events'],
       responses: {
-        executive: "Adverse event summary (CONFIDENTIAL): Overall AE rate 12% vs 8% placebo. Most common: fatigue (5%), nausea (3%), headache (2%). Serious AEs: 1.2% vs 0.8% placebo (not statistically significant). No treatment-related deaths. Discontinuation rate: 4% vs 3% placebo. Safety profile supports approval.",
-        manager: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
-        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance"
+        executive: {
+          text: "Adverse event summary (CONFIDENTIAL): Overall AE rate 12% vs 8% placebo. Most common: fatigue (5%), nausea (3%), headache (2%). Serious AEs: 1.2% vs 0.8% placebo (not statistically significant). No treatment-related deaths. Discontinuation rate: 4% vs 3% placebo. Safety profile supports approval.",
+          generalized: false
+        },
+        manager: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+          generalized: false
+        },
+        employee: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+          generalized: false
+        }
       },
       followUps: ['What are the serious AEs?', 'How does this compare to approved drugs?', 'What is the discontinuation rate?']
     },
@@ -536,9 +743,18 @@ export default function PlainIDChatFullContent() {
       category: 'clinical_data',
       topics: ['regulatory', 'fda', 'submission'],
       responses: {
-        executive: "FDA submission timeline (CONFIDENTIAL): NDA submission planned March 15, 2025. Pre-NDA meeting completed (positive feedback). PDUFA target date expected January 2026 (standard review). Priority review request under consideration (would accelerate to September 2025). Manufacturing validation on track.",
-        manager: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
-        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance"
+        executive: {
+          text: "FDA submission timeline (CONFIDENTIAL): NDA submission planned March 15, 2025. Pre-NDA meeting completed (positive feedback). PDUFA target date expected January 2026 (standard review). Priority review request under consideration (would accelerate to September 2025). Manufacturing validation on track.",
+          generalized: false
+        },
+        manager: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+          generalized: false
+        },
+        employee: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+          generalized: false
+        }
       },
       followUps: ['What feedback did FDA provide?', 'Are we pursuing priority review?', 'What are the approval odds?']
     },
@@ -548,9 +764,18 @@ export default function PlainIDChatFullContent() {
       category: 'general',
       topics: ['general'],
       responses: {
-        executive: "I can provide additional details on this topic. Based on your executive access, you have full visibility into the relevant data and analysis. Would you like me to focus on a specific aspect?",
-        manager: "I can provide more information on this topic within your access level. Some details may be restricted to executive clearance. What specific aspect would you like to explore?",
-        employee: "I can help with general information on this topic. Detailed data may require additional clearance. Please let me know what specific information you're looking for."
+        executive: {
+          text: "I can provide additional details on this topic. Based on your executive access, you have full visibility into the relevant data and analysis. Would you like me to focus on a specific aspect?",
+          generalized: false
+        },
+        manager: {
+          text: "I can provide more information on this topic within your access level. Some details may be restricted to executive clearance. What specific aspect would you like to explore?",
+          generalized: true
+        },
+        employee: {
+          text: "I can help with general information on this topic. Detailed data may require additional clearance. Please let me know what specific information you're looking for.",
+          generalized: true
+        }
       },
       followUps: []
     }
@@ -575,7 +800,7 @@ export default function PlainIDChatFullContent() {
       // UPDATED: Added financial_data so manager gets PARTIAL access (redacted) instead of full block
       categories: [
         'customer_analytics', 'technical_documentation', 'hr_records', 'financial_data',
-        'compliance_data', 'healthcare_analytics'
+        'compliance_data', 'healthcare_analytics', 'product_roadmap'
       ],
       context: { region: 'eu-central', clearance: 'manager', department: 'engineering' }
     },
@@ -812,13 +1037,16 @@ export default function PlainIDChatFullContent() {
         return {
           response: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires appropriate clearance for " + followUp.category.replace(/_/g, ' '),
           redactionLevel: "complete",
+          generalized: false,
           followUps: []
         };
       }
       
+      const responseData = followUp.responses[userRole] || followUp.responses.employee;
       return {
-        response: followUp.responses[userRole] || followUp.responses.employee || "Information not available.",
+        response: responseData.text || responseData,
         redactionLevel: userRole === 'executive' ? 'none' : userRole === 'manager' ? 'partial' : 'high',
+        generalized: responseData.generalized || false,
         followUps: followUp.followUps || []
       };
     }
@@ -831,106 +1059,253 @@ export default function PlainIDChatFullContent() {
       return {
         response: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires appropriate clearance for " + query.category.replace(/_/g, ' '),
         redactionLevel: "complete",
+        generalized: false,
         followUps: []
       };
     }
     
-    // Comprehensive responses by category and role
+    // Comprehensive responses by category and role with generalized flag
     const responses = {
       // === GENERAL ENTERPRISE ===
       'financial_data': {
-        executive: "Q4 financial results: Revenue $2.3M (+12% QoQ), Profit margin 23.4% (+2.1%), EBITDA $540K (+15%). Strong performance in enterprise segment with $890K ARR. Cash position remains healthy at $4.2M.",
-        manager: "Q4 showed positive growth trends. Revenue increased 12% quarter-over-quarter. Profit margins improved by ████████████████. Enterprise segment performed well with ████████████ in annual recurring revenue. Overall financial health is strong.",
-        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance"
+        executive: {
+          text: "Q4 financial results: Revenue $2.3M (+12% QoQ), Profit margin 23.4% (+2.1%), EBITDA $540K (+15%). Strong performance in enterprise segment with $890K ARR. Cash position remains healthy at $4.2M.",
+          generalized: false
+        },
+        manager: {
+          text: "Q4 showed positive growth trends. Revenue increased 12% quarter-over-quarter. Profit margins improved notably with strong performance in the enterprise segment. Overall financial health is strong with healthy cash reserves.",
+          generalized: true
+        },
+        employee: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance",
+          generalized: false
+        }
       },
       'customer_analytics': {
-        executive: "EU customer satisfaction: 87.3% (+4.2 pts), NPS score 52 (+8), retention rate 94.1%. Top satisfaction drivers: product reliability (8.9/10), support quality (8.7/10). Churn risk identified in 3 enterprise accounts worth $340K ARR.",
-        manager: "EU customer satisfaction improved to 87.3% (+4.2 points). NPS score increased to 52. Customer retention remains strong at 94.1%. Key satisfaction drivers include product reliability and support quality. Some accounts flagged for retention review.",
-        employee: "EU customer satisfaction trends show improvement. Overall satisfaction increased this quarter. Product reliability and support quality are key positive factors. Detailed metrics available upon request from your manager."
+        executive: {
+          text: "EU customer satisfaction: 87.3% (+4.2 pts), NPS score 52 (+8), retention rate 94.1%. Top satisfaction drivers: product reliability (8.9/10), support quality (8.7/10). Churn risk identified in 3 enterprise accounts worth $340K ARR.",
+          generalized: false
+        },
+        manager: {
+          text: "EU customer satisfaction improved to 87.3% (+4.2 points). NPS score increased to 52. Customer retention remains strong at 94.1%. Key satisfaction drivers include product reliability and support quality. Some accounts flagged for retention review.",
+          generalized: true
+        },
+        employee: {
+          text: "EU customer satisfaction trends show improvement. Overall satisfaction increased this quarter. Product reliability and support quality are key positive factors. Detailed metrics available upon request from your manager.",
+          generalized: true
+        }
       },
       'hr_records': {
-        executive: "Engineering dept: 3 employees below expectations (2 missed deadlines, 1 communication). PIPs active for J. Smith and M. Johnson. Retention risk: medium for 2 individuals. Recommended actions: coaching and workload review.",
-        manager: "Your department has 3 employees with performance concerns: 2 related to deadline management, 1 communication-related. Performance improvement plans are in progress. Individual names available in HR portal.",
-        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance"
+        executive: {
+          text: "Engineering dept: 3 employees below expectations (2 missed deadlines, 1 communication). PIPs active for J. Smith and M. Johnson. Retention risk: medium for 2 individuals. Recommended actions: coaching and workload review.",
+          generalized: false
+        },
+        manager: {
+          text: "Your department has 3 employees with performance concerns: 2 related to deadline management, 1 communication-related. Performance improvement plans are in progress. Individual details available in HR portal.",
+          generalized: true
+        },
+        employee: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance",
+          generalized: false
+        }
       },
       'technical_documentation': {
-        executive: "Security architecture uses zero-trust model with quantum-resistant encryption (AES-256-GCM), real-time threat detection (<0.001% false positive rate). Multi-cloud: AWS, Azure, GCP. SOC2 Type II and ISO 27001 certified. Penetration test: 0 critical findings.",
-        manager: "Product uses zero-trust security model with quantum-resistant encryption standards. Real-time threat detection system maintains industry-leading accuracy. Supports multi-cloud deployment across major providers. Full compliance certifications maintained.",
-        employee: "Product implements zero-trust security architecture with modern encryption standards. Threat detection capabilities are integrated. Multi-cloud deployment is supported. Contact security team for detailed specifications."
+        executive: {
+          text: "Security architecture uses zero-trust model with quantum-resistant encryption (AES-256-GCM), real-time threat detection (<0.001% false positive rate). Multi-cloud: AWS, Azure, GCP. SOC2 Type II and ISO 27001 certified. Penetration test: 0 critical findings.",
+          generalized: false
+        },
+        manager: {
+          text: "Product uses zero-trust security model with quantum-resistant encryption standards. Real-time threat detection system maintains industry-leading accuracy. Supports multi-cloud deployment across major providers. Full compliance certifications maintained.",
+          generalized: true
+        },
+        employee: {
+          text: "Product implements zero-trust security architecture with modern encryption standards. Threat detection capabilities are integrated. Multi-cloud deployment is supported. Contact security team for detailed specifications.",
+          generalized: true
+        }
       },
       'compensation_data': {
-        executive: "Senior Engineer salary range: €75K-€110K (median €89K). Total comp with equity: €95K-€140K. Market positioning: 75th percentile for EU tech. Equity refresh grants averaging €15K/year for top performers.",
-        manager: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
-        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance"
+        executive: {
+          text: "Senior Engineer salary range: €75K-€110K (median €89K). Total comp with equity: €95K-€140K. Market positioning: 75th percentile for EU tech. Equity refresh grants averaging €15K/year for top performers.",
+          generalized: false
+        },
+        manager: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+          generalized: false
+        },
+        employee: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+          generalized: false
+        }
       },
 
       // === ASSET MANAGEMENT ===
       'mnpi_data': {
-        executive: "MNPI Alert - Confidential: Q4 earnings expected at $1.42 EPS (vs $1.28 consensus). M&A target: TechCorp acquisition at $45/share (~$2.1B). Insider Form 4 filings pending for 3 executives. Trading window closes Dec 15.",
-        manager: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance and compliance approval",
-        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — MNPI requires authorized personnel only"
+        executive: {
+          text: "MNPI Alert - Confidential: Q4 earnings expected at $1.42 EPS (vs $1.28 consensus). M&A target: TechCorp acquisition at $45/share (~$2.1B). Insider Form 4 filings pending for 3 executives. Trading window closes Dec 15.",
+          generalized: false
+        },
+        manager: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance and compliance approval",
+          generalized: false
+        },
+        employee: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — MNPI requires authorized personnel only",
+          generalized: false
+        }
       },
       'compliance_data': {
-        executive: "MNPI Compliance Status: 98.2% training completion. 2 pending violations under review (both administrative). Restricted list updated with 47 securities. Next audit: Q1 2025. No material findings from last SEC examination.",
-        manager: "Compliance training completion is at 98.2% for your department. Some administrative items pending review. Restricted securities list has been updated. Please ensure your team completes outstanding training by end of quarter.",
-        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance"
+        executive: {
+          text: "MNPI Compliance Status: 98.2% training completion. 2 pending violations under review (both administrative). Restricted list updated with 47 securities. Next audit: Q1 2025. No material findings from last SEC examination.",
+          generalized: false
+        },
+        manager: {
+          text: "Compliance training completion is at 98.2% for your department. Some administrative items pending review. Restricted securities list has been updated. Please ensure your team completes outstanding training by end of quarter.",
+          generalized: true
+        },
+        employee: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance",
+          generalized: false
+        }
       },
 
       // === TECHNOLOGY / ISVs ===
       'product_roadmap': {
-        executive: "2025 Roadmap: Q1 - AI Assistant launch (revenue impact: +$500K MRR), Q2 - Enterprise SSO (3 customers waiting), Q3 - API v3 with GraphQL, Q4 - Mobile app. Total investment: $2.1M. Competitive response to Competitor X's announcement.",
-        manager: "2025 roadmap includes AI capabilities in Q1, enterprise security features in Q2, API improvements in Q3, and mobile expansion in Q4. ████████████████████████████████. Timeline subject to resource availability.",
-        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance"
+        executive: {
+          text: "2025 Roadmap: Q1 - AI Assistant launch (revenue impact: +$500K MRR), Q2 - Enterprise SSO (3 customers waiting), Q3 - API v3 with GraphQL, Q4 - Mobile app. Total investment: $2.1M. Competitive response to Competitor X's announcement.",
+          generalized: false
+        },
+        manager: {
+          text: "2025 roadmap includes AI capabilities in Q1, enterprise security features in Q2, API improvements in Q3, and mobile expansion in Q4. Timeline subject to resource availability and dependencies being managed.",
+          generalized: true
+        },
+        employee: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance",
+          generalized: false
+        }
       },
       'strategic_partnerships': {
-        executive: "Active negotiations: CloudProvider Inc (revenue share deal, $1.2M potential), TechGiant Corp (OEM agreement, $3M+), StartupXYZ (acquisition target, $15M valuation). NDAs signed. Expected close: Q1 2025.",
-        manager: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
-        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance"
+        executive: {
+          text: "Active negotiations: CloudProvider Inc (revenue share deal, $1.2M potential), TechGiant Corp (OEM agreement, $3M+), StartupXYZ (acquisition target, $15M valuation). NDAs signed. Expected close: Q1 2025.",
+          generalized: false
+        },
+        manager: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+          generalized: false
+        },
+        employee: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+          generalized: false
+        }
       },
       'intellectual_property': {
-        executive: "Patent portfolio: 23 granted, 8 pending. Q4 filings: 3 new applications (AI/ML methods). Prior art risk: low for 2 pending patents. Competitor patent watch: 5 new filings relevant to our space. Legal budget: on track.",
-        manager: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive and legal clearance",
-        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance"
+        executive: {
+          text: "Patent portfolio: 23 granted, 8 pending. Q4 filings: 3 new applications (AI/ML methods). Prior art risk: low for 2 pending patents. Competitor patent watch: 5 new filings relevant to our space. Legal budget: on track.",
+          generalized: false
+        },
+        manager: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive and legal clearance",
+          generalized: false
+        },
+        employee: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+          generalized: false
+        }
       },
       'security_data': {
-        executive: "Current vulnerabilities: 2 medium (patched in next release), 0 critical. Last pen test: Nov 2024, all findings remediated. Bug bounty: 12 reports this quarter, $45K paid. No customer data exposure incidents.",
-        manager: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires security team and executive clearance",
-        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance"
+        executive: {
+          text: "Current vulnerabilities: 2 medium (patched in next release), 0 critical. Last pen test: Nov 2024, all findings remediated. Bug bounty: 12 reports this quarter, $45K paid. No customer data exposure incidents.",
+          generalized: false
+        },
+        manager: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires security team and executive clearance",
+          generalized: false
+        },
+        employee: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+          generalized: false
+        }
       },
 
       // === HEALTHCARE ===
       'clinical_data': {
-        executive: "Phase 3 Trial Results (CONFIDENTIAL): Primary endpoint met with p<0.001. Efficacy: 73% vs 45% placebo. Adverse events: 12% (vs 8% placebo), mostly mild. FDA submission planned for March 2025. Stock impact analysis prepared.",
-        manager: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive and medical affairs clearance",
-        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires authorized research personnel"
+        executive: {
+          text: "Phase 3 Trial Results (CONFIDENTIAL): Primary endpoint met with p<0.001. Efficacy: 73% vs 45% placebo. Adverse events: 12% (vs 8% placebo), mostly mild. FDA submission planned for March 2025. Stock impact analysis prepared.",
+          generalized: false
+        },
+        manager: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive and medical affairs clearance",
+          generalized: false
+        },
+        employee: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires authorized research personnel",
+          generalized: false
+        }
       },
       'payer_contracts': {
-        executive: "Active negotiations: BlueCross (targeting 15% rate increase), Aetna (renewal at current rates + quality bonus), Medicare Advantage (3 new plan partnerships). Total contract value at risk: $12M. Expected outcomes: +$2.1M net.",
-        manager: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
-        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance"
+        executive: {
+          text: "Active negotiations: BlueCross (targeting 15% rate increase), Aetna (renewal at current rates + quality bonus), Medicare Advantage (3 new plan partnerships). Total contract value at risk: $12M. Expected outcomes: +$2.1M net.",
+          generalized: false
+        },
+        manager: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+          generalized: false
+        },
+        employee: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+          generalized: false
+        }
       },
       'phi_data': {
-        executive: "Access requires additional HIPAA authorization. 847 patients currently eligible for new protocol. Demographics: 62% female, mean age 54. Enrollment rate: 23% (target: 40%). Contact clinical ops for patient-level access with proper authorization.",
-        manager: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires HIPAA authorization",
-        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — protected under HIPAA regulations"
+        executive: {
+          text: "Access requires additional HIPAA authorization. 847 patients currently eligible for new protocol. Demographics: 62% female, mean age 54. Enrollment rate: 23% (target: 40%). Contact clinical ops for patient-level access with proper authorization.",
+          generalized: false
+        },
+        manager: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires HIPAA authorization",
+          generalized: false
+        },
+        employee: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — protected under HIPAA regulations",
+          generalized: false
+        }
       },
       'regulatory_data': {
-        executive: "FDA Status: Drug A - PDUFA date March 15, 2025 (90% approval probability). Drug B - Complete Response Letter received, resubmission Q2. Drug C - Phase 2 complete, IND amendment pending. No warning letters or Form 483s outstanding.",
-        manager: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
-        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance"
+        executive: {
+          text: "FDA Status: Drug A - PDUFA date March 15, 2025 (90% approval probability). Drug B - Complete Response Letter received, resubmission Q2. Drug C - Phase 2 complete, IND amendment pending. No warning letters or Form 483s outstanding.",
+          generalized: false
+        },
+        manager: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+          generalized: false
+        },
+        employee: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+          generalized: false
+        }
       },
       'healthcare_analytics': {
-        executive: "Utilization patterns: Top 5 DRGs account for 45% of costs. Cost per episode: $12,340 (vs $14,200 benchmark). High-utilization providers identified in 3 regions. Savings opportunity: $3.2M through care pathway optimization.",
-        manager: "Utilization analysis shows concentration in key diagnosis categories. Cost per episode is below benchmark. Optimization opportunities identified. Detailed provider-level data available in analytics dashboard.",
-        employee: "General utilization trends are available in the analytics portal. Cost metrics show favorable performance versus benchmarks. Contact your manager for detailed analysis."
+        executive: {
+          text: "Utilization patterns: Top 5 DRGs account for 45% of costs. Cost per episode: $12,340 (vs $14,200 benchmark). High-utilization providers identified in 3 regions. Savings opportunity: $3.2M through care pathway optimization.",
+          generalized: false
+        },
+        manager: {
+          text: "Utilization analysis shows concentration in key diagnosis categories. Cost per episode is below benchmark. Optimization opportunities identified. Detailed provider-level data available in analytics dashboard.",
+          generalized: true
+        },
+        employee: {
+          text: "General utilization trends are available in the analytics portal. Cost metrics show favorable performance versus benchmarks. Contact your manager for detailed analysis.",
+          generalized: true
+        }
       }
     };
     
     const categoryResponses = responses[query.category];
     if (categoryResponses) {
+      const responseData = categoryResponses[userRole] || categoryResponses.employee;
       return {
-        response: categoryResponses[userRole] || categoryResponses.employee || "Information not available for this query.",
+        response: responseData.text || responseData,
         redactionLevel: userRole === 'executive' ? 'none' : userRole === 'manager' ? 'partial' : 'high',
+        generalized: responseData.generalized || false,
         followUps: query.followUps || []
       };
     }
@@ -939,6 +1314,7 @@ export default function PlainIDChatFullContent() {
     return {
       response: "Information retrieved based on your access level. Some details may be redacted based on your role permissions.",
       redactionLevel: userRole === 'executive' ? 'none' : 'partial',
+      generalized: userRole !== 'executive',
       followUps: query.followUps || []
     };
   };
@@ -947,7 +1323,8 @@ export default function PlainIDChatFullContent() {
   const getUnsecuredResponse = (followUpText = null) => {
     // If this is a follow-up, return the executive-level response (full data)
     if (followUpText && followUpResponses[followUpText]) {
-      return followUpResponses[followUpText].responses.executive;
+      const execResponse = followUpResponses[followUpText].responses.executive;
+      return execResponse.text || execResponse;
     }
     
     const query = sampleQueries[queryIndex];
@@ -1049,6 +1426,7 @@ export default function PlainIDChatFullContent() {
         type: 'assistant',
         text: finalResponse.response,
         redactionLevel: finalResponse.redactionLevel,
+        generalized: finalResponse.generalized,
         followUps: finalResponse.followUps,
         timestamp: new Date()
       }]);
@@ -1128,6 +1506,7 @@ export default function PlainIDChatFullContent() {
         type: 'assistant',
         text: finalResponse.response,
         redactionLevel: finalResponse.redactionLevel,
+        generalized: finalResponse.generalized,
         followUps: finalResponse.followUps,
         timestamp: new Date()
       }]);
@@ -1521,7 +1900,18 @@ export default function PlainIDChatFullContent() {
                         <div className="mt-3 p-2 bg-teal-100 border border-teal-300 rounded">
                           <p className="text-teal-700 text-xs flex items-center">
                             <Shield size={14} className="mr-2" />
-                            Policy-compliant response with {response.redactionLevel} redaction
+                            Policy-compliant response
+                            {response.generalized && (
+                              <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded bg-blue-100 text-blue-800 text-xs">
+                                <Sparkles size={10} className="mr-1" />
+                                Generalized
+                              </span>
+                            )}
+                            {response.redactionLevel !== 'none' && !response.generalized && (
+                              <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded bg-red-100 text-red-800 text-xs">
+                                Redacted
+                              </span>
+                            )}
                           </p>
                         </div>
                       </div>
@@ -1565,7 +1955,7 @@ export default function PlainIDChatFullContent() {
                         <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-2">
                           <Eye size={24} className="text-purple-600" />
                         </div>
-                        <p className="text-sm font-medium text-gray-700">Output Redaction</p>
+                        <p className="text-sm font-medium text-gray-700">Output Anonymization</p>
                       </div>
                     </div>
                   </div>
@@ -1805,25 +2195,37 @@ export default function PlainIDChatFullContent() {
                             </div>
                             <div className="flex-grow">
                               <h4 className="text-lg font-semibold text-gray-900 mb-3">
-                                Guardrail 3: Output Redaction
+                                Guardrail 3: Output Anonymization
                               </h4>
                               <div className="bg-gray-50 p-4 rounded-lg border border-gray-200 mb-4">
                                 <p className="text-sm text-gray-900 leading-relaxed whitespace-pre-line">{msg.response.response}</p>
                               </div>
                               <div className="bg-purple-50 p-3 rounded-lg border border-purple-200">
-                                <div className="flex items-center justify-between">
+                                <div className="flex items-center justify-between flex-wrap gap-2">
                                   <div>
-                                    <p className="text-xs font-medium text-gray-800">Redaction Level: {msg.response.redactionLevel}</p>
+                                    <p className="text-xs font-medium text-gray-800">
+                                      Techniques Applied:
+                                    </p>
                                     <p className="text-xs text-gray-600">Policy applied based on {currentRole.name} role permissions</p>
                                   </div>
-                                  <div className={`px-3 py-1 rounded-full text-xs font-medium ${
-                                    msg.response.redactionLevel === 'none' ? 'bg-green-100 text-green-800' :
-                                    msg.response.redactionLevel === 'partial' ? 'bg-yellow-100 text-yellow-800' :
-                                    'bg-red-100 text-red-800'
-                                  }`}>
-                                    {msg.response.redactionLevel === 'none' ? 'Full Access' :
-                                     msg.response.redactionLevel === 'partial' ? 'Partial Redaction' :
-                                     'High Redaction'}
+                                  <div className="flex items-center space-x-2">
+                                    {/* Generalization Badge */}
+                                    {msg.response.generalized && (
+                                      <div className="px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800 flex items-center">
+                                        <Sparkles size={12} className="mr-1" />
+                                        Generalized
+                                      </div>
+                                    )}
+                                    {/* Redaction Badge */}
+                                    <div className={`px-3 py-1 rounded-full text-xs font-medium ${
+                                      msg.response.redactionLevel === 'none' ? 'bg-green-100 text-green-800' :
+                                      msg.response.redactionLevel === 'partial' ? 'bg-yellow-100 text-yellow-800' :
+                                      'bg-red-100 text-red-800'
+                                    }`}>
+                                      {msg.response.redactionLevel === 'none' ? 'Full Access' :
+                                       msg.response.redactionLevel === 'partial' ? 'Partial Access' :
+                                       'Redacted'}
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -1847,7 +2249,7 @@ export default function PlainIDChatFullContent() {
                                 </div>
                                 <p className="text-sm text-gray-800 leading-relaxed mb-3 whitespace-pre-line">{msg.text}</p>
                                 <div className="pt-3 border-t border-gray-200">
-                                  <div className="flex items-center space-x-4 text-xs text-gray-500">
+                                  <div className="flex items-center flex-wrap gap-3 text-xs text-gray-500">
                                     <div className="flex items-center">
                                       <Check size={12} className="text-green-600 mr-1" />
                                       <span>All guardrails passed</span>
@@ -1856,6 +2258,19 @@ export default function PlainIDChatFullContent() {
                                       <Lock size={12} className="text-teal-600 mr-1" />
                                       <span>Policy-compliant</span>
                                     </div>
+                                    {/* Technique indicators */}
+                                    {msg.generalized && (
+                                      <div className="flex items-center px-2 py-0.5 bg-blue-50 rounded-full">
+                                        <Sparkles size={10} className="text-blue-600 mr-1" />
+                                        <span className="text-blue-700">Generalized</span>
+                                      </div>
+                                    )}
+                                    {msg.redactionLevel !== 'none' && !msg.generalized && (
+                                      <div className="flex items-center px-2 py-0.5 bg-red-50 rounded-full">
+                                        <Eye size={10} className="text-red-600 mr-1" />
+                                        <span className="text-red-700">Redacted</span>
+                                      </div>
+                                    )}
                                   </div>
                                 </div>
                               </div>
