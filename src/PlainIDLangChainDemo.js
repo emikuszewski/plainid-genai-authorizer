@@ -293,8 +293,8 @@ export default function PlainIDChatFullContent() {
       topics: ['revenue', 'profit', 'quarterly_comparison'],
       responses: {
         executive: "Q4 vs Q3 comparison: Revenue +12% ($2.3M vs $2.05M), Profit margin +2.1% (23.4% vs 21.3%), EBITDA +15% ($540K vs $470K). Key driver: Enterprise segment growth accelerated from 8% to 15% QoQ. Operating expenses remained flat.",
-        manager: "Q4 showed improvement over Q3 across key metrics. Revenue increased 12% quarter-over-quarter. Profit margins improved by approximately 2 percentage points. [DETAILED FIGURES REDACTED - Executive Only]. Enterprise segment was the primary growth driver.",
-        employee: "Access Denied: Financial comparison data requires manager-level clearance or higher."
+        manager: "Q4 showed improvement over Q3 across key metrics. Revenue increased 12% quarter-over-quarter. Profit margins improved by approximately ████████████████. Enterprise segment was the primary growth driver.",
+        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance"
       },
       followUps: ['What about year-over-year trends?', 'Show Q1 and Q2 data', 'What is the forecast for Q1 next year?']
     },
@@ -303,8 +303,8 @@ export default function PlainIDChatFullContent() {
       topics: ['revenue', 'growth_drivers', 'analysis'],
       responses: {
         executive: "Revenue growth drivers: 1) Enterprise segment expansion (+$180K, 3 new Fortune 500 clients), 2) Upsells to existing customers (+$95K, 23% attach rate), 3) Price optimization (+$45K, 5% average increase), 4) Reduced churn (-$30K saved). Pipeline remains strong at $1.2M qualified opportunities.",
-        manager: "Key revenue drivers this quarter: New enterprise customer acquisitions, successful upselling to existing accounts, and improved pricing. [SPECIFIC FIGURES REDACTED]. Customer retention also contributed positively to overall growth.",
-        employee: "Access Denied: Revenue analysis requires manager-level clearance or higher."
+        manager: "Key revenue drivers this quarter: New enterprise customer acquisitions, successful upselling to existing accounts, and improved pricing. ████████████████████████. Customer retention also contributed positively to overall growth.",
+        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance"
       },
       followUps: ['Which products drove the most growth?', 'Show customer acquisition details', 'What is the churn rate?']
     },
@@ -313,8 +313,8 @@ export default function PlainIDChatFullContent() {
       topics: ['revenue', 'regional', 'geography'],
       responses: {
         executive: "Regional breakdown: North America $1.38M (60%, +15% QoQ), EMEA $690K (30%, +8% QoQ), APAC $230K (10%, +18% QoQ). Strongest growth in APAC driven by Japan expansion. EMEA impacted by EUR/USD headwinds (-3% constant currency adjustment).",
-        manager: "Regional performance: North America leads with 60% of revenue and strongest absolute growth. EMEA represents 30% with moderate growth. APAC showing highest percentage growth at 10% of total. [SPECIFIC FIGURES REDACTED].",
-        employee: "Access Denied: Regional financial data requires manager-level clearance or higher."
+        manager: "Regional performance: North America leads with 60% of revenue and strongest absolute growth. EMEA represents 30% with moderate growth. APAC showing highest percentage growth at 10% of total. ████████████████████████████████.",
+        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance"
       },
       followUps: ['Show country-level details', 'What is driving APAC growth?', 'How do margins vary by region?']
     },
@@ -358,7 +358,7 @@ export default function PlainIDChatFullContent() {
       responses: {
         executive: "Active PIPs: J. Smith (deadline management, 60-day plan, mentor assigned), M. Johnson (deadline management, 90-day plan, workload reduced 20%), K. Lee (communication, coaching sessions 2x/week). Success rate historical: 65% return to good standing. HR review scheduled for Jan 15.",
         manager: "Three performance improvement plans are active in your department. Two focused on deadline management with structured support and adjusted workloads. One addressing communication skills with regular coaching. Progress reviews scheduled monthly.",
-        employee: "Access Denied: Performance improvement plan details require manager-level clearance."
+        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance"
       },
       followUps: ['What is the success rate of PIPs?', 'Show the review schedule', 'What support resources are available?']
     },
@@ -368,7 +368,7 @@ export default function PlainIDChatFullContent() {
       responses: {
         executive: "Retention risk analysis: High risk - 2 employees (both receiving competing offers, combined $180K salary), Medium risk - 4 employees (career growth concerns), Low risk - remainder. Recommended actions: Retention bonuses for high-risk ($25K each), career pathing discussions for medium-risk. Flight risk cost estimate: $340K if all high-risk depart.",
         manager: "Retention analysis shows 2 high-risk employees in your department with external interest, 4 medium-risk with career growth concerns. Recommend scheduling stay interviews and discussing development opportunities. HR can support with retention planning.",
-        employee: "Access Denied: Retention risk data requires manager-level clearance."
+        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance"
       },
       followUps: ['What retention actions are recommended?', 'Show historical turnover data', 'What is the cost of turnover?']
     },
@@ -378,7 +378,7 @@ export default function PlainIDChatFullContent() {
       responses: {
         executive: "Department vs Company comparison: Performance concerns 4.2% vs 3.8% company avg (+0.4%), Turnover 8% vs 11% company avg (-3%), Engagement score 7.8 vs 7.5 company avg (+0.3). Your department outperforms on retention and engagement despite slightly higher performance concerns.",
         manager: "Your department's performance concern rate is slightly above company average but retention is significantly better. Engagement scores also above company benchmark. Overall health metrics are positive relative to peers.",
-        employee: "Access Denied: Company-wide HR comparison data requires manager-level clearance."
+        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance"
       },
       followUps: ['Show department ranking', 'What drives engagement scores?', 'How do we compare to industry?']
     },
@@ -421,8 +421,8 @@ export default function PlainIDChatFullContent() {
       topics: ['compensation', 'market', 'benchmarks'],
       responses: {
         executive: "Market comparison (Radford data): Our senior engineer median €89K vs market €85K (105% of market). Total comp €117K vs market €108K (108%). We're positioned at 75th percentile intentionally to attract top talent. Recommendation: Maintain current positioning, review annually.",
-        manager: "Our compensation is competitive with market rates for senior engineers. We position above median intentionally for talent acquisition. [SPECIFIC PERCENTILES AND FIGURES REDACTED - Executive Only]. HR can provide band details for hiring decisions.",
-        employee: "Access Denied: Market compensation comparison requires executive-level clearance."
+        manager: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance"
       },
       followUps: ['Show all level comparisons', 'What is our compensation philosophy?', 'When is the next market adjustment?']
     },
@@ -431,8 +431,8 @@ export default function PlainIDChatFullContent() {
       topics: ['equity', 'compensation', 'stock'],
       responses: {
         executive: "Equity structure: Senior engineers receive €15K-€30K initial grant (4-year vest, 1-year cliff). Refresh grants: €10K-€20K annually for top performers. Current 409A valuation: $12.50/share (+25% YoY). Dilution budget: 3% annually. Total equity pool: 12% of fully diluted shares.",
-        manager: "Equity compensation is part of senior engineer packages with standard 4-year vesting. Refresh grants available for top performers. [SPECIFIC VALUATIONS REDACTED]. Contact HR for equity planning discussions.",
-        employee: "Access Denied: Equity compensation details require executive-level clearance."
+        manager: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance"
       },
       followUps: ['What is the vesting schedule?', 'How are refresh grants determined?', 'Show equity band guidelines']
     },
@@ -441,8 +441,8 @@ export default function PlainIDChatFullContent() {
       topics: ['bonus', 'compensation', 'incentives'],
       responses: {
         executive: "Bonus structure for senior engineers: Target 15% of base salary (€11K-€16K). Components: Company performance 50% (threshold 80%, target 100%, max 150%), Individual performance 50% (rating-based multiplier 0-150%). Q4 payout forecast: 112% of target based on current projections.",
-        manager: "Senior engineer bonus targets are 15% of base salary, split between company and individual performance factors. [SPECIFIC PAYOUT PROJECTIONS REDACTED]. Performance ratings due by end of month.",
-        employee: "Access Denied: Bonus structure details require executive-level clearance."
+        manager: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance"
       },
       followUps: ['When are bonuses paid?', 'How is company performance measured?', 'What determines individual multiplier?']
     },
@@ -453,8 +453,8 @@ export default function PlainIDChatFullContent() {
       topics: ['mnpi', 'release_date', 'timing'],
       responses: {
         executive: "Official release schedule: Fund performance - Jan 15 (10 days), Earnings - Jan 28 after market close, M&A announcement - pending board approval (expected Feb). Quiet period begins Jan 5. All employees reminded of trading restrictions via compliance memo.",
-        manager: "Access Denied: Release timing for material non-public information requires executive clearance and compliance approval.",
-        employee: "Access Denied: MNPI release schedules are restricted to authorized personnel only."
+        manager: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance"
       },
       followUps: ['What are the quiet period rules?', 'Who needs to be notified?', 'Show the IR calendar']
     },
@@ -463,8 +463,8 @@ export default function PlainIDChatFullContent() {
       topics: ['mnpi', 'benchmark', 'performance'],
       responses: {
         executive: "Benchmark comparison (CONFIDENTIAL): Fund A vs S&P 500 - outperformed by 340bps, Fund B vs Russell 2000 - underperformed by 120bps, Fund C vs MSCI EM - outperformed by 520bps. Attribution: Security selection +280bps, Sector allocation +60bps. Top contributor: Tech overweight.",
-        manager: "Access Denied: Pre-release benchmark comparisons are MNPI and require executive clearance.",
-        employee: "Access Denied: Performance benchmark data is restricted to authorized personnel only."
+        manager: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance"
       },
       followUps: ['Show attribution analysis', 'What drove outperformance?', 'Compare to peer funds']
     },
@@ -473,8 +473,8 @@ export default function PlainIDChatFullContent() {
       topics: ['mnpi', 'holdings', 'portfolio'],
       responses: {
         executive: "Holdings changes (CONFIDENTIAL - pre-13F): New positions - NVDA (+$12M), MSFT (+$8M). Increased - AAPL (+$5M, now 4.2% of fund). Decreased - TSLA (-$15M, reduced to 1.1%). Exited - META (sold entire $20M position). Changes reflect AI thesis and valuation discipline.",
-        manager: "Access Denied: Holdings changes are MNPI pending 13F filing and require executive clearance.",
-        employee: "Access Denied: Portfolio holdings information is restricted to authorized personnel only."
+        manager: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance"
       },
       followUps: ['What is the investment thesis?', 'When is the 13F filing?', 'Show sector allocation changes']
     },
@@ -485,8 +485,8 @@ export default function PlainIDChatFullContent() {
       topics: ['roadmap', 'timeline', 'releases'],
       responses: {
         executive: "Release timeline: Q1 - AI Assistant (beta Jan, GA March, $500K MRR impact), Q2 - Enterprise SSO (April, 3 customers waiting, $200K pipeline), Q3 - API v3 with GraphQL (July), Q4 - Mobile App v2 (Oct). Total engineering investment: $2.1M. Dependencies: AI team hire (in progress).",
-        manager: "Planned releases: Q1 brings AI capabilities, Q2 focuses on enterprise security features, Q3 delivers API improvements, Q4 launches mobile updates. [SPECIFIC DATES AND REVENUE PROJECTIONS REDACTED]. Engineering is on track.",
-        employee: "Access Denied: Detailed product release timelines require manager-level clearance."
+        manager: "Planned releases: Q1 brings AI capabilities, Q2 focuses on enterprise security features, Q3 delivers API improvements, Q4 launches mobile updates. ████████████████████████████████. Engineering is on track.",
+        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance"
       },
       followUps: ['What are the key dependencies?', 'Show the resource allocation', 'What are the risks?']
     },
@@ -495,8 +495,8 @@ export default function PlainIDChatFullContent() {
       topics: ['roadmap', 'customers', 'requests'],
       responses: {
         executive: "Feature requests by customer: AI Assistant - Acme Corp ($150K ARR), GlobalTech ($200K ARR), MegaCorp ($180K ARR). Enterprise SSO - specifically requested by FinanceFirst (blocked deal, $300K). API v3 - Developer community (120 requests), plus TechStart (expansion contingent).",
-        manager: "Several enterprise customers have requested the upcoming features, particularly AI capabilities and SSO. [CUSTOMER NAMES AND ARR REDACTED]. These features are tied to pipeline opportunities and retention.",
-        employee: "Access Denied: Customer-specific feature requests require manager-level clearance."
+        manager: "Several enterprise customers have requested the upcoming features, particularly AI capabilities and SSO. ████████████████████████████████. These features are tied to pipeline opportunities and retention.",
+        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance"
       },
       followUps: ['Show the request prioritization', 'What is at risk if delayed?', 'How do we communicate timelines?']
     },
@@ -505,8 +505,8 @@ export default function PlainIDChatFullContent() {
       topics: ['competitive', 'analysis', 'market'],
       responses: {
         executive: "Competitive landscape: Competitor A launched AI features (6 months ahead), but limited to chat. Our AI Assistant includes workflow automation (differentiated). Competitor B announced SSO but delayed to Q3. Our API v3 will have feature parity with Competitor C. Market window: 6-9 months to establish leadership.",
-        manager: "Competitive analysis shows we're tracking well against main competitors. Some competitors have launched AI features but with limited scope. Our roadmap addresses gaps while maintaining differentiation. [SPECIFIC COMPETITOR DETAILS REDACTED].",
-        employee: "Access Denied: Competitive analysis details require manager-level clearance."
+        manager: "Competitive analysis shows we're tracking well against main competitors. Some competitors have launched AI features but with limited scope. Our roadmap addresses gaps while maintaining differentiation. ████████████████████████████████.",
+        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance"
       },
       followUps: ['How do we differentiate?', 'What is our win rate?', 'Show feature comparison matrix']
     },
@@ -517,8 +517,8 @@ export default function PlainIDChatFullContent() {
       topics: ['clinical_trials', 'efficacy', 'mnpi'],
       responses: {
         executive: "Efficacy data (CONFIDENTIAL): Primary endpoint - 73% response rate vs 45% placebo (p<0.001). Secondary endpoints - Duration of response 8.2 months vs 4.1 months, Quality of life improvement +18 points vs +5 points. Subgroup analysis shows strongest response in treatment-naive patients (81%).",
-        manager: "Access Denied: Clinical efficacy data is MNPI and requires executive and medical affairs clearance.",
-        employee: "Access Denied: Clinical trial data is restricted to authorized research personnel."
+        manager: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance"
       },
       followUps: ['Show subgroup analysis', 'What is the safety profile?', 'Compare to competitor drugs']
     },
@@ -527,8 +527,8 @@ export default function PlainIDChatFullContent() {
       topics: ['clinical_trials', 'safety', 'adverse_events'],
       responses: {
         executive: "Adverse event summary (CONFIDENTIAL): Overall AE rate 12% vs 8% placebo. Most common: fatigue (5%), nausea (3%), headache (2%). Serious AEs: 1.2% vs 0.8% placebo (not statistically significant). No treatment-related deaths. Discontinuation rate: 4% vs 3% placebo. Safety profile supports approval.",
-        manager: "Access Denied: Adverse event data is MNPI and requires executive and medical affairs clearance.",
-        employee: "Access Denied: Clinical safety data is restricted to authorized research personnel."
+        manager: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance"
       },
       followUps: ['What are the serious AEs?', 'How does this compare to approved drugs?', 'What is the discontinuation rate?']
     },
@@ -537,8 +537,8 @@ export default function PlainIDChatFullContent() {
       topics: ['regulatory', 'fda', 'submission'],
       responses: {
         executive: "FDA submission timeline (CONFIDENTIAL): NDA submission planned March 15, 2025. Pre-NDA meeting completed (positive feedback). PDUFA target date expected January 2026 (standard review). Priority review request under consideration (would accelerate to September 2025). Manufacturing validation on track.",
-        manager: "Access Denied: FDA submission timing is MNPI and requires executive and regulatory affairs clearance.",
-        employee: "Access Denied: Regulatory submission information is restricted to authorized personnel."
+        manager: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance"
       },
       followUps: ['What feedback did FDA provide?', 'Are we pursuing priority review?', 'What are the approval odds?']
     },
@@ -810,7 +810,7 @@ export default function PlainIDChatFullContent() {
       
       if (!role.categories.includes(followUp.category)) {
         return {
-          response: `Access Denied: You don't have permission to access ${followUp.category.replace(/_/g, ' ')} based on your current role and context.`,
+          response: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires appropriate clearance for " + followUp.category.replace(/_/g, ' '),
           redactionLevel: "complete",
           followUps: []
         };
@@ -829,7 +829,7 @@ export default function PlainIDChatFullContent() {
     
     if (!isAuthorized()) {
       return {
-        response: `Access Denied: You don't have permission to access ${query.category.replace(/_/g, ' ')} based on your current role and context.`,
+        response: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires appropriate clearance for " + query.category.replace(/_/g, ' '),
         redactionLevel: "complete",
         followUps: []
       };
@@ -840,8 +840,8 @@ export default function PlainIDChatFullContent() {
       // === GENERAL ENTERPRISE ===
       'financial_data': {
         executive: "Q4 financial results: Revenue $2.3M (+12% QoQ), Profit margin 23.4% (+2.1%), EBITDA $540K (+15%). Strong performance in enterprise segment with $890K ARR. Cash position remains healthy at $4.2M.",
-        manager: "Q4 showed positive growth trends. Revenue increased 12% quarter-over-quarter. Profit margins improved by [REDACTED - Executive Only]. Enterprise segment performed well with [REDACTED] in annual recurring revenue. Overall financial health is strong.",
-        employee: "Access Denied: Financial data requires manager-level clearance or higher."
+        manager: "Q4 showed positive growth trends. Revenue increased 12% quarter-over-quarter. Profit margins improved by ████████████████. Enterprise segment performed well with ████████████ in annual recurring revenue. Overall financial health is strong.",
+        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance"
       },
       'customer_analytics': {
         executive: "EU customer satisfaction: 87.3% (+4.2 pts), NPS score 52 (+8), retention rate 94.1%. Top satisfaction drivers: product reliability (8.9/10), support quality (8.7/10). Churn risk identified in 3 enterprise accounts worth $340K ARR.",
@@ -851,7 +851,7 @@ export default function PlainIDChatFullContent() {
       'hr_records': {
         executive: "Engineering dept: 3 employees below expectations (2 missed deadlines, 1 communication). PIPs active for J. Smith and M. Johnson. Retention risk: medium for 2 individuals. Recommended actions: coaching and workload review.",
         manager: "Your department has 3 employees with performance concerns: 2 related to deadline management, 1 communication-related. Performance improvement plans are in progress. Individual names available in HR portal.",
-        employee: "Access Denied: Employee performance data requires manager-level clearance."
+        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance"
       },
       'technical_documentation': {
         executive: "Security architecture uses zero-trust model with quantum-resistant encryption (AES-256-GCM), real-time threat detection (<0.001% false positive rate). Multi-cloud: AWS, Azure, GCP. SOC2 Type II and ISO 27001 certified. Penetration test: 0 critical findings.",
@@ -860,64 +860,64 @@ export default function PlainIDChatFullContent() {
       },
       'compensation_data': {
         executive: "Senior Engineer salary range: €75K-€110K (median €89K). Total comp with equity: €95K-€140K. Market positioning: 75th percentile for EU tech. Equity refresh grants averaging €15K/year for top performers.",
-        manager: "Senior Engineer compensation is competitive with market standards. Total compensation packages include base salary plus equity components. We are positioned competitively in the EU tech market. [SALARY RANGES REDACTED - Executive Only]",
-        employee: "Access Denied: Compensation data requires executive-level clearance."
+        manager: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance"
       },
 
       // === ASSET MANAGEMENT ===
       'mnpi_data': {
         executive: "MNPI Alert - Confidential: Q4 earnings expected at $1.42 EPS (vs $1.28 consensus). M&A target: TechCorp acquisition at $45/share (~$2.1B). Insider Form 4 filings pending for 3 executives. Trading window closes Dec 15.",
-        manager: "Access Denied: MNPI data requires executive clearance and compliance approval. Please contact the compliance team if you believe you need access for a legitimate business purpose.",
-        employee: "Access Denied: Material Non-Public Information is restricted to authorized personnel only."
+        manager: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance and compliance approval",
+        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — MNPI requires authorized personnel only"
       },
       'compliance_data': {
         executive: "MNPI Compliance Status: 98.2% training completion. 2 pending violations under review (both administrative). Restricted list updated with 47 securities. Next audit: Q1 2025. No material findings from last SEC examination.",
         manager: "Compliance training completion is at 98.2% for your department. Some administrative items pending review. Restricted securities list has been updated. Please ensure your team completes outstanding training by end of quarter.",
-        employee: "Access Denied: Detailed compliance data requires manager-level access."
+        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance"
       },
 
       // === TECHNOLOGY / ISVs ===
       'product_roadmap': {
         executive: "2025 Roadmap: Q1 - AI Assistant launch (revenue impact: +$500K MRR), Q2 - Enterprise SSO (3 customers waiting), Q3 - API v3 with GraphQL, Q4 - Mobile app. Total investment: $2.1M. Competitive response to Competitor X's announcement.",
-        manager: "2025 roadmap includes AI capabilities in Q1, enterprise security features in Q2, API improvements in Q3, and mobile expansion in Q4. [REVENUE PROJECTIONS REDACTED]. Timeline subject to resource availability.",
-        employee: "Access Denied: Product roadmap details require manager-level clearance."
+        manager: "2025 roadmap includes AI capabilities in Q1, enterprise security features in Q2, API improvements in Q3, and mobile expansion in Q4. ████████████████████████████████. Timeline subject to resource availability.",
+        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance"
       },
       'strategic_partnerships': {
         executive: "Active negotiations: CloudProvider Inc (revenue share deal, $1.2M potential), TechGiant Corp (OEM agreement, $3M+), StartupXYZ (acquisition target, $15M valuation). NDAs signed. Expected close: Q1 2025.",
-        manager: "Access Denied: Partnership negotiations are confidential and require executive clearance.",
-        employee: "Access Denied: Strategic partnership information is restricted."
+        manager: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance"
       },
       'intellectual_property': {
         executive: "Patent portfolio: 23 granted, 8 pending. Q4 filings: 3 new applications (AI/ML methods). Prior art risk: low for 2 pending patents. Competitor patent watch: 5 new filings relevant to our space. Legal budget: on track.",
-        manager: "Access Denied: IP and patent information requires executive and legal clearance.",
-        employee: "Access Denied: Intellectual property information is restricted."
+        manager: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive and legal clearance",
+        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance"
       },
       'security_data': {
         executive: "Current vulnerabilities: 2 medium (patched in next release), 0 critical. Last pen test: Nov 2024, all findings remediated. Bug bounty: 12 reports this quarter, $45K paid. No customer data exposure incidents.",
-        manager: "Access Denied: Security vulnerability data requires security team and executive clearance.",
-        employee: "Access Denied: Security assessment data is restricted."
+        manager: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires security team and executive clearance",
+        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance"
       },
 
       // === HEALTHCARE ===
       'clinical_data': {
         executive: "Phase 3 Trial Results (CONFIDENTIAL): Primary endpoint met with p<0.001. Efficacy: 73% vs 45% placebo. Adverse events: 12% (vs 8% placebo), mostly mild. FDA submission planned for March 2025. Stock impact analysis prepared.",
-        manager: "Access Denied: Clinical trial results are MNPI and require executive and medical affairs clearance.",
-        employee: "Access Denied: Clinical data is restricted to authorized research personnel."
+        manager: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive and medical affairs clearance",
+        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires authorized research personnel"
       },
       'payer_contracts': {
         executive: "Active negotiations: BlueCross (targeting 15% rate increase), Aetna (renewal at current rates + quality bonus), Medicare Advantage (3 new plan partnerships). Total contract value at risk: $12M. Expected outcomes: +$2.1M net.",
-        manager: "Access Denied: Payer contract negotiations are confidential and require executive clearance.",
-        employee: "Access Denied: Contract information is restricted."
+        manager: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance"
       },
       'phi_data': {
         executive: "Access requires additional HIPAA authorization. 847 patients currently eligible for new protocol. Demographics: 62% female, mean age 54. Enrollment rate: 23% (target: 40%). Contact clinical ops for patient-level access with proper authorization.",
-        manager: "Access Denied: PHI requires HIPAA authorization and clinical operations approval.",
-        employee: "Access Denied: Patient data is protected under HIPAA regulations."
+        manager: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires HIPAA authorization",
+        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — protected under HIPAA regulations"
       },
       'regulatory_data': {
         executive: "FDA Status: Drug A - PDUFA date March 15, 2025 (90% approval probability). Drug B - Complete Response Letter received, resubmission Q2. Drug C - Phase 2 complete, IND amendment pending. No warning letters or Form 483s outstanding.",
-        manager: "Access Denied: Regulatory filing status is MNPI and requires executive clearance.",
-        employee: "Access Denied: Regulatory information is restricted."
+        manager: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance",
+        employee: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires executive-level clearance"
       },
       'healthcare_analytics': {
         executive: "Utilization patterns: Top 5 DRGs account for 45% of costs. Cost per episode: $12,340 (vs $14,200 benchmark). High-utilization providers identified in 3 regions. Savings opportunity: $3.2M through care pathway optimization.",
@@ -1517,7 +1517,7 @@ export default function PlainIDChatFullContent() {
                     <div>
                       <h4 className="font-medium text-gray-700 mb-2 text-sm">Guardrail 3: Anonymizer</h4>
                       <div className="bg-teal-50 p-4 rounded-lg border border-teal-200">
-                        <p className="text-sm text-gray-900 mb-3">{response.response}</p>
+                        <p className="text-sm text-gray-900 mb-3 whitespace-pre-line">{response.response}</p>
                         <div className="mt-3 p-2 bg-teal-100 border border-teal-300 rounded">
                           <p className="text-teal-700 text-xs flex items-center">
                             <Shield size={14} className="mr-2" />
@@ -1808,7 +1808,7 @@ export default function PlainIDChatFullContent() {
                                 Guardrail 3: Output Redaction
                               </h4>
                               <div className="bg-gray-50 p-4 rounded-lg border border-gray-200 mb-4">
-                                <p className="text-sm text-gray-900 leading-relaxed">{msg.response.response}</p>
+                                <p className="text-sm text-gray-900 leading-relaxed whitespace-pre-line">{msg.response.response}</p>
                               </div>
                               <div className="bg-purple-50 p-3 rounded-lg border border-purple-200">
                                 <div className="flex items-center justify-between">
@@ -1845,7 +1845,7 @@ export default function PlainIDChatFullContent() {
                                   <span className="text-sm font-semibold text-gray-900">PlainID LangChain Authorizer</span>
                                   <BetaTag />
                                 </div>
-                                <p className="text-sm text-gray-800 leading-relaxed mb-3">{msg.text}</p>
+                                <p className="text-sm text-gray-800 leading-relaxed mb-3 whitespace-pre-line">{msg.text}</p>
                                 <div className="pt-3 border-t border-gray-200">
                                   <div className="flex items-center space-x-4 text-xs text-gray-500">
                                     <div className="flex items-center">
