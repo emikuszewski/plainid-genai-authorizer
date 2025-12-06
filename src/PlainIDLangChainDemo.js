@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Shield, Send, User, Filter, Database, Eye, Check, AlertTriangle, Lock, ChevronRight, Calendar, Download, MapPin, Users, Layers, Menu, Plus, MessageSquare, ArrowRight, Unlock, Paperclip, Camera, X, FileText, Image as ImageIcon, FileSpreadsheet, File, Building2, Cpu, HeartPulse, DollarSign } from 'lucide-react';
+import { Shield, Send, User, Filter, Database, Eye, Check, AlertTriangle, Lock, ChevronRight, Calendar, Download, MapPin, Users, Layers, Menu, Plus, MessageSquare, ArrowRight, Unlock, Paperclip, Camera, X, FileText, Image as ImageIcon, FileSpreadsheet, File, Building2, Cpu, HeartPulse, DollarSign, Upload } from 'lucide-react';
 
 export default function PlainIDChatFullContent() {
   const [userRole, setUserRole] = useState('manager');
@@ -24,6 +24,26 @@ export default function PlainIDChatFullContent() {
       messagesEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
     }
   }, [messages]);
+
+  // Context-aware file names based on industry
+  const contextAwareFileNames = {
+    healthcare: {
+      document: ['Clinical_Trial_Summary.pdf', 'Patient_Demographics_Report.pdf', 'Treatment_Protocol_Draft.docx', 'Insurance_Claims_Analysis.xlsx', 'Diagnosis_Code_Reference.pdf'],
+      screenshot: ['Lab_Results_Screenshot.png', 'Medical_Dashboard.png', 'Patient_Portal_Capture.png', 'Clinical_Workflow_Diagram.png', 'EHR_Interface.png']
+    },
+    asset_management: {
+      document: ['Portfolio_Holdings_Q4.xlsx', 'Fund_Performance_Draft.pdf', 'Trade_Confirmation_Report.pdf', 'Investment_Strategy_Memo.docx', 'Risk_Assessment_Analysis.xlsx'],
+      screenshot: ['Trading_Dashboard.png', 'Market_Analysis_Chart.png', 'Portfolio_Allocation.png', 'Performance_Graph.png', 'Compliance_Alert_Capture.png']
+    },
+    technology: {
+      document: ['Product_Roadmap_2025.pdf', 'Technical_Architecture.docx', 'API_Documentation_Draft.pdf', 'Security_Audit_Report.xlsx', 'Feature_Specs_v2.pdf'],
+      screenshot: ['UI_Mockup_v2.png', 'Dashboard_Wireframe.png', 'System_Architecture_Diagram.png', 'Error_Log_Capture.png', 'Analytics_Dashboard.png']
+    },
+    general: {
+      document: ['Q4_Revenue_Analysis.xlsx', 'Strategic_Plan_Draft.pdf', 'Employee_Performance_Summary.docx', 'Budget_Forecast_2025.xlsx', 'Meeting_Notes_Executive.pdf'],
+      screenshot: ['Org_Chart_Update.png', 'Sales_Dashboard.png', 'KPI_Metrics_Capture.png', 'Project_Timeline.png', 'Presentation_Slide.png']
+    }
+  };
 
   // Industry categories for filtering
   const industries = [
@@ -600,12 +620,27 @@ export default function PlainIDChatFullContent() {
   const handleFileUpload = (type) => {
     if (isProcessing || attachedFiles.length >= 5) return;
     
-    // Simulate file upload
+    // Get current query's industry for context-aware file names
+    const currentIndustry = sampleQueries[queryIndex].industry;
+    const fileNames = contextAwareFileNames[currentIndustry] || contextAwareFileNames.general;
+    
+    // Pick a file name based on type
+    const typeKey = type === 'document' ? 'document' : 'screenshot';
+    const availableNames = fileNames[typeKey].filter(name => 
+      !attachedFiles.some(f => f.name === name)
+    );
+    
+    // Get a random available name or generate a fallback
+    const fileName = availableNames.length > 0 
+      ? availableNames[Math.floor(Math.random() * availableNames.length)]
+      : `${typeKey === 'document' ? 'Document' : 'Screenshot'}_${attachedFiles.length + 1}.${type === 'document' ? 'pdf' : 'png'}`;
+    
     const newFile = {
       id: Date.now(),
-      name: type === 'document' ? `Document_${attachedFiles.length + 1}.pdf` : `Screenshot_${attachedFiles.length + 1}.png`,
+      name: fileName,
       size: Math.floor(Math.random() * 2000000) + 100000,
-      type: type === 'document' ? 'pdf' : 'png'
+      type: type === 'document' ? fileName.split('.').pop().toLowerCase() : 'png',
+      isUploaded: true // Mark as user-uploaded for Guardrail 2
     };
     
     setAttachedFiles([...attachedFiles, newFile]);
@@ -955,14 +990,18 @@ export default function PlainIDChatFullContent() {
 
   // Handle sending a follow-up question
   const handleSendFollowUp = (followUpText) => {
+    // Store current files before clearing (for Guardrail 2)
+    const currentFiles = [...attachedFiles];
+    
     // Add user message
     const userMessage = {
       type: 'user',
       text: followUpText,
-      files: [],
+      files: currentFiles,
       timestamp: new Date()
     };
     setMessages([userMessage]);
+    setAttachedFiles([]);
     setCurrentGuardrail(1);
     setIsProcessing(true);
 
@@ -978,13 +1017,14 @@ export default function PlainIDChatFullContent() {
       setCurrentGuardrail(2);
     }, 2000);
 
-    // Guardrail 2: Retriever
+    // Guardrail 2: Retriever - now includes uploaded files
     setTimeout(() => {
       const docResults = getDocumentResults(followUpText);
       setMessages(prev => [...prev, {
         type: 'guardrail',
         guardrail: 'retriever',
         docResults: docResults,
+        uploadedFiles: currentFiles, // Include uploaded files
         timestamp: new Date()
       }]);
       setCurrentGuardrail(3);
@@ -1028,11 +1068,14 @@ export default function PlainIDChatFullContent() {
     // Reset follow-up state
     setActiveFollowUp(null);
     
+    // Store current files before clearing (for Guardrail 2)
+    const currentFiles = [...attachedFiles];
+    
     // Add user message
     const userMessage = {
       type: 'user',
       text: query.text,
-      files: [...attachedFiles],
+      files: currentFiles,
       timestamp: new Date()
     };
     setMessages([userMessage]);
@@ -1053,13 +1096,14 @@ export default function PlainIDChatFullContent() {
       setCurrentGuardrail(2);
     }, 2000);
 
-    // Guardrail 2: Retriever
+    // Guardrail 2: Retriever - now includes uploaded files
     setTimeout(() => {
       const docResults = getDocumentResults();
       setMessages(prev => [...prev, {
         type: 'guardrail',
         guardrail: 'retriever',
         docResults: docResults,
+        uploadedFiles: currentFiles, // Include uploaded files
         timestamp: new Date()
       }]);
       setCurrentGuardrail(3);
@@ -1670,23 +1714,67 @@ export default function PlainIDChatFullContent() {
                               <h4 className="text-lg font-semibold text-gray-900 mb-3">
                                 Guardrail 2: Document Filtering
                               </h4>
-                              {msg.docResults.filteredDocs.length > 0 ? (
+                              {msg.docResults.filteredDocs.length > 0 || (msg.uploadedFiles && msg.uploadedFiles.length > 0) ? (
                                 <div>
-                                  <p className="text-gray-700 mb-3 text-sm">{msg.docResults.message}</p>
-                                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
-                                    {msg.docResults.filteredDocs.map((doc, idx) => (
-                                      <div key={idx} className="bg-gray-50 p-3 rounded-lg border border-gray-200">
-                                        <div className="flex items-center mb-2">
-                                          <div className="text-xs font-medium text-gray-900 truncate">{doc.name}</div>
-                                        </div>
-                                        <div className="text-xs text-gray-600 space-y-0.5">
-                                          <div>Region: {doc.metadata.region}</div>
-                                          <div>Class: {doc.metadata.classification}</div>
-                                          <div>Dept: {doc.metadata.department}</div>
-                                        </div>
+                                  <p className="text-gray-700 mb-3 text-sm">
+                                    {msg.docResults.message}
+                                    {msg.uploadedFiles && msg.uploadedFiles.length > 0 && (
+                                      <span> + {msg.uploadedFiles.length} user uploaded file{msg.uploadedFiles.length > 1 ? 's' : ''}</span>
+                                    )}
+                                  </p>
+                                  
+                                  {/* Retrieved Documents */}
+                                  {msg.docResults.filteredDocs.length > 0 && (
+                                    <div className="mb-4">
+                                      <p className="text-xs font-medium text-gray-500 mb-2">Retrieved Documents</p>
+                                      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                        {msg.docResults.filteredDocs.map((doc, idx) => (
+                                          <div key={idx} className="bg-gray-50 p-3 rounded-lg border border-gray-200">
+                                            <div className="flex items-center mb-2">
+                                              <div className="text-xs font-medium text-gray-900 truncate">{doc.name}</div>
+                                            </div>
+                                            <div className="text-xs text-gray-600 space-y-0.5">
+                                              <div>Region: {doc.metadata.region}</div>
+                                              <div>Class: {doc.metadata.classification}</div>
+                                              <div>Dept: {doc.metadata.department}</div>
+                                            </div>
+                                          </div>
+                                        ))}
                                       </div>
-                                    ))}
-                                  </div>
+                                    </div>
+                                  )}
+                                  
+                                  {/* User Uploaded Files */}
+                                  {msg.uploadedFiles && msg.uploadedFiles.length > 0 && (
+                                    <div className="mb-4">
+                                      <p className="text-xs font-medium text-gray-500 mb-2">User Uploaded Files</p>
+                                      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                        {msg.uploadedFiles.map((file, idx) => {
+                                          const iconData = getFileIcon(file.name);
+                                          const IconComponent = iconData.Icon;
+                                          return (
+                                            <div key={idx} className="bg-amber-50 p-3 rounded-lg border-2 border-amber-300 border-dashed relative">
+                                              {/* Uploaded Badge */}
+                                              <div className="absolute -top-2 -right-2 bg-amber-500 text-white text-xs font-medium px-2 py-0.5 rounded-full flex items-center">
+                                                <Upload size={10} className="mr-1" />
+                                                Uploaded
+                                              </div>
+                                              <div className="flex items-center mb-2">
+                                                <div className={`${iconData.bg} p-1 rounded mr-2`}>
+                                                  <IconComponent size={14} className={iconData.color} />
+                                                </div>
+                                                <div className="text-xs font-medium text-gray-900 truncate">{file.name}</div>
+                                              </div>
+                                              <div className="text-xs text-gray-600 space-y-0.5">
+                                                <div>Source: User Uploaded</div>
+                                              </div>
+                                            </div>
+                                          );
+                                        })}
+                                      </div>
+                                    </div>
+                                  )}
+                                  
                                   <div className="bg-blue-50 p-3 rounded-lg border border-blue-200">
                                     <p className="text-xs text-blue-900">
                                       <strong>Filter Applied:</strong> region="{currentRole.context.region}" AND clearance_level>="{currentRole.context.clearance}"
