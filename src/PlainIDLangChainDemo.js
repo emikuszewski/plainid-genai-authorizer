@@ -16,6 +16,7 @@ export default function PlainIDChatFullContent() {
   const [hoveredIndustry, setHoveredIndustry] = useState(null);
   const [showFollowUps, setShowFollowUps] = useState(false);
   const [activeFollowUp, setActiveFollowUp] = useState(null); // Track active follow-up question
+  const [headerShieldHovered, setHeaderShieldHovered] = useState(false); // Track header shield hover
   const messagesEndRef = React.useRef(null);
 
   // Auto-scroll to latest message
@@ -1846,8 +1847,27 @@ export default function PlainIDChatFullContent() {
               <Menu size={20} />
             </button>
             <div className="flex items-center">
-              <div className="bg-gradient-to-r from-teal-500 to-teal-600 p-2 rounded-lg mr-3">
-                <Shield size={20} className="text-white" />
+              {/* Shield icon with tooltip */}
+              <div 
+                className="relative"
+                onMouseEnter={() => setHeaderShieldHovered(true)}
+                onMouseLeave={() => setHeaderShieldHovered(false)}
+              >
+                <div className="bg-gradient-to-r from-teal-500 to-teal-600 p-2 rounded-lg mr-3 cursor-pointer">
+                  <Shield size={20} className="text-white" />
+                </div>
+                
+                {/* Tooltip */}
+                {headerShieldHovered && (
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-2 bg-gray-800 text-white text-xs rounded-lg whitespace-nowrap z-50 shadow-xl">
+                    <div className="text-center">
+                      <div className="font-medium">Made with 💪 by the SE Team</div>
+                      <div className="text-gray-300 mt-1">For Walkthrough Purposes Only</div>
+                      <div className="text-gray-400 mt-0.5">This Is Not A Product</div>
+                    </div>
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 border-4 border-transparent border-b-gray-800"></div>
+                  </div>
+                )}
               </div>
               <div>
                 <h1 className="text-lg font-semibold text-gray-900 flex items-center">
