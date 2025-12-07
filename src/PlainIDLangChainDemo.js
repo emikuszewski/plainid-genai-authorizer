@@ -2285,7 +2285,7 @@ export default function PlainIDChatFullContent() {
                                   
                                   <div className="bg-blue-50 p-3 rounded-lg border border-blue-200">
                                     <p className="text-xs text-blue-900">
-                                      <strong>Filter Applied:</strong> region="{currentRole.context.region}" AND clearance_level>="{currentRole.context.clearance}"
+                                      <strong>Filter Applied:</strong> region="{currentRole.context.region}" AND clearance_level="{currentRole.context.clearance}"
                                     </p>
                                   </div>
                                 </div>
