@@ -297,7 +297,7 @@ export default function PlainIDChatFullContent() {
           generalized: false
         },
         manager: {
-          text: "Q4 showed improvement over Q3 across key metrics. Revenue increased 12% quarter-over-quarter. Profit margins improved notably. Enterprise segment was the primary growth driver with accelerated performance.",
+          text: "Q4 vs Q3 comparison: Revenue increased ████████████████ quarter-over-quarter. Profit margin improved by ████████████████. EBITDA grew ████████████████. Enterprise segment was the primary growth driver with accelerated performance. Operating expenses remained stable.",
           generalized: true
         },
         employee: {
@@ -316,7 +316,7 @@ export default function PlainIDChatFullContent() {
           generalized: false
         },
         manager: {
-          text: "Key revenue drivers this quarter: New enterprise customer acquisitions, successful upselling to existing accounts, and improved pricing strategy. Customer retention also contributed positively to overall growth. Pipeline remains healthy.",
+          text: "Revenue growth drivers: 1) Enterprise segment expansion with ████████████████ new clients contributing ████████████████, 2) Upsells to existing customers adding ████████████████, 3) Price optimization contributing ████████████████, 4) Reduced churn saving ████████████████. Pipeline remains healthy.",
           generalized: true
         },
         employee: {
@@ -335,7 +335,7 @@ export default function PlainIDChatFullContent() {
           generalized: false
         },
         manager: {
-          text: "Regional performance: North America leads with the majority of revenue and strongest absolute growth. EMEA represents a significant portion with moderate growth. APAC showing highest percentage growth driven by expansion initiatives.",
+          text: "Regional breakdown: North America leads at ████████████████ of revenue with ████████████████ QoQ growth. EMEA represents ████████████████ with moderate growth. APAC showing highest percentage growth at ████████████████ driven by expansion initiatives.",
           generalized: true
         },
         employee: {
@@ -356,11 +356,11 @@ export default function PlainIDChatFullContent() {
           generalized: false
         },
         manager: {
-          text: "North America customer satisfaction is strong and improving, up several points this quarter. NPS also improved. Product uptime and features rated highly. Onboarding and documentation identified as improvement areas. Some accounts require attention.",
+          text: "North America satisfaction: ████████████████ with ████████████████ point improvement. NPS increased to ████████████████. Top performers: Product uptime and feature completeness rated highly. Areas for improvement: Onboarding speed and documentation. Some accounts flagged for attention with ████████████████ ARR at risk.",
           generalized: true
         },
         employee: {
-          text: "North America customer satisfaction shows positive trends, performing above the EU region. Product reliability is a strength. Some process improvements identified for onboarding experience.",
+          text: "North America satisfaction trends are positive with ████████████████ improvement this quarter. NPS also improved by ████████████████. Product uptime and features rated as strengths. Some process improvements identified for ████████████████ and ████████████████.",
           generalized: true
         }
       },
@@ -375,11 +375,11 @@ export default function PlainIDChatFullContent() {
           generalized: false
         },
         manager: {
-          text: "Products with lower satisfaction scores: Legacy API (migration recommended), Mobile App (new version coming), and Reporting Module (improvements underway). All have active improvement plans with expected resolution timelines.",
+          text: "Lowest satisfaction by product: 1) Legacy API v1 at ████████████████ (end-of-life ████████████████, migration support needed), 2) Mobile App at ████████████████ (new version launching ████████████████), 3) Reporting Module at ████████████████ (UX refresh in progress). Action plans in place with expected improvement of ████████████████ within 2 quarters.",
           generalized: true
         },
         employee: {
-          text: "Some products have been identified for improvement. The mobile app and reporting features are receiving updates. Contact product team for specific feedback channels.",
+          text: "Products with lower satisfaction: Legacy API (migration recommended), Mobile App (new version coming ████████████████), and Reporting Module (improvements underway). Expected improvement of ████████████████ planned. Contact product team for specific feedback channels.",
           generalized: true
         }
       },
@@ -394,11 +394,11 @@ export default function PlainIDChatFullContent() {
           generalized: false
         },
         manager: {
-          text: "Support ticket volume increased slightly this quarter but resolution times improved significantly. Average resolution down substantially. Customer satisfaction with support remains high. Integration questions remain the top category.",
+          text: "Support metrics Q4: ████████████████ tickets with ████████████████ QoQ change. Avg resolution ████████████████ with ████████████████ improvement. First response ████████████████ with ████████████████ improvement. CSAT ████████████████. Top categories: Integration questions, feature requests, bug reports. Headcount efficiency improved ████████████████.",
           generalized: true
         },
         employee: {
-          text: "Support team metrics show improvement in response times this quarter. Customer satisfaction with support remains high. Integration documentation being enhanced to reduce common questions.",
+          text: "Support metrics show improvement in response times this quarter. Average resolution improved by ████████████████. Customer satisfaction with support remains high at ████████████████. Top ticket category is ████████████████. Integration documentation being enhanced.",
           generalized: true
         }
       },
@@ -415,7 +415,7 @@ export default function PlainIDChatFullContent() {
           generalized: false
         },
         manager: {
-          text: "Three performance improvement plans are active in your department. Two focused on deadline management with structured support and adjusted workloads. One addressing communication skills with regular coaching. Progress reviews scheduled monthly.",
+          text: "Active PIPs: ████████████████ (deadline management, ████████████████ plan, mentor assigned), ████████████████ (deadline management, ████████████████ plan, workload reduced ████████████████), ████████████████ (communication, coaching sessions ████████████████). Historical success rate: ████████████████. HR review scheduled for ████████████████.",
           generalized: true
         },
         employee: {
@@ -434,7 +434,7 @@ export default function PlainIDChatFullContent() {
           generalized: false
         },
         manager: {
-          text: "Retention analysis shows a small number of high-risk employees in your department with external interest, and several medium-risk with career growth concerns. Recommend scheduling stay interviews and discussing development opportunities. HR can support with retention planning.",
+          text: "Retention risk analysis: High risk - ████████████████ employees (receiving competing offers, combined ████████████████ salary), Medium risk - ████████████████ employees (career growth concerns). Recommended actions: Retention bonuses of ████████████████ each for high-risk, career pathing discussions for medium-risk. Flight risk cost estimate: ████████████████.",
           generalized: true
         },
         employee: {
@@ -453,7 +453,7 @@ export default function PlainIDChatFullContent() {
           generalized: false
         },
         manager: {
-          text: "Your department's performance concern rate is slightly above company average but retention is significantly better. Engagement scores also above company benchmark. Overall health metrics are positive relative to peers.",
+          text: "Department vs Company comparison: Performance concerns ████████████████ vs ████████████████ company avg, Turnover ████████████████ vs ████████████████ company avg, Engagement score ████████████████ vs ████████████████ company avg. Your department outperforms on retention and engagement despite slightly higher performance concerns.",
           generalized: true
         },
         employee: {
@@ -474,11 +474,11 @@ export default function PlainIDChatFullContent() {
           generalized: false
         },
         manager: {
-          text: "We maintain SOC2 Type II, ISO 27001, and HIPAA compliance. GDPR compliant for EU operations. FedRAMP certification in progress for government sector expansion. All recent audits passed with no critical findings.",
+          text: "Current certifications: SOC2 Type II (renewed ████████████████), ISO 27001 (valid through ████████████████), HIPAA BAA available, GDPR compliant, FedRAMP Moderate (in progress, expected ████████████████). Audit findings: ████████████████ critical, ████████████████ minor (remediated). Investment in FedRAMP: ████████████████.",
           generalized: true
         },
         employee: {
-          text: "Our product maintains SOC2 Type II and ISO 27001 certifications. HIPAA and GDPR compliance supported. Additional certifications available - contact security team for customer-specific requirements.",
+          text: "Current certifications: SOC2 Type II (renewed ████████████████), ISO 27001 (valid through ████████████████), HIPAA and GDPR compliance supported. FedRAMP certification ████████████████. Audit status: ████████████████ critical findings. Contact security team for customer-specific requirements.",
           generalized: true
         }
       },
@@ -493,11 +493,11 @@ export default function PlainIDChatFullContent() {
           generalized: false
         },
         manager: {
-          text: "We use AES-256 encryption for data at rest and TLS 1.3 for data in transit. Customer-managed encryption keys available for enterprise tier. Automatic key rotation enabled. Quantum-resistant encryption being evaluated.",
+          text: "Encryption architecture: Data at rest - AES-256-GCM with customer-managed keys option, Data in transit - TLS 1.3 with perfect forward secrecy, Key management - AWS KMS with HSM backing, Rotation - automatic ████████████████ rotation. Quantum-resistant algorithms in ████████████████ testing.",
           generalized: true
         },
         employee: {
-          text: "All data is encrypted using industry-standard AES-256 encryption at rest and TLS 1.3 in transit. Detailed encryption specifications available in our security whitepaper.",
+          text: "Encryption architecture: Data at rest uses ████████████████ encryption standard. Data in transit uses ████████████████. Key management via ████████████████. Rotation schedule: ████████████████. Quantum-resistant encryption ████████████████. See security whitepaper for details.",
           generalized: true
         }
       },
@@ -512,11 +512,11 @@ export default function PlainIDChatFullContent() {
           generalized: false
         },
         manager: {
-          text: "Four deployment options available: standard SaaS (most common), dedicated instances for isolation requirements, private cloud deployment in customer's cloud account, and on-premise for specific compliance needs. Contact sales for pricing details.",
+          text: "Deployment options: 1) Multi-tenant SaaS (default, ████████████████ infrastructure), 2) Dedicated instance (████████████████/mo, isolated compute), 3) Private cloud (AWS/Azure/GCP, ████████████████/mo minimum), 4) On-premise (Enterprise only, ████████████████ setup + ████████████████/mo). Current mix: ████████████████ SaaS, ████████████████ dedicated, ████████████████ private cloud, ████████████████ on-premise.",
           generalized: true
         },
         employee: {
-          text: "Deployment options include cloud SaaS (default), dedicated instances, private cloud, and on-premise installations. Each option addresses different security and compliance requirements. See documentation for technical specifications.",
+          text: "Deployment options: Multi-tenant SaaS (default), dedicated instances (████████████████/mo), private cloud (████████████████/mo minimum), and on-premise (████████████████ setup). Current customer mix: majority on ████████████████. See documentation for technical specifications.",
           generalized: true
         }
       },
@@ -641,6 +641,65 @@ export default function PlainIDChatFullContent() {
       followUps: ['What is the investment thesis?', 'When is the 13F filing?', 'Show sector allocation changes']
     },
 
+    // === Compliance Follow-ups ===
+    'Show me recent violations': {
+      category: 'compliance_data',
+      topics: ['compliance', 'violations', 'regulatory'],
+      responses: {
+        executive: {
+          text: "Recent violations: 2 pending review. 1) Late trade pre-clearance (J. Martinez, $12K personal trade, 2 days late, administrative), 2) Incomplete attestation (M. Thompson, annual compliance form, 5 days overdue). Both non-material, remediation in progress. No SEC referrals.",
+          generalized: false
+        },
+        manager: {
+          text: "Recent violations: ████████████████ pending review. 1) Late trade pre-clearance (████████████████, ████████████████ trade, ████████████████ late, administrative), 2) Incomplete attestation (████████████████, annual compliance form, ████████████████ overdue). Both non-material, remediation in progress.",
+          generalized: true
+        },
+        employee: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance",
+          generalized: false
+        }
+      },
+      followUps: ['What is the remediation timeline?', 'Show historical violation trends', 'What training is required?']
+    },
+    'Who needs compliance training?': {
+      category: 'compliance_data',
+      topics: ['compliance', 'training', 'employees'],
+      responses: {
+        executive: {
+          text: "Training status: 98.2% complete. Outstanding: 4 employees (3 new hires in grace period, 1 on leave). Overdue: R. Chen (MNPI certification, due Dec 1), reminder sent. Next quarterly training: Jan 15 (insider trading refresh). Auto-enrollment triggered for all.",
+          generalized: false
+        },
+        manager: {
+          text: "Training status: ████████████████ complete. Outstanding: ████████████████ employees (████████████████ new hires in grace period, ████████████████ on leave). Overdue: ████████████████ (████████████████ certification, due ████████████████). Next quarterly training: ████████████████.",
+          generalized: true
+        },
+        employee: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance",
+          generalized: false
+        }
+      },
+      followUps: ['What is the training curriculum?', 'Show completion by department', 'What are the consequences for non-completion?']
+    },
+    'What are the restricted securities?': {
+      category: 'compliance_data',
+      topics: ['compliance', 'restricted', 'securities'],
+      responses: {
+        executive: {
+          text: "Restricted list: 47 securities. Categories: Active research (23), Client holdings >5% (12), Pending transactions (8), Material relationships (4). Notable additions this month: ACME Corp (M&A advisory), TechStart Inc (>5% position). Full list available in compliance portal.",
+          generalized: false
+        },
+        manager: {
+          text: "Restricted list: ████████████████ securities. Categories: Active research (████████████████), Client holdings >5% (████████████████), Pending transactions (████████████████), Material relationships (████████████████). Notable additions this month: ████████████████. Full list available in compliance portal.",
+          generalized: true
+        },
+        employee: {
+          text: "████████████████████████████████████████████████\n████████████████████████████████\n████████████████████████████████████████\n\nAccess restricted — requires manager-level clearance",
+          generalized: false
+        }
+      },
+      followUps: ['How often is the list updated?', 'What triggers a restriction?', 'Show removal criteria']
+    },
+
     // === Product Roadmap Follow-ups ===
     'What is the release timeline?': {
       category: 'product_roadmap',
@@ -651,7 +710,7 @@ export default function PlainIDChatFullContent() {
           generalized: false
         },
         manager: {
-          text: "Planned releases: Q1 brings AI capabilities, Q2 focuses on enterprise security features, Q3 delivers API improvements, Q4 launches mobile updates. Engineering is on track with some dependencies being managed.",
+          text: "Release timeline: Q1 - AI Assistant (beta ████████████████, GA ████████████████, ████████████████ MRR impact), Q2 - Enterprise SSO (████████████████, ████████████████ customers waiting, ████████████████ pipeline), Q3 - API v3 with GraphQL (████████████████), Q4 - Mobile App v2 (████████████████). Total engineering investment: ████████████████.",
           generalized: true
         },
         employee: {
@@ -670,7 +729,7 @@ export default function PlainIDChatFullContent() {
           generalized: false
         },
         manager: {
-          text: "Several enterprise customers have requested the upcoming features, particularly AI capabilities and SSO. These features are tied to pipeline opportunities and retention efforts.",
+          text: "Feature requests by customer: AI Assistant - ████████████████ (████████████████ ARR), ████████████████ (████████████████ ARR), ████████████████ (████████████████ ARR). Enterprise SSO - specifically requested by ████████████████ (blocked deal, ████████████████). API v3 - Developer community (████████████████ requests).",
           generalized: true
         },
         employee: {
@@ -689,7 +748,7 @@ export default function PlainIDChatFullContent() {
           generalized: false
         },
         manager: {
-          text: "Competitive analysis shows we're tracking well against main competitors. Some competitors have launched AI features but with limited scope. Our roadmap addresses gaps while maintaining differentiation.",
+          text: "Competitive landscape: Competitor A launched AI features (████████████████ ahead), but limited to chat. Our AI Assistant includes workflow automation (differentiated). Competitor B announced SSO but delayed to ████████████████. Market window: ████████████████ to establish leadership.",
           generalized: true
         },
         employee: {
@@ -757,6 +816,65 @@ export default function PlainIDChatFullContent() {
         }
       },
       followUps: ['What feedback did FDA provide?', 'Are we pursuing priority review?', 'What are the approval odds?']
+    },
+
+    // === Healthcare Analytics Follow-ups ===
+    'Show cost per episode of care': {
+      category: 'healthcare_analytics',
+      topics: ['cost', 'episode', 'analytics'],
+      responses: {
+        executive: {
+          text: "Cost per episode: Overall $12,340 (vs $14,200 benchmark, -13%). By service line: Cardiac $18,500 (-8% vs benchmark), Orthopedic $15,200 (-15%), General Medicine $8,400 (-11%). Top cost drivers: Length of stay (42%), Supplies (28%), Pharmacy (18%). Savings opportunity: $3.2M through pathway optimization.",
+          generalized: false
+        },
+        manager: {
+          text: "Cost per episode: Overall ████████████████ (vs ████████████████ benchmark, ████████████████ variance). By service line: Cardiac ████████████████, Orthopedic ████████████████, General Medicine ████████████████. Top cost drivers: Length of stay, supplies, pharmacy. Savings opportunity: ████████████████ through pathway optimization.",
+          generalized: true
+        },
+        employee: {
+          text: "Cost per episode metrics show performance ████████████████ benchmark. Service line breakdown available. Top cost drivers identified as ████████████████, ████████████████, and ████████████████. Savings opportunities identified totaling ████████████████.",
+          generalized: true
+        }
+      },
+      followUps: ['Which pathways have highest savings potential?', 'Show length of stay analysis', 'Compare to peer organizations']
+    },
+    'Which providers have highest utilization?': {
+      category: 'healthcare_analytics',
+      topics: ['utilization', 'providers', 'analytics'],
+      responses: {
+        executive: {
+          text: "High utilization providers: Dr. Smith (Cardiology) - 145% of peer avg ($2.1M annual), Dr. Johnson (Orthopedics) - 132% of peer avg ($1.8M), Dr. Williams (Internal Medicine) - 128% of peer avg ($1.2M). Root causes: Higher acuity case mix (40%), Defensive medicine patterns (35%), Care variation (25%). Peer review initiated for top 3.",
+          generalized: false
+        },
+        manager: {
+          text: "High utilization providers: ████████████████ (Cardiology) - ████████████████ of peer avg (████████████████ annual), ████████████████ (Orthopedics) - ████████████████ of peer avg, ████████████████ (Internal Medicine) - ████████████████ of peer avg. Root causes: Higher acuity case mix, defensive medicine patterns, care variation. Peer review initiated.",
+          generalized: true
+        },
+        employee: {
+          text: "High utilization providers identified across ████████████████ specialties. Utilization ranges from ████████████████ to ████████████████ of peer average. Root cause analysis attributes variation to case mix, practice patterns, and care variation. Contact analytics team for detailed reports.",
+          generalized: true
+        }
+      },
+      followUps: ['What interventions are planned?', 'Show specialty benchmarks', 'What is the peer review process?']
+    },
+    'Compare to benchmark data': {
+      category: 'healthcare_analytics',
+      topics: ['benchmark', 'comparison', 'analytics'],
+      responses: {
+        executive: {
+          text: "Benchmark comparison: Overall performance 92nd percentile. Strengths: Readmission rate 8.2% vs 12.1% national (top decile), Patient satisfaction 4.2/5 vs 3.8 national. Opportunities: ED wait time 42 min vs 35 min benchmark, OR utilization 68% vs 75% benchmark. Value-based contract performance: 108% of quality targets.",
+          generalized: false
+        },
+        manager: {
+          text: "Benchmark comparison: Overall performance ████████████████ percentile. Strengths: Readmission rate ████████████████ vs ████████████████ national, Patient satisfaction ████████████████ vs ████████████████ national. Opportunities: ED wait time ████████████████ vs ████████████████ benchmark, OR utilization ████████████████ vs ████████████████ benchmark.",
+          generalized: true
+        },
+        employee: {
+          text: "Benchmark comparison shows overall performance at ████████████████ percentile. Key strengths in readmission rates and patient satisfaction (both ████████████████ national average). Improvement opportunities in ED wait times and OR utilization. Contact analytics for detailed breakdowns.",
+          generalized: true
+        }
+      },
+      followUps: ['Show trend over time', 'What initiatives improved readmissions?', 'How do we compare to regional peers?']
     },
 
     // === Generic follow-ups for unmapped questions ===
@@ -1073,7 +1191,7 @@ export default function PlainIDChatFullContent() {
           generalized: false
         },
         manager: {
-          text: "Q4 showed positive growth trends. Revenue increased 12% quarter-over-quarter. Profit margins improved notably with strong performance in the enterprise segment. Overall financial health is strong with healthy cash reserves.",
+          text: "Q4 financial results: Revenue ████████████████ with ████████████████ QoQ growth. Profit margin ████████████████ with ████████████████ improvement. EBITDA ████████████████ with ████████████████ growth. Strong performance in enterprise segment with ████████████████ ARR. Cash position remains healthy.",
           generalized: true
         },
         employee: {
@@ -1087,11 +1205,11 @@ export default function PlainIDChatFullContent() {
           generalized: false
         },
         manager: {
-          text: "EU customer satisfaction improved to 87.3% (+4.2 points). NPS score increased to 52. Customer retention remains strong at 94.1%. Key satisfaction drivers include product reliability and support quality. Some accounts flagged for retention review.",
+          text: "EU customer satisfaction: ████████████████ with ████████████████ point improvement. NPS score ████████████████ with ████████████████ increase. Retention rate ████████████████. Top satisfaction drivers: product reliability (████████████████), support quality (████████████████). Churn risk identified in ████████████████ enterprise accounts worth ████████████████ ARR.",
           generalized: true
         },
         employee: {
-          text: "EU customer satisfaction trends show improvement. Overall satisfaction increased this quarter. Product reliability and support quality are key positive factors. Detailed metrics available upon request from your manager.",
+          text: "EU customer satisfaction trends show improvement with ████████████████ point increase. NPS score improved by ████████████████. Retention remains strong. Top drivers: product reliability and support quality rated ████████████████. Some accounts flagged for ████████████████ review.",
           generalized: true
         }
       },
@@ -1101,7 +1219,7 @@ export default function PlainIDChatFullContent() {
           generalized: false
         },
         manager: {
-          text: "Your department has 3 employees with performance concerns: 2 related to deadline management, 1 communication-related. Performance improvement plans are in progress. Individual details available in HR portal.",
+          text: "Engineering dept: ████████████████ employees below expectations (████████████████ missed deadlines, ████████████████ communication). PIPs active for ████████████████ and ████████████████. Retention risk: ████████████████ for ████████████████ individuals. Recommended actions: coaching and workload review.",
           generalized: true
         },
         employee: {
@@ -1115,11 +1233,11 @@ export default function PlainIDChatFullContent() {
           generalized: false
         },
         manager: {
-          text: "Product uses zero-trust security model with quantum-resistant encryption standards. Real-time threat detection system maintains industry-leading accuracy. Supports multi-cloud deployment across major providers. Full compliance certifications maintained.",
+          text: "Security architecture uses zero-trust model with quantum-resistant encryption (AES-256-GCM), real-time threat detection (████████████████ false positive rate). Multi-cloud: AWS, Azure, GCP. SOC2 Type II and ISO 27001 certified. Penetration test: ████████████████ critical findings.",
           generalized: true
         },
         employee: {
-          text: "Product implements zero-trust security architecture with modern encryption standards. Threat detection capabilities are integrated. Multi-cloud deployment is supported. Contact security team for detailed specifications.",
+          text: "Security architecture uses zero-trust model with ████████████████ encryption standard. Real-time threat detection with ████████████████ accuracy. Multi-cloud deployment supported. Certifications: ████████████████. Penetration test status: ████████████████. Contact security team for detailed specifications.",
           generalized: true
         }
       },
@@ -1159,7 +1277,7 @@ export default function PlainIDChatFullContent() {
           generalized: false
         },
         manager: {
-          text: "Compliance training completion is at 98.2% for your department. Some administrative items pending review. Restricted securities list has been updated. Please ensure your team completes outstanding training by end of quarter.",
+          text: "MNPI Compliance Status: ████████████████ training completion. ████████████████ pending violations under review (both administrative). Restricted list updated with ████████████████ securities. Next audit: ████████████████. ████████████████ material findings from last SEC examination.",
           generalized: true
         },
         employee: {
@@ -1175,7 +1293,7 @@ export default function PlainIDChatFullContent() {
           generalized: false
         },
         manager: {
-          text: "2025 roadmap includes AI capabilities in Q1, enterprise security features in Q2, API improvements in Q3, and mobile expansion in Q4. Timeline subject to resource availability and dependencies being managed.",
+          text: "2025 Roadmap: Q1 - AI Assistant launch (revenue impact: ████████████████ MRR), Q2 - Enterprise SSO (████████████████ customers waiting), Q3 - API v3 with GraphQL, Q4 - Mobile app. Total investment: ████████████████. Competitive response to ████████████████ announcement.",
           generalized: true
         },
         employee: {
@@ -1289,11 +1407,11 @@ export default function PlainIDChatFullContent() {
           generalized: false
         },
         manager: {
-          text: "Utilization analysis shows concentration in key diagnosis categories. Cost per episode is below benchmark. Optimization opportunities identified. Detailed provider-level data available in analytics dashboard.",
+          text: "Utilization patterns: Top 5 DRGs account for ████████████████ of costs. Cost per episode: ████████████████ (vs ████████████████ benchmark). High-utilization providers identified in ████████████████ regions. Savings opportunity: ████████████████ through care pathway optimization.",
           generalized: true
         },
         employee: {
-          text: "General utilization trends are available in the analytics portal. Cost metrics show favorable performance versus benchmarks. Contact your manager for detailed analysis.",
+          text: "Utilization patterns show concentration in top DRGs accounting for ████████████████ of costs. Cost per episode is ████████████████ benchmark. High-utilization providers identified in ████████████████ regions. Savings opportunity: ████████████████. Contact analytics team for details.",
           generalized: true
         }
       }
