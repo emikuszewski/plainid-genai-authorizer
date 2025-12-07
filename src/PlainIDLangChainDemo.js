@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Shield, Send, User, Filter, Database, Eye, Check, AlertTriangle, Lock, ChevronRight, Calendar, Download, MapPin, Users, Layers, Menu, Plus, MessageSquare, ArrowRight, Unlock, Paperclip, Camera, X, FileText, Image as ImageIcon, FileSpreadsheet, File, Building2, Cpu, HeartPulse, DollarSign, Upload, Sparkles } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Shield, Send, User, Filter, Database, Eye, Check, AlertTriangle, Lock, ChevronRight, Calendar, Download, MapPin, Users, Layers, Menu, Plus, MessageSquare, ArrowRight, Unlock, Paperclip, Camera, X, FileText, Image as ImageIcon, FileSpreadsheet, File, Building2, Cpu, HeartPulse, DollarSign, Upload, Sparkles, UserCog } from 'lucide-react';
 
 export default function PlainIDChatFullContent() {
   const [userRole, setUserRole] = useState('manager');
+  const [previousRole, setPreviousRole] = useState('manager');
   const [queryIndex, setQueryIndex] = useState(0);
   const [currentGuardrail, setCurrentGuardrail] = useState(0);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -15,9 +16,13 @@ export default function PlainIDChatFullContent() {
   const [selectedIndustry, setSelectedIndustry] = useState('all');
   const [hoveredIndustry, setHoveredIndustry] = useState(null);
   const [showFollowUps, setShowFollowUps] = useState(false);
-  const [activeFollowUp, setActiveFollowUp] = useState(null); // Track active follow-up question
-  const [headerShieldHovered, setHeaderShieldHovered] = useState(false); // Track header shield hover
-  const messagesEndRef = React.useRef(null);
+  const [activeFollowUp, setActiveFollowUp] = useState(null);
+  const [headerShieldHovered, setHeaderShieldHovered] = useState(false);
+  const [exchangeCount, setExchangeCount] = useState(0);
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+  const messagesEndRef = useRef(null);
+  const MAX_EXCHANGES = 5;
 
   // Auto-scroll to latest message
   useEffect(() => {
@@ -25,6 +30,31 @@ export default function PlainIDChatFullContent() {
       messagesEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
     }
   }, [messages]);
+
+  // Handle role changes - insert marker into conversation
+  useEffect(() => {
+    if (previousRole !== userRole && messages.length > 0 && !isProcessing) {
+      const roleChangeMarker = {
+        type: 'role_change',
+        fromRole: previousRole,
+        toRole: userRole,
+        timestamp: new Date()
+      };
+      setMessages(prev => [...prev, roleChangeMarker]);
+    }
+    setPreviousRole(userRole);
+  }, [userRole, messages.length, isProcessing, previousRole]);
+
+  // Toast auto-dismiss
+  useEffect(() => {
+    if (showToast) {
+      const timer = setTimeout(() => {
+        setShowToast(false);
+        setToastMessage('');
+      }, 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [showToast]);
 
   // Context-aware file names based on industry
   const contextAwareFileNames = {
@@ -900,7 +930,7 @@ export default function PlainIDChatFullContent() {
     }
   };
   
-  // Enhanced role-based permissions with context - FIXED: Manager now has financial_data access
+  // Enhanced role-based permissions with context
   const rolePermissions = {
     'executive': {
       name: 'Executive',
@@ -916,7 +946,6 @@ export default function PlainIDChatFullContent() {
     'manager': {
       name: 'Department Manager', 
       access: 'Limited Access',
-      // UPDATED: Added financial_data so manager gets PARTIAL access (redacted) instead of full block
       categories: [
         'customer_analytics', 'technical_documentation', 'hr_records', 'financial_data',
         'compliance_data', 'healthcare_analytics', 'product_roadmap'
@@ -964,17 +993,14 @@ export default function PlainIDChatFullContent() {
   const handleFileUpload = (type) => {
     if (isProcessing || attachedFiles.length >= 5) return;
     
-    // Get current query's industry for context-aware file names
     const currentIndustry = sampleQueries[queryIndex].industry;
     const fileNames = contextAwareFileNames[currentIndustry] || contextAwareFileNames.general;
     
-    // Pick a file name based on type
     const typeKey = type === 'document' ? 'document' : 'screenshot';
     const availableNames = fileNames[typeKey].filter(name => 
       !attachedFiles.some(f => f.name === name)
     );
     
-    // Get a random available name or generate a fallback
     const fileName = availableNames.length > 0 
       ? availableNames[Math.floor(Math.random() * availableNames.length)]
       : `${typeKey === 'document' ? 'Document' : 'Screenshot'}_${attachedFiles.length + 1}.${type === 'document' ? 'pdf' : 'png'}`;
@@ -984,7 +1010,7 @@ export default function PlainIDChatFullContent() {
       name: fileName,
       size: Math.floor(Math.random() * 2000000) + 100000,
       type: type === 'document' ? fileName.split('.').pop().toLowerCase() : 'png',
-      isUploaded: true // Mark as user-uploaded for Guardrail 2
+      isUploaded: true
     };
     
     setAttachedFiles([...attachedFiles, newFile]);
@@ -1041,7 +1067,6 @@ export default function PlainIDChatFullContent() {
       };
     }
     
-    // Dynamic document generation based on query category
     const docsByCategory = {
       'financial_data': [
         { name: "Q4_Financial_Report.pdf", metadata: { region: "global", classification: "confidential", department: "finance" }},
@@ -1129,7 +1154,6 @@ export default function PlainIDChatFullContent() {
       { name: "General_Document.pdf", metadata: { region: "global", classification: "internal", department: "general" }}
     ];
     
-    // Filter based on role context
     const filteredDocs = allDocs.filter(doc => {
       if (userRole === 'executive') return true;
       if (userRole === 'manager') {
@@ -1147,7 +1171,6 @@ export default function PlainIDChatFullContent() {
 
   // Get redacted response based on role and query
   const getRedactedResponse = (followUpText = null) => {
-    // If this is a follow-up question, get response from followUpResponses
     if (followUpText && followUpResponses[followUpText]) {
       const followUp = followUpResponses[followUpText];
       const role = rolePermissions[userRole];
@@ -1170,7 +1193,6 @@ export default function PlainIDChatFullContent() {
       };
     }
     
-    // Otherwise, use original query responses
     const query = sampleQueries[queryIndex];
     const role = rolePermissions[userRole];
     
@@ -1183,9 +1205,7 @@ export default function PlainIDChatFullContent() {
       };
     }
     
-    // Comprehensive responses by category and role with generalized flag
     const responses = {
-      // === GENERAL ENTERPRISE ===
       'financial_data': {
         executive: {
           text: "Q4 financial results: Revenue $2.3M (+12% QoQ), Profit margin 23.4% (+2.1%), EBITDA $540K (+15%). Strong performance in enterprise segment with $890K ARR. Cash position remains healthy at $4.2M.",
@@ -1256,8 +1276,6 @@ export default function PlainIDChatFullContent() {
           generalized: false
         }
       },
-
-      // === ASSET MANAGEMENT ===
       'mnpi_data': {
         executive: {
           text: "MNPI Alert - Confidential: Q4 earnings expected at $1.42 EPS (vs $1.28 consensus). M&A target: TechCorp acquisition at $45/share (~$2.1B). Insider Form 4 filings pending for 3 executives. Trading window closes Dec 15.",
@@ -1286,8 +1304,6 @@ export default function PlainIDChatFullContent() {
           generalized: false
         }
       },
-
-      // === TECHNOLOGY / ISVs ===
       'product_roadmap': {
         executive: {
           text: "2025 Roadmap: Q1 - AI Assistant launch (revenue impact: +$500K MRR), Q2 - Enterprise SSO (3 customers waiting), Q3 - API v3 with GraphQL, Q4 - Mobile app. Total investment: $2.1M. Competitive response to Competitor X's announcement.",
@@ -1344,8 +1360,6 @@ export default function PlainIDChatFullContent() {
           generalized: false
         }
       },
-
-      // === HEALTHCARE ===
       'clinical_data': {
         executive: {
           text: "Phase 3 Trial Results (CONFIDENTIAL): Primary endpoint met with p<0.001. Efficacy: 73% vs 45% placebo. Adverse events: 12% (vs 8% placebo), mostly mild. FDA submission planned for March 2025. Stock impact analysis prepared.",
@@ -1429,7 +1443,6 @@ export default function PlainIDChatFullContent() {
       };
     }
     
-    // Default response for unmapped categories
     return {
       response: "Information retrieved based on your access level. Some details may be redacted based on your role permissions.",
       redactionLevel: userRole === 'executive' ? 'none' : 'partial',
@@ -1438,9 +1451,8 @@ export default function PlainIDChatFullContent() {
     };
   };
 
-  // Get unsecured response - always returns full data regardless of permissions
+  // Get unsecured response
   const getUnsecuredResponse = (followUpText = null) => {
-    // If this is a follow-up, return the executive-level response (full data)
     if (followUpText && followUpResponses[followUpText]) {
       const execResponse = followUpResponses[followUpText].responses.executive;
       return execResponse.text || execResponse;
@@ -1470,38 +1482,48 @@ export default function PlainIDChatFullContent() {
     return unsecuredResponses[query.category] || "Full data access without authorization controls - all sensitive information exposed.";
   };
 
-  // Handle follow-up question click - starts a new chat with the follow-up
+  // Show toast notification
+  const displayToast = (message) => {
+    setToastMessage(message);
+    setShowToast(true);
+  };
+
+  // Handle follow-up question click - appends to conversation
   const handleFollowUpClick = (followUpText) => {
-    // Clear messages and start fresh
-    setMessages([]);
+    if (exchangeCount >= MAX_EXCHANGES) {
+      displayToast(`Conversation limit reached (${MAX_EXCHANGES} exchanges). Start a new chat to continue.`);
+      return;
+    }
+
     setShowFollowUps(false);
     setActiveFollowUp(followUpText);
     setInputText(followUpText);
     
-    // Trigger the send flow after a brief delay to allow state to update
     setTimeout(() => {
       handleSendFollowUp(followUpText);
     }, 100);
   };
 
-  // Handle sending a follow-up question
+  // Handle sending a follow-up question - appends to existing conversation
   const handleSendFollowUp = (followUpText) => {
-    // Store current files before clearing (for Guardrail 2)
+    if (exchangeCount >= MAX_EXCHANGES) {
+      displayToast(`Conversation limit reached (${MAX_EXCHANGES} exchanges). Start a new chat to continue.`);
+      return;
+    }
+
     const currentFiles = [...attachedFiles];
     
-    // Add user message
     const userMessage = {
       type: 'user',
       text: followUpText,
       files: currentFiles,
       timestamp: new Date()
     };
-    setMessages([userMessage]);
+    setMessages(prev => [...prev, userMessage]);
     setAttachedFiles([]);
     setCurrentGuardrail(1);
     setIsProcessing(true);
 
-    // Guardrail 1: Categorizer
     setTimeout(() => {
       const classification = getClassificationResult(followUpText);
       setMessages(prev => [...prev, {
@@ -1513,20 +1535,18 @@ export default function PlainIDChatFullContent() {
       setCurrentGuardrail(2);
     }, 2000);
 
-    // Guardrail 2: Retriever - now includes uploaded files
     setTimeout(() => {
       const docResults = getDocumentResults(followUpText);
       setMessages(prev => [...prev, {
         type: 'guardrail',
         guardrail: 'retriever',
         docResults: docResults,
-        uploadedFiles: currentFiles, // Include uploaded files
+        uploadedFiles: currentFiles,
         timestamp: new Date()
       }]);
       setCurrentGuardrail(3);
     }, 4000);
 
-    // Guardrail 3: Anonymizer
     setTimeout(() => {
       const response = getRedactedResponse(followUpText);
       setMessages(prev => [...prev, {
@@ -1538,7 +1558,6 @@ export default function PlainIDChatFullContent() {
       setCurrentGuardrail(4);
     }, 6000);
 
-    // Final response
     setTimeout(() => {
       const finalResponse = getRedactedResponse(followUpText);
       setMessages(prev => [...prev, {
@@ -1553,35 +1572,34 @@ export default function PlainIDChatFullContent() {
       setCurrentGuardrail(0);
       setActiveFollowUp(null);
       setShowFollowUps(true);
-      
-      // Show CTA modal
-      // setTimeout(() => setShowCTAModal(true), 2000);
+      setExchangeCount(prev => prev + 1);
     }, 8000);
   };
 
   const handleSendMessage = () => {
+    if (exchangeCount >= MAX_EXCHANGES) {
+      displayToast(`Conversation limit reached (${MAX_EXCHANGES} exchanges). Start a new chat to continue.`);
+      return;
+    }
+
     const query = sampleQueries[queryIndex];
     
-    // Reset follow-up state
     setActiveFollowUp(null);
     
-    // Store current files before clearing (for Guardrail 2)
     const currentFiles = [...attachedFiles];
     
-    // Add user message
     const userMessage = {
       type: 'user',
       text: query.text,
       files: currentFiles,
       timestamp: new Date()
     };
-    setMessages([userMessage]);
+    setMessages(prev => [...prev, userMessage]);
     setAttachedFiles([]);
     setCurrentGuardrail(1);
     setIsProcessing(true);
     setShowFollowUps(false);
 
-    // Guardrail 1: Categorizer
     setTimeout(() => {
       const classification = getClassificationResult();
       setMessages(prev => [...prev, {
@@ -1593,20 +1611,18 @@ export default function PlainIDChatFullContent() {
       setCurrentGuardrail(2);
     }, 2000);
 
-    // Guardrail 2: Retriever - now includes uploaded files
     setTimeout(() => {
       const docResults = getDocumentResults();
       setMessages(prev => [...prev, {
         type: 'guardrail',
         guardrail: 'retriever',
         docResults: docResults,
-        uploadedFiles: currentFiles, // Include uploaded files
+        uploadedFiles: currentFiles,
         timestamp: new Date()
       }]);
       setCurrentGuardrail(3);
     }, 4000);
 
-    // Guardrail 3: Anonymizer
     setTimeout(() => {
       const response = getRedactedResponse();
       setMessages(prev => [...prev, {
@@ -1618,7 +1634,6 @@ export default function PlainIDChatFullContent() {
       setCurrentGuardrail(4);
     }, 6000);
 
-    // Final response
     setTimeout(() => {
       const finalResponse = getRedactedResponse();
       setMessages(prev => [...prev, {
@@ -1632,14 +1647,11 @@ export default function PlainIDChatFullContent() {
       setIsProcessing(false);
       setCurrentGuardrail(0);
       setShowFollowUps(true);
-      
-      // Show CTA modal
-      // setTimeout(() => setShowCTAModal(true), 2000);
+      setExchangeCount(prev => prev + 1);
     }, 8000);
   };
 
   const selectQuery = (index) => {
-    // Find the actual index in the full sampleQueries array
     const actualIndex = sampleQueries.findIndex(q => q.text === filteredQueries[index].text);
     setQueryIndex(actualIndex);
     setInputText(sampleQueries[actualIndex].text);
@@ -1649,6 +1661,47 @@ export default function PlainIDChatFullContent() {
   const BetaTag = () => (
     <span className="ml-2 px-1.5 py-0.5 text-xs font-medium bg-blue-100 text-blue-800 rounded uppercase">Beta</span>
   );
+
+  // Toast Notification Component
+  const ToastNotification = () => {
+    if (!showToast) return null;
+    
+    return (
+      <div className="fixed bottom-6 right-6 z-[100] animate-slideUp">
+        <div className="bg-gray-900 text-white px-6 py-4 rounded-xl shadow-2xl flex items-center space-x-3 max-w-md">
+          <div className="flex-shrink-0">
+            <AlertTriangle size={20} className="text-yellow-400" />
+          </div>
+          <div className="flex-grow">
+            <p className="text-sm font-medium">{toastMessage}</p>
+          </div>
+          <button
+            onClick={() => setShowToast(false)}
+            className="flex-shrink-0 text-gray-400 hover:text-white transition-colors"
+          >
+            <X size={18} />
+          </button>
+        </div>
+      </div>
+    );
+  };
+
+  // Role Change Marker Component
+  const RoleChangeMarker = ({ fromRole, toRole }) => {
+    const fromRoleData = rolePermissions[fromRole];
+    const toRoleData = rolePermissions[toRole];
+    
+    return (
+      <div className="flex justify-center my-4">
+        <div className="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-full px-4 py-2 flex items-center space-x-2 shadow-sm">
+          <UserCog size={16} className="text-amber-600" />
+          <span className="text-sm text-amber-800">
+            Role changed from <span className="font-medium">{fromRoleData?.name || fromRole}</span> to <span className="font-medium">{toRoleData?.name || toRole}</span>
+          </span>
+        </div>
+      </div>
+    );
+  };
 
   const CTAModal = () => {
     if (!showCTAModal) return null;
@@ -1711,6 +1764,7 @@ export default function PlainIDChatFullContent() {
   const classification = getClassificationResult(activeFollowUp);
   const docResults = getDocumentResults(activeFollowUp);
   const response = getRedactedResponse(activeFollowUp);
+  const isAtLimit = exchangeCount >= MAX_EXCHANGES;
 
   return (
     <div className="flex h-screen bg-gray-50">
@@ -1734,6 +1788,7 @@ export default function PlainIDChatFullContent() {
               setAttachedFiles([]);
               setShowFollowUps(false);
               setActiveFollowUp(null);
+              setExchangeCount(0);
             }}
             className="w-full flex items-center justify-center px-3 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors"
           >
@@ -1742,7 +1797,7 @@ export default function PlainIDChatFullContent() {
           </button>
         </div>
 
-        {/* Industry Filter - Icon Grid Design */}
+        {/* Industry Filter */}
         <div className="p-3 border-b border-gray-700">
           <div className="flex items-center justify-between mb-2">
             <div className="text-xs text-gray-400">Industry</div>
@@ -1771,7 +1826,6 @@ export default function PlainIDChatFullContent() {
                     <IconComponent size={18} />
                   </button>
                   
-                  {/* Tooltip */}
                   {isHovered && (
                     <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-gray-700 text-white text-xs rounded whitespace-nowrap z-10 shadow-lg">
                       {industry.name}
@@ -1847,7 +1901,6 @@ export default function PlainIDChatFullContent() {
               <Menu size={20} />
             </button>
             <div className="flex items-center">
-              {/* Shield icon with tooltip */}
               <div 
                 className="relative"
                 onMouseEnter={() => setHeaderShieldHovered(true)}
@@ -1857,7 +1910,6 @@ export default function PlainIDChatFullContent() {
                   <Shield size={20} className="text-white" />
                 </div>
                 
-                {/* Tooltip */}
                 {headerShieldHovered && (
                   <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-2 bg-gray-800 text-white text-xs rounded-lg whitespace-nowrap z-50 shadow-xl">
                     <div className="text-center">
@@ -1880,6 +1932,16 @@ export default function PlainIDChatFullContent() {
           </div>
           
           <div className="flex items-center space-x-3">
+            {/* Exchange Counter */}
+            {messages.length > 0 && (
+              <div className="flex items-center space-x-2 bg-gray-100 px-3 py-1.5 rounded-lg">
+                <MessageSquare size={14} className="text-gray-500" />
+                <span className="text-xs font-medium text-gray-700">
+                  {exchangeCount}/{MAX_EXCHANGES} exchanges
+                </span>
+              </div>
+            )}
+
             {/* Role Badge */}
             <div className="flex items-center space-x-3 bg-gradient-to-r from-teal-50 to-blue-50 px-4 py-2 rounded-lg border border-teal-200">
               <div className="text-xs">
@@ -1910,9 +1972,8 @@ export default function PlainIDChatFullContent() {
           </div>
         </div>
 
-        {/* Content Area - Either Comparison or Chat */}
+        {/* Content Area */}
         {showComparison ? (
-          // Comparison View
           <div className="flex-grow overflow-y-auto p-6 bg-gray-50">
             <div className="max-w-7xl mx-auto">
               <div className="text-center mb-8">
@@ -2060,7 +2121,6 @@ export default function PlainIDChatFullContent() {
             </div>
           </div>
         ) : (
-          // Chat View
           <>
             <div className="flex-grow overflow-y-auto px-6 py-8 bg-gray-50">
               {messages.length === 0 ? (
@@ -2138,6 +2198,11 @@ export default function PlainIDChatFullContent() {
                 <div className="max-w-4xl mx-auto space-y-6">
                   {messages.map((msg, i) => (
                     <div key={i} className="animate-fadeIn">
+                      {/* Role Change Marker */}
+                      {msg.type === 'role_change' && (
+                        <RoleChangeMarker fromRole={msg.fromRole} toRole={msg.toRole} />
+                      )}
+
                       {msg.type === 'user' && (
                         <div className="flex justify-end">
                           <div className="flex items-start space-x-3 flex-row-reverse">
@@ -2251,7 +2316,6 @@ export default function PlainIDChatFullContent() {
                                     )}
                                   </p>
                                   
-                                  {/* Retrieved Documents */}
                                   {msg.docResults.filteredDocs.length > 0 && (
                                     <div className="mb-4">
                                       <p className="text-xs font-medium text-gray-500 mb-2">Retrieved Documents</p>
@@ -2272,7 +2336,6 @@ export default function PlainIDChatFullContent() {
                                     </div>
                                   )}
                                   
-                                  {/* User Uploaded Files */}
                                   {msg.uploadedFiles && msg.uploadedFiles.length > 0 && (
                                     <div className="mb-4">
                                       <p className="text-xs font-medium text-gray-500 mb-2">User Uploaded Files</p>
@@ -2282,7 +2345,6 @@ export default function PlainIDChatFullContent() {
                                           const IconComponent = iconData.Icon;
                                           return (
                                             <div key={idx} className="bg-amber-50 p-3 rounded-lg border-2 border-amber-300 border-dashed relative">
-                                              {/* Uploaded Badge */}
                                               <div className="absolute -top-2 -right-2 bg-amber-500 text-white text-xs font-medium px-2 py-0.5 rounded-full flex items-center">
                                                 <Upload size={10} className="mr-1" />
                                                 Uploaded
@@ -2347,14 +2409,12 @@ export default function PlainIDChatFullContent() {
                                     <p className="text-xs text-gray-600">Policy applied based on {currentRole.name} role permissions</p>
                                   </div>
                                   <div className="flex items-center space-x-2">
-                                    {/* Generalization Badge */}
                                     {msg.response.generalized && (
                                       <div className="px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800 flex items-center">
                                         <Sparkles size={12} className="mr-1" />
                                         Generalized
                                       </div>
                                     )}
-                                    {/* Redaction Badge */}
                                     <div className={`px-3 py-1 rounded-full text-xs font-medium ${
                                       msg.response.redactionLevel === 'none' ? 'bg-green-100 text-green-800' :
                                       msg.response.redactionLevel === 'partial' ? 'bg-yellow-100 text-yellow-800' :
@@ -2396,7 +2456,6 @@ export default function PlainIDChatFullContent() {
                                       <Lock size={12} className="text-teal-600 mr-1" />
                                       <span>Policy-compliant</span>
                                     </div>
-                                    {/* Technique indicators */}
                                     {msg.generalized && (
                                       <div className="flex items-center px-2 py-0.5 bg-blue-50 rounded-full">
                                         <Sparkles size={10} className="text-blue-600 mr-1" />
@@ -2422,14 +2481,23 @@ export default function PlainIDChatFullContent() {
                                       <button
                                         key={idx}
                                         onClick={() => handleFollowUpClick(followUp)}
-                                        disabled={isProcessing}
-                                        className="px-3 py-1.5 text-xs bg-gray-100 hover:bg-teal-50 hover:text-teal-700 text-gray-700 rounded-full border border-gray-200 hover:border-teal-300 transition-colors flex items-center disabled:opacity-50 disabled:cursor-not-allowed"
+                                        disabled={isProcessing || isAtLimit}
+                                        className={`px-3 py-1.5 text-xs rounded-full border transition-colors flex items-center ${
+                                          isAtLimit
+                                            ? 'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed'
+                                            : 'bg-gray-100 hover:bg-teal-50 hover:text-teal-700 text-gray-700 border-gray-200 hover:border-teal-300 disabled:opacity-50 disabled:cursor-not-allowed'
+                                        }`}
                                       >
                                         <ChevronRight size={12} className="mr-1" />
                                         {followUp}
                                       </button>
                                     ))}
                                   </div>
+                                  {isAtLimit && (
+                                    <p className="text-xs text-amber-600 mt-2">
+                                      Conversation limit reached. Start a new chat to continue.
+                                    </p>
+                                  )}
                                 </div>
                               )}
                             </div>
@@ -2459,7 +2527,6 @@ export default function PlainIDChatFullContent() {
                     </div>
                   )}
                   
-                  {/* Scroll anchor */}
                   <div ref={messagesEndRef} />
                 </div>
               )}
@@ -2503,40 +2570,37 @@ export default function PlainIDChatFullContent() {
             <div className="bg-white border-t border-gray-200 px-6 py-4">
               <div className="max-w-4xl mx-auto">
                 <div className="flex items-end space-x-3">
-                  {/* Upload Files Button */}
                   <button
                     onClick={() => handleFileUpload('document')}
-                    disabled={isProcessing || attachedFiles.length >= 5}
+                    disabled={isProcessing || attachedFiles.length >= 5 || isAtLimit}
                     className="flex-shrink-0 w-10 h-10 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded-lg flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed transition-all hover:scale-105 active:scale-95"
                     title="Upload files"
                   >
                     <Paperclip size={20} />
                   </button>
 
-                  {/* Upload Screenshot Button */}
                   <button
                     onClick={() => handleFileUpload('screenshot')}
-                    disabled={isProcessing || attachedFiles.length >= 5}
+                    disabled={isProcessing || attachedFiles.length >= 5 || isAtLimit}
                     className="flex-shrink-0 w-10 h-10 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded-lg flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed transition-all hover:scale-105 active:scale-95"
                     title="Upload screenshot"
                   >
                     <Camera size={20} />
                   </button>
 
-                  {/* Text Input */}
                   <div className="flex-grow relative">
                     <input
                       type="text"
                       value={inputText}
                       onChange={(e) => setInputText(e.target.value)}
-                      placeholder="Ask a question to see the three-layer authorization in action..."
-                      disabled={isProcessing}
+                      placeholder={isAtLimit ? "Conversation limit reached. Start a new chat." : "Ask a question to see the three-layer authorization in action..."}
+                      disabled={isProcessing || isAtLimit}
                       className="w-full px-4 py-3 pr-12 bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
                     />
                   </div>
                   <button
                     onClick={handleSendMessage}
-                    disabled={!inputText.trim() || isProcessing}
+                    disabled={!inputText.trim() || isProcessing || isAtLimit}
                     className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-teal-500 to-teal-600 text-white rounded-xl flex items-center justify-center hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <Send size={20} />
@@ -2544,6 +2608,7 @@ export default function PlainIDChatFullContent() {
                 </div>
                 <p className="text-xs text-gray-500 mt-2 text-center">
                   Protected by PlainID Authorization • {currentRole.name} • {currentRole.access}
+                  {isAtLimit && <span className="text-amber-600 ml-2">• Limit reached</span>}
                 </p>
               </div>
             </div>
@@ -2554,14 +2619,26 @@ export default function PlainIDChatFullContent() {
       {/* CTA Modal */}
       <CTAModal />
 
+      {/* Toast Notification */}
+      <ToastNotification />
+
       <style jsx global>{`
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(10px); }
           to { opacity: 1; transform: translateY(0); }
         }
         
+        @keyframes slideUp {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        
         .animate-fadeIn {
           animation: fadeIn 0.5s ease-out;
+        }
+        
+        .animate-slideUp {
+          animation: slideUp 0.3s ease-out;
         }
       `}</style>
     </div>
