@@ -1772,9 +1772,19 @@ export default function PlainIDChatFullContent() {
       <div className={`${sidebarOpen ? 'w-72' : 'w-0'} transition-all duration-300 bg-gray-900 text-white flex flex-col overflow-hidden`}>
         <div className="p-4 border-b border-gray-700">
           <div className="flex items-center mb-4">
-            <div className="bg-gradient-to-r from-teal-500 to-teal-600 p-2 rounded-lg mr-3">
-              <Shield size={20} />
-            </div>
+             {/* COMMENTED OUT - original shield icon
+              <div className="bg-gradient-to-r from-teal-500 to-teal-600 p-2 rounded-lg mr-3">
+                <Shield size={20} />
+              </div>
+              */}
+              {/* NEW - custom logo image */}
+              <div className="mr-3">
+                <img 
+                  src="https://www.plainid.com/wp-content/uploads/2025/12/PlainID-logo-icon-button-No-edge.png" 
+                  alt="PlainID Logo" 
+                  className="w-9 h-9 rounded-lg object-contain"
+                />
+              </div>
             <div>
               <div className="font-semibold text-sm">PlainID</div>
               <div className="text-xs text-gray-400">LangChain Authorizer</div>
