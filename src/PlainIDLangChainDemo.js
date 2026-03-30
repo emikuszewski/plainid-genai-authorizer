@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Shield, Send, User, Filter, Database, Eye, Check, AlertTriangle, Lock, ChevronRight, Calendar, Download, MapPin, Users, Layers, Menu, Plus, MessageSquare, ArrowRight, Unlock, Paperclip, Camera, X, FileText, Image as ImageIcon, FileSpreadsheet, File, Building2, Cpu, HeartPulse, DollarSign, Upload, Sparkles, UserCog } from 'lucide-react';
+import { Shield, Send, User, Filter, Database, Eye, Check, AlertTriangle, Lock, ChevronRight, Calendar, Download, MapPin, Users, Layers, Menu, Plus, MessageSquare, ArrowRight, Unlock, Paperclip, Camera, X, FileText, Image as ImageIcon, FileSpreadsheet, File, Building2, Cpu, HeartPulse, DollarSign, Upload, Sparkles, UserCog, Wrench } from 'lucide-react';
 
 export default function PlainIDChatFullContent() {
   const [userRole, setUserRole] = useState('manager');
@@ -85,7 +85,7 @@ export default function PlainIDChatFullContent() {
     { id: 'general', name: 'General Enterprise', icon: Building2 }
   ];
 
-  // Enhanced sample queries with categories and industry verticals
+  // Enhanced sample queries with categories, industry verticals, and agentic flag
   const sampleQueries = [
     // === GENERAL ENTERPRISE ===
     { 
@@ -93,6 +93,7 @@ export default function PlainIDChatFullContent() {
       category: 'financial_data',
       topics: ['revenue', 'profit', 'financial_performance'],
       industry: 'general',
+      agentic: false,
       followUps: [
         'How does this compare to Q3?',
         'What drove the revenue growth?',
@@ -104,6 +105,7 @@ export default function PlainIDChatFullContent() {
       category: 'customer_analytics',
       topics: ['customer_data', 'analytics', 'regional_data'],
       industry: 'general',
+      agentic: false,
       followUps: [
         'What about North America trends?',
         'Which products have the lowest satisfaction?',
@@ -115,6 +117,7 @@ export default function PlainIDChatFullContent() {
       category: 'hr_records',
       topics: ['employee_data', 'performance', 'hr_sensitive'],
       industry: 'general',
+      agentic: true,
       followUps: [
         'What improvement plans are in place?',
         'Show retention risk analysis',
@@ -126,6 +129,7 @@ export default function PlainIDChatFullContent() {
       category: 'technical_documentation',
       topics: ['security', 'architecture', 'product_specs'],
       industry: 'general',
+      agentic: false,
       followUps: [
         'What compliance certifications do we have?',
         'How does encryption work?',
@@ -137,6 +141,7 @@ export default function PlainIDChatFullContent() {
       category: 'compensation_data',
       topics: ['salary', 'compensation', 'hr_confidential'],
       industry: 'general',
+      agentic: false,
       followUps: [
         'How does this compare to market rates?',
         'What about equity compensation?',
@@ -150,6 +155,7 @@ export default function PlainIDChatFullContent() {
       category: 'mnpi_data',
       topics: ['mnpi', 'fund_performance', 'pre_release'],
       industry: 'asset_management',
+      agentic: true,
       followUps: [
         'When is the official release date?',
         'How does this compare to benchmark?',
@@ -161,6 +167,7 @@ export default function PlainIDChatFullContent() {
       category: 'mnpi_data',
       topics: ['mnpi', 'mergers', 'acquisitions', 'deal_pipeline'],
       industry: 'asset_management',
+      agentic: true,
       followUps: [
         'What is the valuation range?',
         'Who are the advisors involved?',
@@ -172,6 +179,7 @@ export default function PlainIDChatFullContent() {
       category: 'compliance_data',
       topics: ['mnpi', 'compliance', 'regulatory'],
       industry: 'asset_management',
+      agentic: true,
       followUps: [
         'Show me recent violations',
         'Who needs compliance training?',
@@ -183,6 +191,7 @@ export default function PlainIDChatFullContent() {
       category: 'mnpi_data',
       topics: ['insider_trading', 'disclosure', 'mnpi'],
       industry: 'asset_management',
+      agentic: true,
       followUps: [
         'When are the filing deadlines?',
         'Show Form 4 preparation status',
@@ -194,6 +203,7 @@ export default function PlainIDChatFullContent() {
       category: 'mnpi_data',
       topics: ['earnings', 'projections', 'mnpi', 'pre_release'],
       industry: 'asset_management',
+      agentic: true,
       followUps: [
         'What assumptions drive the forecast?',
         'How does this compare to analyst consensus?',
@@ -207,6 +217,7 @@ export default function PlainIDChatFullContent() {
       category: 'product_roadmap',
       topics: ['roadmap', 'features', 'pre_release', 'strategy'],
       industry: 'technology',
+      agentic: false,
       followUps: [
         'What is the release timeline?',
         'Which customers requested these features?',
@@ -218,6 +229,7 @@ export default function PlainIDChatFullContent() {
       category: 'strategic_partnerships',
       topics: ['partnerships', 'negotiations', 'confidential'],
       industry: 'technology',
+      agentic: true,
       followUps: [
         'What are the deal terms?',
         'Who is leading the negotiations?',
@@ -229,6 +241,7 @@ export default function PlainIDChatFullContent() {
       category: 'intellectual_property',
       topics: ['patents', 'ip', 'legal', 'confidential'],
       industry: 'technology',
+      agentic: true,
       followUps: [
         'What is the filing timeline?',
         'Show prior art analysis',
@@ -240,6 +253,7 @@ export default function PlainIDChatFullContent() {
       category: 'financial_data',
       topics: ['costs', 'infrastructure', 'customer_data'],
       industry: 'technology',
+      agentic: false,
       followUps: [
         'Which customers are most profitable?',
         'Show margin analysis by tier',
@@ -251,6 +265,7 @@ export default function PlainIDChatFullContent() {
       category: 'security_data',
       topics: ['security', 'vulnerabilities', 'confidential'],
       industry: 'technology',
+      agentic: true,
       followUps: [
         'What is the severity classification?',
         'When will patches be released?',
@@ -264,6 +279,7 @@ export default function PlainIDChatFullContent() {
       category: 'clinical_data',
       topics: ['clinical_trials', 'pre_release', 'mnpi', 'research'],
       industry: 'healthcare',
+      agentic: true,
       followUps: [
         'What is the efficacy data?',
         'Show adverse event summary',
@@ -275,6 +291,7 @@ export default function PlainIDChatFullContent() {
       category: 'payer_contracts',
       topics: ['reimbursement', 'contracts', 'negotiations', 'confidential'],
       industry: 'healthcare',
+      agentic: false,
       followUps: [
         'Which payers are we negotiating with?',
         'What rates are we targeting?',
@@ -286,6 +303,7 @@ export default function PlainIDChatFullContent() {
       category: 'phi_data',
       topics: ['patient_data', 'phi', 'treatment', 'hipaa'],
       industry: 'healthcare',
+      agentic: true,
       followUps: [
         'What are the eligibility criteria?',
         'Show patient demographics',
@@ -297,6 +315,7 @@ export default function PlainIDChatFullContent() {
       category: 'regulatory_data',
       topics: ['fda', 'regulatory', 'drug_approval', 'mnpi'],
       industry: 'healthcare',
+      agentic: true,
       followUps: [
         'What is the PDUFA date?',
         'Are there any FDA concerns?',
@@ -308,6 +327,7 @@ export default function PlainIDChatFullContent() {
       category: 'healthcare_analytics',
       topics: ['utilization', 'analytics', 'diagnosis', 'claims'],
       industry: 'healthcare',
+      agentic: false,
       followUps: [
         'Show cost per episode of care',
         'Which providers have highest utilization?',
@@ -960,6 +980,105 @@ export default function PlainIDChatFullContent() {
     }
   };
 
+  // MCP Tool Control — tools by data category (3 tools each, tiered)
+  const toolsByCategory = {
+    'financial_data': [
+      { name: 'query_financial_db', description: 'Read quarterly revenue and margin data', tier: 1, tierLabel: 'Query' },
+      { name: 'run_profitability_analysis', description: 'Compute segment-level P&L breakdown', tier: 2, tierLabel: 'Analyze' },
+      { name: 'export_financial_report', description: 'Generate downloadable financial summary', tier: 3, tierLabel: 'Export' }
+    ],
+    'customer_analytics': [
+      { name: 'query_crm', description: 'Read customer satisfaction and NPS records', tier: 1, tierLabel: 'Query' },
+      { name: 'run_churn_prediction', description: 'Compute retention risk scores per account', tier: 2, tierLabel: 'Analyze' },
+      { name: 'export_customer_data', description: 'Generate customer data extract for analysis', tier: 3, tierLabel: 'Export' }
+    ],
+    'hr_records': [
+      { name: 'query_hr_database', description: 'Read employee performance review records', tier: 1, tierLabel: 'Query' },
+      { name: 'run_retention_analysis', description: 'Compute flight risk scores for team members', tier: 2, tierLabel: 'Analyze' },
+      { name: 'initiate_pip', description: 'Create a new performance improvement plan', tier: 4, tierLabel: 'Write' }
+    ],
+    'technical_documentation': [
+      { name: 'query_engineering_wiki', description: 'Read product architecture documentation', tier: 1, tierLabel: 'Query' },
+      { name: 'run_compliance_check', description: 'Validate security posture against certifications', tier: 2, tierLabel: 'Analyze' },
+      { name: 'generate_security_report', description: 'Produce security assessment document', tier: 3, tierLabel: 'Export' }
+    ],
+    'compensation_data': [
+      { name: 'query_compensation_db', description: 'Read salary bands and equity grant data', tier: 1, tierLabel: 'Query' },
+      { name: 'run_market_benchmark', description: 'Compare compensation against Radford data', tier: 2, tierLabel: 'Analyze' },
+      { name: 'export_comp_analysis', description: 'Generate total compensation report', tier: 3, tierLabel: 'Export' }
+    ],
+    'mnpi_data': [
+      { name: 'query_insider_trading_log', description: 'Read insider transaction pending disclosures', tier: 1, tierLabel: 'Query' },
+      { name: 'access_earnings_projections', description: 'Retrieve pre-announcement earnings models', tier: 2, tierLabel: 'Analyze' },
+      { name: 'generate_13f_draft', description: 'Produce draft 13F filing with holdings data', tier: 3, tierLabel: 'Export' }
+    ],
+    'compliance_data': [
+      { name: 'query_compliance_db', description: 'Read training completion and violation records', tier: 1, tierLabel: 'Query' },
+      { name: 'run_trading_window_check', description: 'Validate current trading restrictions', tier: 2, tierLabel: 'Analyze' },
+      { name: 'update_restricted_list', description: 'Modify the restricted securities list', tier: 4, tierLabel: 'Write' }
+    ],
+    'product_roadmap': [
+      { name: 'query_product_backlog', description: 'Read feature pipeline and prioritization', tier: 1, tierLabel: 'Query' },
+      { name: 'run_competitive_analysis', description: 'Compare roadmap against competitor launches', tier: 2, tierLabel: 'Analyze' },
+      { name: 'export_roadmap_deck', description: 'Generate customer-facing roadmap presentation', tier: 3, tierLabel: 'Export' }
+    ],
+    'strategic_partnerships': [
+      { name: 'query_deal_pipeline', description: 'Read active partnership negotiations', tier: 1, tierLabel: 'Query' },
+      { name: 'run_deal_valuation', description: 'Compute partnership ROI projections', tier: 2, tierLabel: 'Analyze' },
+      { name: 'generate_term_sheet', description: 'Produce draft term sheet for review', tier: 3, tierLabel: 'Export' }
+    ],
+    'intellectual_property': [
+      { name: 'query_patent_portfolio', description: 'Read patent filing status and prior art', tier: 1, tierLabel: 'Query' },
+      { name: 'run_ip_risk_assessment', description: 'Evaluate infringement exposure', tier: 2, tierLabel: 'Analyze' },
+      { name: 'generate_filing_draft', description: 'Produce draft patent application', tier: 3, tierLabel: 'Export' }
+    ],
+    'security_data': [
+      { name: 'query_vulnerability_scanner', description: 'Read current vulnerability assessment results', tier: 1, tierLabel: 'Query' },
+      { name: 'run_penetration_test_review', description: 'Analyze pen test findings and remediation status', tier: 2, tierLabel: 'Analyze' },
+      { name: 'generate_patch_schedule', description: 'Produce customer-facing security patch timeline', tier: 3, tierLabel: 'Export' }
+    ],
+    'clinical_data': [
+      { name: 'query_clinical_trials_db', description: 'Read trial enrollment and endpoint data', tier: 1, tierLabel: 'Query' },
+      { name: 'run_efficacy_analysis', description: 'Compute response rates and statistical significance', tier: 2, tierLabel: 'Analyze' },
+      { name: 'generate_fda_submission', description: 'Produce draft NDA/BLA submission package', tier: 3, tierLabel: 'Export' }
+    ],
+    'payer_contracts': [
+      { name: 'query_contract_db', description: 'Read payer rate schedules and terms', tier: 1, tierLabel: 'Query' },
+      { name: 'run_rate_negotiation_model', description: 'Simulate reimbursement rate scenarios', tier: 2, tierLabel: 'Analyze' },
+      { name: 'generate_contract_proposal', description: 'Produce draft payer contract proposal', tier: 3, tierLabel: 'Export' }
+    ],
+    'phi_data': [
+      { name: 'query_patient_records', description: 'Read patient eligibility and demographics (HIPAA)', tier: 1, tierLabel: 'Query' },
+      { name: 'run_cohort_analysis', description: 'Compute patient cohort statistics (de-identified)', tier: 2, tierLabel: 'Analyze' },
+      { name: 'export_phi_report', description: 'Generate patient-level data extract', tier: 3, tierLabel: 'Export' }
+    ],
+    'regulatory_data': [
+      { name: 'query_fda_tracker', description: 'Read PDUFA dates and submission status', tier: 1, tierLabel: 'Query' },
+      { name: 'run_approval_probability', description: 'Compute approval likelihood based on precedent', tier: 2, tierLabel: 'Analyze' },
+      { name: 'generate_regulatory_brief', description: 'Produce regulatory strategy document', tier: 3, tierLabel: 'Export' }
+    ],
+    'healthcare_analytics': [
+      { name: 'query_utilization_db', description: 'Read diagnosis code utilization patterns', tier: 1, tierLabel: 'Query' },
+      { name: 'run_cost_per_episode', description: 'Compute episode-of-care cost benchmarks', tier: 2, tierLabel: 'Analyze' },
+      { name: 'export_provider_scorecard', description: 'Generate provider performance report', tier: 3, tierLabel: 'Export' }
+    ],
+    'general': [
+      { name: 'query_knowledge_base', description: 'Read general enterprise knowledge base', tier: 1, tierLabel: 'Query' },
+      { name: 'run_data_analysis', description: 'Compute general data analysis and summaries', tier: 2, tierLabel: 'Analyze' },
+      { name: 'export_report', description: 'Generate downloadable report', tier: 3, tierLabel: 'Export' }
+    ]
+  };
+
+  // Tool tier permissions by role
+  const toolTierPermissions = {
+    'executive': { maxTier: 4 },
+    'manager': { maxTier: 2 },
+    'employee': { maxTier: 1 }
+  };
+
+  // Determine if current query is agentic
+  const isAgenticQuery = sampleQueries[queryIndex]?.agentic || false;
+
   // Filter queries by selected industry
   const filteredQueries = selectedIndustry === 'all' 
     ? sampleQueries 
@@ -1166,6 +1285,33 @@ export default function PlainIDChatFullContent() {
       totalDocs: allDocs.length,
       filteredDocs: filteredDocs.slice(0, 3),
       message: `Retrieved ${filteredDocs.length} of ${allDocs.length} documents based on permissions`
+    };
+  };
+
+  // Get MCP Tool Control results
+  const getToolResults = (followUpText = null) => {
+    const category = followUpText && followUpResponses[followUpText]
+      ? followUpResponses[followUpText].category
+      : sampleQueries[queryIndex].category;
+
+    const tools = toolsByCategory[category] || toolsByCategory['general'];
+    const tierPerm = toolTierPermissions[userRole];
+    const categoryAuthorized = isAuthorized(followUpText);
+
+    const toolResults = tools.map(tool => {
+      const authorized = categoryAuthorized && tool.tier <= tierPerm.maxTier;
+      return { ...tool, authorized };
+    });
+
+    const authorizedCount = toolResults.filter(t => t.authorized).length;
+
+    return {
+      tools: toolResults,
+      authorizedCount,
+      totalCount: toolResults.length,
+      message: categoryAuthorized
+        ? `${authorizedCount} of ${toolResults.length} requested tools authorized for ${rolePermissions[userRole].name} role`
+        : 'No tools authorized — insufficient category permissions'
     };
   };
 
@@ -1512,6 +1658,7 @@ export default function PlainIDChatFullContent() {
     }
 
     const currentFiles = [...attachedFiles];
+    const agentic = isAgenticQuery;
     
     const userMessage = {
       type: 'user',
@@ -1524,6 +1671,7 @@ export default function PlainIDChatFullContent() {
     setCurrentGuardrail(1);
     setIsProcessing(true);
 
+    // Step 1: Categorizer
     setTimeout(() => {
       const classification = getClassificationResult(followUpText);
       setMessages(prev => [...prev, {
@@ -1533,47 +1681,109 @@ export default function PlainIDChatFullContent() {
         timestamp: new Date()
       }]);
       setCurrentGuardrail(2);
-    }, 2000);
+    }, 1500);
 
-    setTimeout(() => {
-      const docResults = getDocumentResults(followUpText);
-      setMessages(prev => [...prev, {
-        type: 'guardrail',
-        guardrail: 'retriever',
-        docResults: docResults,
-        uploadedFiles: currentFiles,
-        timestamp: new Date()
-      }]);
-      setCurrentGuardrail(3);
-    }, 4000);
+    if (agentic) {
+      // Step 2: Tool Control (agentic only)
+      setTimeout(() => {
+        const toolResults = getToolResults(followUpText);
+        setMessages(prev => [...prev, {
+          type: 'guardrail',
+          guardrail: 'tool_control',
+          toolResults: toolResults,
+          timestamp: new Date()
+        }]);
+        setCurrentGuardrail(3);
+      }, 3000);
 
-    setTimeout(() => {
-      const response = getRedactedResponse(followUpText);
-      setMessages(prev => [...prev, {
-        type: 'guardrail',
-        guardrail: 'anonymizer',
-        response: response,
-        timestamp: new Date()
-      }]);
-      setCurrentGuardrail(4);
-    }, 6000);
+      // Step 3: RAG Control
+      setTimeout(() => {
+        const docResults = getDocumentResults(followUpText);
+        setMessages(prev => [...prev, {
+          type: 'guardrail',
+          guardrail: 'retriever',
+          docResults: docResults,
+          uploadedFiles: currentFiles,
+          timestamp: new Date()
+        }]);
+        setCurrentGuardrail(4);
+      }, 4500);
 
-    setTimeout(() => {
-      const finalResponse = getRedactedResponse(followUpText);
-      setMessages(prev => [...prev, {
-        type: 'assistant',
-        text: finalResponse.response,
-        redactionLevel: finalResponse.redactionLevel,
-        generalized: finalResponse.generalized,
-        followUps: finalResponse.followUps,
-        timestamp: new Date()
-      }]);
-      setIsProcessing(false);
-      setCurrentGuardrail(0);
-      setActiveFollowUp(null);
-      setShowFollowUps(true);
-      setExchangeCount(prev => prev + 1);
-    }, 8000);
+      // Step 4: Anonymizer
+      setTimeout(() => {
+        const response = getRedactedResponse(followUpText);
+        setMessages(prev => [...prev, {
+          type: 'guardrail',
+          guardrail: 'anonymizer',
+          response: response,
+          timestamp: new Date()
+        }]);
+        setCurrentGuardrail(5);
+      }, 6000);
+
+      // Step 5: Final response
+      setTimeout(() => {
+        const finalResponse = getRedactedResponse(followUpText);
+        setMessages(prev => [...prev, {
+          type: 'assistant',
+          text: finalResponse.response,
+          redactionLevel: finalResponse.redactionLevel,
+          generalized: finalResponse.generalized,
+          followUps: finalResponse.followUps,
+          timestamp: new Date()
+        }]);
+        setIsProcessing(false);
+        setCurrentGuardrail(0);
+        setActiveFollowUp(null);
+        setShowFollowUps(true);
+        setExchangeCount(prev => prev + 1);
+      }, 7500);
+    } else {
+      // RAG Pipeline — no tool control step
+
+      // Step 2: RAG Control
+      setTimeout(() => {
+        const docResults = getDocumentResults(followUpText);
+        setMessages(prev => [...prev, {
+          type: 'guardrail',
+          guardrail: 'retriever',
+          docResults: docResults,
+          uploadedFiles: currentFiles,
+          timestamp: new Date()
+        }]);
+        setCurrentGuardrail(3);
+      }, 3000);
+
+      // Step 3: Anonymizer
+      setTimeout(() => {
+        const response = getRedactedResponse(followUpText);
+        setMessages(prev => [...prev, {
+          type: 'guardrail',
+          guardrail: 'anonymizer',
+          response: response,
+          timestamp: new Date()
+        }]);
+        setCurrentGuardrail(4);
+      }, 4500);
+
+      // Step 4: Final response
+      setTimeout(() => {
+        const finalResponse = getRedactedResponse(followUpText);
+        setMessages(prev => [...prev, {
+          type: 'assistant',
+          text: finalResponse.response,
+          redactionLevel: finalResponse.redactionLevel,
+          generalized: finalResponse.generalized,
+          followUps: finalResponse.followUps,
+          timestamp: new Date()
+        }]);
+        setIsProcessing(false);
+        setCurrentGuardrail(0);
+        setActiveFollowUp(null);
+        setShowFollowUps(true);
+        setExchangeCount(prev => prev + 1);
+      }, 6000);
+    }
   };
 
   const handleSendMessage = () => {
@@ -1583,6 +1793,7 @@ export default function PlainIDChatFullContent() {
     }
 
     const query = sampleQueries[queryIndex];
+    const agentic = query.agentic;
     
     setActiveFollowUp(null);
     
@@ -1600,6 +1811,7 @@ export default function PlainIDChatFullContent() {
     setIsProcessing(true);
     setShowFollowUps(false);
 
+    // Step 1: Categorizer
     setTimeout(() => {
       const classification = getClassificationResult();
       setMessages(prev => [...prev, {
@@ -1609,46 +1821,107 @@ export default function PlainIDChatFullContent() {
         timestamp: new Date()
       }]);
       setCurrentGuardrail(2);
-    }, 2000);
+    }, 1500);
 
-    setTimeout(() => {
-      const docResults = getDocumentResults();
-      setMessages(prev => [...prev, {
-        type: 'guardrail',
-        guardrail: 'retriever',
-        docResults: docResults,
-        uploadedFiles: currentFiles,
-        timestamp: new Date()
-      }]);
-      setCurrentGuardrail(3);
-    }, 4000);
+    if (agentic) {
+      // Step 2: Tool Control (agentic only)
+      setTimeout(() => {
+        const toolResults = getToolResults();
+        setMessages(prev => [...prev, {
+          type: 'guardrail',
+          guardrail: 'tool_control',
+          toolResults: toolResults,
+          timestamp: new Date()
+        }]);
+        setCurrentGuardrail(3);
+      }, 3000);
 
-    setTimeout(() => {
-      const response = getRedactedResponse();
-      setMessages(prev => [...prev, {
-        type: 'guardrail',
-        guardrail: 'anonymizer',
-        response: response,
-        timestamp: new Date()
-      }]);
-      setCurrentGuardrail(4);
-    }, 6000);
+      // Step 3: RAG Control
+      setTimeout(() => {
+        const docResults = getDocumentResults();
+        setMessages(prev => [...prev, {
+          type: 'guardrail',
+          guardrail: 'retriever',
+          docResults: docResults,
+          uploadedFiles: currentFiles,
+          timestamp: new Date()
+        }]);
+        setCurrentGuardrail(4);
+      }, 4500);
 
-    setTimeout(() => {
-      const finalResponse = getRedactedResponse();
-      setMessages(prev => [...prev, {
-        type: 'assistant',
-        text: finalResponse.response,
-        redactionLevel: finalResponse.redactionLevel,
-        generalized: finalResponse.generalized,
-        followUps: finalResponse.followUps,
-        timestamp: new Date()
-      }]);
-      setIsProcessing(false);
-      setCurrentGuardrail(0);
-      setShowFollowUps(true);
-      setExchangeCount(prev => prev + 1);
-    }, 8000);
+      // Step 4: Anonymizer
+      setTimeout(() => {
+        const response = getRedactedResponse();
+        setMessages(prev => [...prev, {
+          type: 'guardrail',
+          guardrail: 'anonymizer',
+          response: response,
+          timestamp: new Date()
+        }]);
+        setCurrentGuardrail(5);
+      }, 6000);
+
+      // Step 5: Final response
+      setTimeout(() => {
+        const finalResponse = getRedactedResponse();
+        setMessages(prev => [...prev, {
+          type: 'assistant',
+          text: finalResponse.response,
+          redactionLevel: finalResponse.redactionLevel,
+          generalized: finalResponse.generalized,
+          followUps: finalResponse.followUps,
+          timestamp: new Date()
+        }]);
+        setIsProcessing(false);
+        setCurrentGuardrail(0);
+        setShowFollowUps(true);
+        setExchangeCount(prev => prev + 1);
+      }, 7500);
+    } else {
+      // RAG Pipeline — no tool control step
+
+      // Step 2: RAG Control
+      setTimeout(() => {
+        const docResults = getDocumentResults();
+        setMessages(prev => [...prev, {
+          type: 'guardrail',
+          guardrail: 'retriever',
+          docResults: docResults,
+          uploadedFiles: currentFiles,
+          timestamp: new Date()
+        }]);
+        setCurrentGuardrail(3);
+      }, 3000);
+
+      // Step 3: Anonymizer
+      setTimeout(() => {
+        const response = getRedactedResponse();
+        setMessages(prev => [...prev, {
+          type: 'guardrail',
+          guardrail: 'anonymizer',
+          response: response,
+          timestamp: new Date()
+        }]);
+        setCurrentGuardrail(4);
+      }, 4500);
+
+      // Step 4: Final response
+      setTimeout(() => {
+        const finalResponse = getRedactedResponse();
+        setMessages(prev => [...prev, {
+          type: 'assistant',
+          text: finalResponse.response,
+          redactionLevel: finalResponse.redactionLevel,
+          generalized: finalResponse.generalized,
+          followUps: finalResponse.followUps,
+          timestamp: new Date()
+        }]);
+        setIsProcessing(false);
+        setCurrentGuardrail(0);
+        setShowFollowUps(true);
+        setExchangeCount(prev => prev + 1);
+      }, 6000);
+    }
   };
 
   const selectQuery = (index) => {
@@ -1657,10 +1930,6 @@ export default function PlainIDChatFullContent() {
     setInputText(sampleQueries[actualIndex].text);
     setActiveFollowUp(null);
   };
-
-  const BetaTag = () => (
-    <span className="ml-2 px-1.5 py-0.5 text-xs font-medium bg-blue-100 text-blue-800 rounded uppercase">Beta</span>
-  );
 
   // Toast Notification Component
   const ToastNotification = () => {
@@ -1717,11 +1986,11 @@ export default function PlainIDChatFullContent() {
             </div>
             
             <h3 className="text-2xl font-bold text-center text-gray-900 mb-4">
-              Ready to Secure Your LangChain Apps?
+              Ready to Secure Your AI Applications?
             </h3>
             
             <p className="text-center text-gray-600 mb-8">
-              Add enterprise authorization to your RAG pipeline with the <code className="bg-gray-100 px-2 py-1 rounded">langchain-plainid</code> library.
+              Add enterprise authorization to your RAG and agentic AI pipelines with the <code className="bg-gray-100 px-2 py-1 rounded">langchain-plainid</code> library.
             </p>
             
             <div className="space-y-3">
@@ -1738,7 +2007,7 @@ export default function PlainIDChatFullContent() {
               
               <button 
                 onClick={() => {
-                  window.open('https://docs.plainid.io/docs/langchain-authorizer', '_blank');
+                  window.open('https://docs.plainid.io/docs/langchain-ai-integration', '_blank');
                   setShowCTAModal(false);
                 }}
                 className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-all"
@@ -1763,8 +2032,14 @@ export default function PlainIDChatFullContent() {
   const currentRole = rolePermissions[userRole];
   const classification = getClassificationResult(activeFollowUp);
   const docResults = getDocumentResults(activeFollowUp);
+  const toolResults = getToolResults(activeFollowUp);
   const response = getRedactedResponse(activeFollowUp);
   const isAtLimit = exchangeCount >= MAX_EXCHANGES;
+
+  // Guardrail numbering based on mode
+  const guardrailNumbers = isAgenticQuery
+    ? { categorizer: 1, tool_control: 2, retriever: 3, anonymizer: 4 }
+    : { categorizer: 1, retriever: 2, anonymizer: 3 };
 
   return (
     <div className="flex h-screen bg-gray-50">
@@ -1772,12 +2047,6 @@ export default function PlainIDChatFullContent() {
       <div className={`${sidebarOpen ? 'w-72' : 'w-0'} transition-all duration-300 bg-gray-900 text-white flex flex-col overflow-hidden`}>
         <div className="p-4 border-b border-gray-700">
           <div className="flex items-center mb-4">
-             {/* COMMENTED OUT - original shield icon
-              <div className="bg-gradient-to-r from-teal-500 to-teal-600 p-2 rounded-lg mr-3">
-                <Shield size={20} />
-              </div>
-              */}
-              {/* NEW - custom logo image */}
               <div className="mr-3">
                 <img 
                   src="https://www.plainid.com/wp-content/uploads/2025/12/PlainID-logo-icon-button-No-edge.png" 
@@ -1787,7 +2056,7 @@ export default function PlainIDChatFullContent() {
               </div>
             <div>
               <div className="font-semibold text-sm">PlainID</div>
-              <div className="text-xs text-gray-400">LangChain Authorizer</div>
+              <div className="text-xs text-gray-400">LangChain &amp; LangGraph Authorizer</div>
             </div>
           </div>
           <button 
@@ -1866,8 +2135,11 @@ export default function PlainIDChatFullContent() {
                   }`}
                 >
                   <div className="truncate">{query.text}</div>
-                  <div className={`text-xs mt-1 ${isSelected ? 'text-teal-100' : 'text-gray-500'}`}>
-                    {query.category.replace(/_/g, ' ')}
+                  <div className={`text-xs mt-1 flex items-center justify-between ${isSelected ? 'text-teal-100' : 'text-gray-500'}`}>
+                    <span>{query.category.replace(/_/g, ' ')}</span>
+                    {query.agentic && (
+                      <span className={`px-1.5 py-0.5 rounded text-xs ${isSelected ? 'bg-teal-400/30' : 'bg-amber-500/20 text-amber-400'}`}>Agent</span>
+                    )}
                   </div>
                 </button>
               );
@@ -1933,15 +2205,24 @@ export default function PlainIDChatFullContent() {
               </div>
               <div>
                 <h1 className="text-lg font-semibold text-gray-900 flex items-center">
-                  PlainID LangChain Authorizer
-                  <BetaTag />
+                  PlainID LangChain and LangGraph Authorizer
                 </h1>
-                <p className="text-xs text-gray-500">Enterprise Authorization for LangChain and AI Applications</p>
+                <p className="text-xs text-gray-500">Enterprise Authorization for LangChain, LangGraph &amp; AI Applications</p>
               </div>
             </div>
           </div>
           
           <div className="flex items-center space-x-3">
+            {/* Mode Indicator */}
+            <div className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-medium ${
+              isAgenticQuery
+                ? 'bg-amber-50 text-amber-800 border border-amber-200'
+                : 'bg-blue-50 text-blue-800 border border-blue-200'
+            }`}>
+              {isAgenticQuery ? <Wrench size={12} /> : <Database size={12} />}
+              <span>{isAgenticQuery ? 'Agentic Workflow' : 'RAG Pipeline'}</span>
+            </div>
+
             {/* Exchange Counter */}
             {messages.length > 0 && (
               <div className="flex items-center space-x-2 bg-gray-100 px-3 py-1.5 rounded-lg">
@@ -2022,6 +2303,23 @@ export default function PlainIDChatFullContent() {
                         </p>
                       </div>
                     </div>
+
+                    {/* Tool Authorization — unsecured side (agentic only) */}
+                    {isAgenticQuery && (
+                      <div>
+                        <h4 className="font-medium text-gray-700 mb-2 text-sm">Tool Authorization</h4>
+                        <div className="bg-gray-50 p-3 rounded-lg border border-gray-200 space-y-2">
+                          <p className="text-sm text-gray-600 flex items-center">
+                            <span className="text-red-500 mr-2">❌</span>
+                            No tool authorization
+                          </p>
+                          <p className="text-sm text-gray-600 flex items-center">
+                            <span className="text-red-500 mr-2">❌</span>
+                            All agent tools accessible
+                          </p>
+                        </div>
+                      </div>
+                    )}
                     
                     <div>
                       <h4 className="font-medium text-gray-700 mb-2 text-sm">Document Retrieval</h4>
@@ -2062,7 +2360,6 @@ export default function PlainIDChatFullContent() {
                     </div>
                     <h3 className="text-xl font-semibold text-gray-900 flex items-center">
                       PlainID Secured AI Chat
-                      <BetaTag />
                     </h3>
                   </div>
                   
@@ -2075,7 +2372,7 @@ export default function PlainIDChatFullContent() {
                     </div>
 
                     <div>
-                      <h4 className="font-medium text-gray-700 mb-2 text-sm">Guardrail 1: Categorizer</h4>
+                      <h4 className="font-medium text-gray-700 mb-2 text-sm">Guardrail {guardrailNumbers.categorizer}: Categorizer</h4>
                       <div className="bg-teal-50 p-3 rounded-lg border border-teal-200 space-y-2">
                         <p className="text-sm text-gray-700 flex items-center">
                           <span className="text-green-600 mr-2">✓</span>
@@ -2087,9 +2384,34 @@ export default function PlainIDChatFullContent() {
                         </p>
                       </div>
                     </div>
+
+                    {/* Tool Control — secured side (agentic only) */}
+                    {isAgenticQuery && (
+                      <div>
+                        <h4 className="font-medium text-gray-700 mb-2 text-sm">Guardrail {guardrailNumbers.tool_control}: MCP Tool Control</h4>
+                        <div className="bg-teal-50 p-3 rounded-lg border border-teal-200 space-y-2">
+                          {toolResults.tools.map((tool, idx) => (
+                            <p key={idx} className="text-sm text-gray-700 flex items-center">
+                              <span className={`mr-2 ${tool.authorized ? 'text-green-600' : 'text-red-500'}`}>
+                                {tool.authorized ? '✓' : '✗'}
+                              </span>
+                              <code className="text-xs bg-white/60 px-1 py-0.5 rounded mr-2">{tool.name}</code>
+                              <span className={`text-xs px-1.5 py-0.5 rounded ${
+                                tool.authorized ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
+                              }`}>
+                                {tool.authorized ? 'Authorized' : 'Denied'}
+                              </span>
+                            </p>
+                          ))}
+                          <p className="text-xs text-gray-600 mt-2 pt-2 border-t border-teal-200">
+                            {toolResults.message}
+                          </p>
+                        </div>
+                      </div>
+                    )}
                     
                     <div>
-                      <h4 className="font-medium text-gray-700 mb-2 text-sm">Guardrail 2: Retriever</h4>
+                      <h4 className="font-medium text-gray-700 mb-2 text-sm">Guardrail {guardrailNumbers.retriever}: RAG Control</h4>
                       <div className="bg-teal-50 p-3 rounded-lg border border-teal-200 space-y-2">
                         <p className="text-sm text-gray-700 flex items-center">
                           <span className="text-green-600 mr-2">✓</span>
@@ -2103,7 +2425,7 @@ export default function PlainIDChatFullContent() {
                     </div>
 
                     <div>
-                      <h4 className="font-medium text-gray-700 mb-2 text-sm">Guardrail 3: Anonymizer</h4>
+                      <h4 className="font-medium text-gray-700 mb-2 text-sm">Guardrail {guardrailNumbers.anonymizer}: Anonymizer</h4>
                       <div className="bg-teal-50 p-4 rounded-lg border border-teal-200">
                         <p className="text-sm text-gray-900 mb-3 whitespace-pre-line">{response.response}</p>
                         <div className="mt-3 p-2 bg-teal-100 border border-teal-300 rounded">
@@ -2141,17 +2463,23 @@ export default function PlainIDChatFullContent() {
                       <Shield size={40} className="text-white" />
                     </div>
                     <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                      Secure Your LangChain & AI Pipeline
+                      Secure Your AI Pipeline
                     </h2>
                     <p className="text-xl text-gray-600 mb-8">
-                      Add enterprise-grade authorization with three security guardrails
+                      Add enterprise-grade authorization with four security guardrails
                     </p>
-                    <div className="flex justify-center space-x-8">
+                    <div className="flex justify-center space-x-6">
                       <div className="text-center">
                         <div className="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-2">
                           <Filter size={24} className="text-teal-600" />
                         </div>
                         <p className="text-sm font-medium text-gray-700">Prompt Classification</p>
+                      </div>
+                      <div className="text-center">
+                        <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                          <Wrench size={24} className="text-amber-600" />
+                        </div>
+                        <p className="text-sm font-medium text-gray-700">Tool Authorization</p>
                       </div>
                       <div className="text-center">
                         <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-2">
@@ -2174,8 +2502,8 @@ export default function PlainIDChatFullContent() {
                     <div className="space-y-3 text-sm text-gray-700">
                       <p>1. <strong>Filter by industry</strong> to see relevant prompts (Asset Management, Technology, Healthcare)</p>
                       <p>2. <strong>Select your role</strong> from the sidebar (Executive, Manager, or Employee)</p>
-                      <p>3. <strong>Choose a query</strong> from the sidebar or type your own</p>
-                      <p>4. <strong>Send the message</strong> to see the three-layer authorization process in action</p>
+                      <p>3. <strong>Choose a query</strong> from the sidebar — queries tagged <span className="px-1.5 py-0.5 rounded bg-amber-50 text-amber-700 text-xs font-medium">Agent</span> show the MCP Tool Control guardrail</p>
+                      <p>4. <strong>Send the message</strong> to see the authorization guardrails process in action</p>
                       <p>5. <strong>Try follow-up questions</strong> to continue the conversation with new contextual responses</p>
                     </div>
                   </div>
@@ -2187,9 +2515,16 @@ export default function PlainIDChatFullContent() {
                       <div className="bg-white/80 rounded-lg p-4">
                         <div className="text-sm font-medium text-gray-700 mb-2">Selected Query</div>
                         <div className="text-sm text-gray-900 mb-2">{sampleQueries[queryIndex].text}</div>
-                        <div className="text-xs text-gray-500">
-                          Category: {sampleQueries[queryIndex].category.replace(/_/g, ' ')} | 
-                          Industry: {sampleQueries[queryIndex].industry.replace(/_/g, ' ')}
+                        <div className="text-xs text-gray-500 flex items-center flex-wrap gap-2">
+                          <span>Category: {sampleQueries[queryIndex].category.replace(/_/g, ' ')}</span>
+                          <span>|</span>
+                          <span>Industry: {sampleQueries[queryIndex].industry.replace(/_/g, ' ')}</span>
+                          <span>|</span>
+                          <span className={`px-1.5 py-0.5 rounded font-medium ${
+                            isAgenticQuery ? 'bg-amber-100 text-amber-700' : 'bg-blue-100 text-blue-700'
+                          }`}>
+                            {isAgenticQuery ? 'Agentic Workflow' : 'RAG Pipeline'}
+                          </span>
                         </div>
                       </div>
                       <div className="bg-white/80 rounded-lg p-4">
@@ -2253,7 +2588,7 @@ export default function PlainIDChatFullContent() {
                             </div>
                             <div className="flex-grow">
                               <h4 className="text-lg font-semibold text-gray-900 mb-3">
-                                Guardrail 1: Prompt Categorization
+                                Guardrail {guardrailNumbers.categorizer}: Prompt Categorization
                               </h4>
                               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div className="bg-gray-50 p-4 rounded-lg">
@@ -2307,6 +2642,67 @@ export default function PlainIDChatFullContent() {
                         </div>
                       )}
 
+                      {/* MCP Tool Control Guardrail */}
+                      {msg.type === 'guardrail' && msg.guardrail === 'tool_control' && (
+                        <div className="bg-white rounded-xl border-l-4 border-amber-500 p-6 shadow-sm">
+                          <div className="flex items-start">
+                            <div className="bg-gradient-to-r from-amber-500 to-amber-600 p-3 rounded-xl mr-4 flex-shrink-0">
+                              <Wrench size={24} className="text-white" />
+                            </div>
+                            <div className="flex-grow">
+                              <h4 className="text-lg font-semibold text-gray-900 mb-3">
+                                Guardrail {guardrailNumbers.tool_control}: MCP Tool Control
+                              </h4>
+                              <p className="text-gray-700 mb-3 text-sm">
+                                {msg.toolResults.message}
+                              </p>
+                              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
+                                {msg.toolResults.tools.map((tool, idx) => (
+                                  <div key={idx} className={`p-3 rounded-lg border ${
+                                    tool.authorized 
+                                      ? 'bg-green-50 border-green-200' 
+                                      : 'bg-red-50 border-red-200'
+                                  }`}>
+                                    <div className="flex items-center mb-2">
+                                      {tool.authorized ? (
+                                        <Check size={14} className="text-green-600 mr-2 flex-shrink-0" />
+                                      ) : (
+                                        <Lock size={14} className="text-red-600 mr-2 flex-shrink-0" />
+                                      )}
+                                      <span className={`text-xs font-medium ${
+                                        tool.authorized ? 'text-green-800' : 'text-red-800'
+                                      }`}>
+                                        {tool.authorized ? 'Authorized' : 'Denied'}
+                                      </span>
+                                    </div>
+                                    <div className="text-xs font-mono text-gray-900 mb-1 truncate" title={tool.name}>{tool.name}</div>
+                                    <div className="text-xs text-gray-600 mb-2">{tool.description}</div>
+                                    <div className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${
+                                      tool.tier === 1 ? 'bg-blue-100 text-blue-700' :
+                                      tool.tier === 2 ? 'bg-purple-100 text-purple-700' :
+                                      tool.tier === 3 ? 'bg-orange-100 text-orange-700' :
+                                      'bg-red-100 text-red-700'
+                                    }`}>
+                                      Tier {tool.tier}: {tool.tierLabel}
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                              <div className="bg-amber-50 p-3 rounded-lg border border-amber-200">
+                                <p className="text-xs text-amber-900">
+                                  <strong>Policy Applied:</strong> {currentRole.name} role authorized for tool tiers up to {toolTierPermissions[userRole].maxTier} ({
+                                    toolTierPermissions[userRole].maxTier === 1 ? 'Query only' :
+                                    toolTierPermissions[userRole].maxTier === 2 ? 'Query + Analyze' :
+                                    toolTierPermissions[userRole].maxTier === 3 ? 'Query + Analyze + Export' :
+                                    'Full access including Write'
+                                  })
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
                       {msg.type === 'guardrail' && msg.guardrail === 'retriever' && (
                         <div className="bg-white rounded-xl border-l-4 border-blue-500 p-6 shadow-sm">
                           <div className="flex items-start">
@@ -2315,7 +2711,7 @@ export default function PlainIDChatFullContent() {
                             </div>
                             <div className="flex-grow">
                               <h4 className="text-lg font-semibold text-gray-900 mb-3">
-                                Guardrail 2: Document Filtering
+                                Guardrail {guardrailNumbers.retriever}: RAG Control
                               </h4>
                               {msg.docResults.filteredDocs.length > 0 || (msg.uploadedFiles && msg.uploadedFiles.length > 0) ? (
                                 <div>
@@ -2405,7 +2801,7 @@ export default function PlainIDChatFullContent() {
                             </div>
                             <div className="flex-grow">
                               <h4 className="text-lg font-semibold text-gray-900 mb-3">
-                                Guardrail 3: Output Anonymization
+                                Guardrail {guardrailNumbers.anonymizer}: Output Anonymization
                               </h4>
                               <div className="bg-gray-50 p-4 rounded-lg border border-gray-200 mb-4">
                                 <p className="text-sm text-gray-900 leading-relaxed whitespace-pre-line">{msg.response.response}</p>
@@ -2452,8 +2848,7 @@ export default function PlainIDChatFullContent() {
                               <div className="bg-white px-5 py-4 rounded-2xl rounded-tl-md border border-gray-200 shadow-sm">
                                 <div className="flex items-center mb-2">
                                   <Shield size={16} className="text-teal-600 mr-2" />
-                                  <span className="text-sm font-semibold text-gray-900">PlainID LangChain Authorizer</span>
-                                  <BetaTag />
+                                  <span className="text-sm font-semibold text-gray-900">PlainID LangChain and LangGraph Authorizer</span>
                                 </div>
                                 <p className="text-sm text-gray-800 leading-relaxed mb-3 whitespace-pre-line">{msg.text}</p>
                                 <div className="pt-3 border-t border-gray-200">
@@ -2603,7 +2998,7 @@ export default function PlainIDChatFullContent() {
                       type="text"
                       value={inputText}
                       onChange={(e) => setInputText(e.target.value)}
-                      placeholder={isAtLimit ? "Conversation limit reached. Start a new chat." : "Ask a question to see the three-layer authorization in action..."}
+                      placeholder={isAtLimit ? "Conversation limit reached. Start a new chat." : "Ask a question to see the authorization guardrails in action..."}
                       disabled={isProcessing || isAtLimit}
                       className="w-full px-4 py-3 pr-12 bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
                     />
