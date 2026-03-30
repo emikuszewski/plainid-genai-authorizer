@@ -153,11 +153,6 @@ export default function PlainIDAIAuthorizerWalkthrough() {
   // Get current result
   const result = getResult();
   
-  // Beta tag component
-  const BetaTag = () => (
-    <span className="ml-2 px-1.5 py-0.5 text-xs font-medium bg-blue-100 text-blue-800 rounded uppercase">Beta</span>
-  );
-  
   // Background pattern for dot grid
   const DotGridPattern = ({ className = "" }) => {
     return (
@@ -235,7 +230,7 @@ export default function PlainIDAIAuthorizerWalkthrough() {
             </div>
             
             <h3 className="text-2xl font-bold text-center text-deep-teal mb-4">
-              Ready to Secure Your GenAI?
+              Ready to Secure Your AI Applications?
             </h3>
             
             <p className="text-center text-gray-600 mb-8">
@@ -290,8 +285,7 @@ export default function PlainIDAIAuthorizerWalkthrough() {
               <Shield size={24} />
             </div>
             <h1 className="ml-3 text-xl font-medium text-deep-teal tracking-tight flex items-center">
-              PlainID GenAI Authorizer Prototype
-              <BetaTag />
+              PlainID LangChain and LangGraph Authorizer
             </h1>
           </div>
           <div className="flex space-x-4">
@@ -319,7 +313,7 @@ export default function PlainIDAIAuthorizerWalkthrough() {
                     <Shield size={32} className="text-white" />
                   </div>
                 </div>
-                <h3 className="text-center text-deep-teal font-medium text-xl mb-3">Secure Your GenAI with Dynamic Authorization</h3>
+                <h3 className="text-center text-deep-teal font-medium text-xl mb-3">Secure Your AI with Dynamic Authorization</h3>
                 <p className="text-center text-deep-teal/80">Protection for sensitive information across your AI workflows</p>
               </div>
             </div>
@@ -388,8 +382,7 @@ export default function PlainIDAIAuthorizerWalkthrough() {
                   <Shield className="text-teal-500" size={24} />
                 </div>
                 <h3 className="text-xl font-medium ml-3 text-deep-teal flex items-center">
-                  With PlainID GenAI Authorizer Prototype
-                  <BetaTag />
+                  With PlainID LangChain and LangGraph Authorizer
                 </h3>
               </div>
               
@@ -578,10 +571,10 @@ export default function PlainIDAIAuthorizerWalkthrough() {
                   <div 
                     className={`absolute h-2 bg-gradient-to-r from-teal-500 to-teal-600 rounded-full transition-all duration-500 ease-out`}
                     style={{
-                      top: '1.25rem', // 5px in rem
-                      left: '2.25rem', // 9px in rem
+                      top: '1.25rem',
+                      left: '2.25rem',
                       width: currentStep === 0 ? '0' : 
-                             currentStep === 6 ? 'calc(100% - 4.5rem)' : // 18px in rem  
+                             currentStep === 6 ? 'calc(100% - 4.5rem)' :
                              `calc(${(currentStep / 6) * 100}% - ${18 * (1 - currentStep/6)}px)`
                     }}
                   ></div>
@@ -838,8 +831,7 @@ export default function PlainIDAIAuthorizerWalkthrough() {
                           <Shield size={22} className="text-teal-500 mr-3 mt-0.5 flex-shrink-0" />
                           <div>
                             <p className="text-deep-teal font-medium flex items-center">
-                              PlainID GenAI Authorizer Prototype
-                              <BetaTag />
+                              PlainID LangChain and LangGraph Authorizer
                             </p>
                             <p className="text-deep-teal/80">
                               {isAuthorized() 
@@ -868,11 +860,10 @@ export default function PlainIDAIAuthorizerWalkthrough() {
                   <Shield size={18} />
                 </div>
                 <p className="ml-2 text-lg font-medium flex items-center">
-                  PlainID GenAI Authorizer Prototype
-                  <BetaTag />
+                  PlainID LangChain and LangGraph Authorizer
                 </p>
               </div>
-              <p className="text-gray-300 text-sm">Securing GenAI Applications with Dynamic Authorization</p>
+              <p className="text-gray-300 text-sm">Enterprise Authorization for LangChain, LangGraph &amp; AI Applications</p>
             </div>
             <div className="flex gap-3">
               <div className="text-sm px-4 py-2 bg-teal-500 bg-opacity-20 rounded-lg font-medium hover:bg-opacity-30 transition-colors cursor-pointer transform hover:scale-105 transition-transform duration-300 hover:shadow-sm">Policy-Based Access</div>
